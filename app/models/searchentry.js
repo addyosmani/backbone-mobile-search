@@ -1,0 +1,2 @@
+NewsEntry = Backbone.Model.extend({
+});
