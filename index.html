@@ -8,12 +8,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		
 		<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css" />
-		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js"></script>
-		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js"></script>
-		<script type="text/javascript" src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
-		
 		<link rel="stylesheet"  href="css/style.css" />
 	</head>
 	
@@ -21,7 +15,7 @@
 		<div data-role="page" data-theme="b">
 			
 			<div data-role="header">
-				<h1>Backbone FlickrLive Mobile</h1>
+				<h1>Backbone Mobile Search with Flickr</h1>
 			</div><!-- /header -->
 
 				
@@ -56,202 +50,35 @@
 		</div><!-- /footer -->
 	   
 
-	    <!-- underscore implements micro templating and it's great to use with type="text/template" script tags -->
 	    <script type="text/template" id="newslistul">
-	        <!-- Sorry about the the variables below, the google api nest them in some funky places
-	        anything after .get() is googles own variable convention and when implemented by
-	        your self will most usually be quite simple 
-	
-	Size Suffixes
-	    The letter suffixes are as follows:
-	    s   small square 75x75
-	    t   thumbnail, 100 on longest side
-	    m   small, 240 on longest side
-	    -   medium, 500 on longest side
-	    b   large, 1024 on longest side (only exists for very large original images)
-	    o   original image, either a jpg, gif or png, depending on source format
-	
-	-->
-
             <ul>
             <% _.each( news, function( item, i ){ %>
                 <li>
 
 <a title='<%= item.get("title") %>' href='<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_b.jpg' %>'>
 				<img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_s.jpg' %>"/></a>
-			
-	
-			
                 </li>
-            
             <% }); %>
             </ul>
         </script>
     
-	    <script type="text/javascript">
-	
-			$.mobile.hashListeningEnabled = false;
-			$.mobile.urlHistory.listeningEnabled = false;
-			
-	        $(document).ready( function(){
-		
-		/*very very important,
-		This is meant as a global config option for end users to disable hashchange listening (as opposed to urlHistory.listeningEnabled, which is an internal toggle)*/
-		$.mobile.hashListeningEnabled = false;
-		$.mobile.urlHistory.listeningEnabled = false;
-		$('#nextSet').hide();
 
-
-				$('#nextSet').click(function(){
-					//workspace.search(workspace.q, parseInt(workspace.p)+1);
-					var hashQuery = "", pageQuery = 0;	
-					(workspace.q == undefined) ? hashQuery = '' : hashQuery = workspace.q;
-					(workspace.p == undefined) ? pageQuery = 1  : pageQuery =  workspace.p;
-					(workspace.s == undefined) ? sortQuery = 'relevance' : sortQuery = workspace.s;
-					location.hash = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (parseInt(pageQuery)+1);
-					return false;
-				});
+		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/labjs/1.2.0/LAB.min.js"></script>
+		<script type="text/javascript">
+		$LAB
+		.script("http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js").wait()
+		.script("https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js")
+		.script("http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js")
+		.script("http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js")
+		.script("http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js")
+		.script("app/controllers/controller.js")
+		.script("app/models/searchentry.js")
+		.script("app/views/appview.js")
+		.script("app/models/searchcollection.js")
+		.script("app/views/searchlist.js")
+		.script("app/app.js")
+		.script("app/views/domready.js");
+		</script>
 				
-	            NewsEntry = Backbone.Model.extend({
-	                // A collection doesn't neccesarily have to set
-	                // a model but it makes the code more clear and
-	                // later on you can add extra functionality with ease
-	            });
-	            NewsCollection = Backbone.Collection.extend({
-	                model: NewsEntry, // Set the collection to use the NewsEntry model
-	                initialize: function(){
-	                    // When initialized we want to associate a view with this collection
-	                    this.newslist = new NewsList;
-	                    // Backbone lets us "listen" for certain events
-	                    // In this case when the collection receives an array
-	                    // of models we want to re-render the list view
-	                    this.bind("refresh", this.newslist.renderList);
-	                },
-	            });
-	            
-	            NewsList = Backbone.View.extend({
-	                el: $("#newslist"), // Every view has a element associated with it
-	                initialize: function(){
-	                    // Set the initial content of the view
-	                   // this.el.html("Enter in keyword to query Flickr");
-	                },
-	                renderList: function( collection ){
-	                    // This function is called when the collection "listens"
-	                    // for the "refresh" event which is called in our loadResults()
-	                    // Now we want to compile our underscore template
-	                    // The underscore template just takes a string of text/html 
-	                    var compiled_template = _.template( $("#newslistul").html() );
-	                    // Once compiled we can call our template and pass it any 
-	                    // matching data we have and append it to our view.el
-
-//
-	$("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>"+ 'Loading results...' +"</h1></div>")
-		.css({ "display": "block", "opacity": 0.96, "top": $(window).scrollTop() + 100 })
-		.appendTo( $.mobile.pageContainer )
-		.delay( 800 )
-		.fadeOut( 400, function(){
-			$(this).remove();
-		});
-//	
-	
-	$('#nextSet').show();
-
-	                    collection.newslist.el.html( compiled_template( { news: collection.models } ) );
-
-						$('ul li').append("<div class='loader'></div>");
-					    $('ul li img').bind("load", 
-							function(){ 
-								$('.loader').remove();
-								$(this).show();
-							});  
-	
-	                }
-	            });
-	            AppView = Backbone.View.extend({
-	                el: $("#appview"),
-	                initialize: function(){
-	                    // Lets create an empty collection to store the news
-	                    this.news_collection = new NewsCollection;
-				
-	                },
-	                events: {
-	                    // Events are attached when Backbone starts and 
-	                    // there are many types. We are simply listening for
-	                    // "keypress" on the input field #searchbox
-	                    "keypress #searchbox": "loadResults",
-						"change #sortBy": "loadResults"
-	                },
-
-	                loadResults: function(event){
-	                    // results is passed an event object which we 
-	                    // can use to get the input text, also note "this"
-	                    // refers to the current view
-						//if(event.which==13)
-						{
-	                    query = $('#searchbox').val();
-	                    sort = $('#sortBy').val();
-	                    dfdQuery(this, query, sort);
-						}
-						
-	                },
-	                ajaxGetNews: function( query, sort, page){
-						var apiKey = "8662e376985445d92a07c79ff7d12ff8",
-						    quantity = 24;
-							(page == undefined) ? page = 0 : page = page;
-							(sort == undefined) ? sort = ($('#sortBy').val()) : sort = sort;
-							
-					return $.ajax("http://api.flickr.com/services/rest/?format=json&jsoncallback=?" + "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey, { dataType: "json" });
-	                  
-	                },
-
-	            });
-	            // Create an app view once the document has loaded
-	            var appview = new AppView;
-	       
-			function dfdQuery(ctx, query, sort, page)
-			{
-					$.when( ctx.ajaxGetNews( query, sort, page ) )
-	                .then( $.proxy( function( response ){
-	                    // Below is accessing all the news from google api
-	                    // It puts it in a big json string and I am 
-	                    // simply selecting it
-	                    entries = response.photos.photo;
-						workspace.q = query;
-						workspace.p = page;
-						workspace.s = sort;
-						//$('#searchbox').val(query);
-	                    // Now we pass the array of json objects to add to the collection
-	                    ctx.news_collection.refresh( entries );
-					
-	                }, ctx ) ); // $.proxy is a useful way of passing the parent object to the anonymous function
-				//
-			  
-				
-			}
-	
-			var Workspace = Backbone.Controller.extend({
-				
-			  q:'',
-			  p:1,
-			  s:'relevance',
-
-			  routes: {
-			    "search/:query":        "search",  // #search/kiwis
-			    "search/:query/s:sort/p:page": "search"   // #search/kiwis/srelevance/p7
-
-			  },
-
-			  search: function(query, sort, page) {
-			    dfdQuery(appview, query, sort, page);
-			  }
-			
-			});
-			
-			workspace = new Workspace();
-			Backbone.history.start();
-			
-			 });
-	    </script>
-		
 	</body>
 </html>
