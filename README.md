@@ -1,11 +1,11 @@
 A sample Backbone app with native routing (even though we're working with jQuery mobile)
 
 Uses:
-*   Backbone.js for MVC
-*   Underscore.js for Micro-templating and utilities
-*   jQuery Mobile
-*   LABjs for script loading
-*   Flickr API for data
+-   Backbone.js for MVC
+-   Underscore.js for Micro-templating and utilities
+-   jQuery Mobile
+-   LABjs for script loading
+-   Flickr API for data
 
 Why is this worth checking out:
 
