@@ -1,19 +1,7 @@
 
     
       
-	function dfdQuery(ctx, query, sort, page)
-	{
-			$.when( ctx.ajaxGetNews( query, sort, page ) )
-               .then( $.proxy( function( response ){
-                entries = response.photos.photo;
-				workspace.q = query;
-				workspace.p = page;
-				workspace.s = sort;
-                ctx.news_collection.refresh( entries );
-			
-               }, ctx ) ); 
 
-	}
 
 	var Workspace = Backbone.Controller.extend({
 		
