@@ -1,4 +1,5 @@
-$(function(){	
+$(function(){
+	
 	var moreOption = $('#nextSet');
 	moreOption.hide();
 	moreOption.click(function(){
@@ -10,5 +11,15 @@ $(function(){
 		location.hash = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (parseInt(pageQuery)+1);
 		return false;
 	});
+	
+	
+	
+	$('#queryForm').submit(function() {
+	  	var query = $('#searchbox').val(),
+            sort = $('#sortBy').val();
+			workspace.search(query, 0);
+	  return false;
+	});
+	
 	
 });
