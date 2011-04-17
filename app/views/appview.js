@@ -7,7 +7,7 @@ AppView = Backbone.View.extend({
 
     },
     events: {
-        //"keydown #searchbox": "loadResults",
+        "keydown #searchbox": "loadResults",
 		"change #sortBy": "loadResults"
     },
 
