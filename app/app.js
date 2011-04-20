@@ -11,7 +11,6 @@ $.mobile.urlHistory.listeningEnabled = false;
 var appview = new AppView;	
 
 function dfdQuery(ctx, query, sort, page){
-	
 		(page == undefined) ? page = 1  : page =  page;
 		$('.ui-title').text('Query: ' + query + ' ( Page ' + page + ' )');
 	

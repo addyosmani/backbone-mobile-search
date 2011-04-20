@@ -7,14 +7,35 @@ AppView = Backbone.View.extend({
 
     },
     events: {
-        "keydown #searchbox": "loadResults",
+        //"keydown #searchbox": "keyLoadResults",
+		"submit #queryForm" : "keyLoadResults",
 		"change #sortBy": "loadResults"
     },
+
+	keyLoadResults: function(event){
+
+        query = $('#searchbox').val();
+        sort = $('#sortBy').val();
+		var hashQuery = query, pageQuery = 1, sortQuery = sort;
+		location.hash = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (parseInt(pageQuery));
+		return false;
+		
+	//form.submit
+	/*
+		if(event.which == 13 || event.which == 10){
+			alert('search pressed');
+			query = $('#searchbox').val();
+	        sort = $('#sortBy').val();
+	        dfdQuery(this, query, sort);
+		}*/
+	},
 
     loadResults: function(event){
         query = $('#searchbox').val();
         sort = $('#sortBy').val();
         dfdQuery(this, query, sort);
+
+			
     },
     ajaxGetNews: function( query, sort, page){
 		var apiKey = "8662e376985445d92a07c79ff7d12ff8",

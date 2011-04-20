@@ -14,12 +14,5 @@ $(function(){
 	
 	
 	
-	$('#queryForm').submit(function() {
-	  	var query = $('#searchbox').val(),
-            sort = $('#sortBy').val();
-			workspace.search(query, 0);
-	  return false;
-	});
-	
 	
 });
