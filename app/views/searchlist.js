@@ -2,7 +2,6 @@
 NewsList = Backbone.View.extend({
     el: $("#newslist"), 
     initialize: function(){
-        // Set the initial content of the view
        // this.el.html("Enter in keyword to query Flickr");
     },
     renderList: function( collection ){
@@ -18,7 +17,6 @@ NewsList = Backbone.View.extend({
 	    });
 
 		$('#nextSet').show();
-
         collection.newslist.el.html( compiled_template( { news: collection.models } ) );
 
 		$('ul li').append("<div class='loader'></div>");
@@ -27,6 +25,8 @@ NewsList = Backbone.View.extend({
 				$('.loader').remove();
 				$(this).show();
 			});  
+			
+		$.scrollTo('250px'); //improve. this shouldn't be a fixed number at all
 
     }
 });

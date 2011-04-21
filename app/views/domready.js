@@ -4,6 +4,7 @@ $(function(){
 	moreOption.hide();
 	moreOption.click(function(){
 		//workspace.search(workspace.q, parseInt(workspace.p)+1);
+		//todo: refactor all of this into a new function
 		var hashQuery = "", pageQuery = 0;	
 		(workspace.q == undefined) ? hashQuery = '' : hashQuery = workspace.q;
 		(workspace.p == undefined) ? pageQuery = 1  : pageQuery =  workspace.p;
@@ -12,7 +13,5 @@ $(function(){
 		return false;
 	});
 	
-	
-	
-	
+
 });

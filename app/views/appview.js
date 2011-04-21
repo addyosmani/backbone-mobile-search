@@ -22,7 +22,7 @@ AppView = Backbone.View.extend({
 			(page == undefined) ? page = 0 : page = page;
 			(sort == undefined) ? sort = ($('#sortBy').val()) : sort = sort;
 			
-	return $.ajax("http://api.flickr.com/services/rest/?format=json&jsoncallback=?" + "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey, { dataType: "json" });
+		return $.ajax("http://api.flickr.com/services/rest/?format=json&jsoncallback=?" + "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey, { dataType: "json" });
       
     }
 

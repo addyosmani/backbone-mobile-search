@@ -1,5 +1,5 @@
 
-A sample Backbone app with native routing (something tricky to achieve when using Backbone in combination with jQuery mobile).
+A sample Backbone app with overridden native routing (something tricky to achieve when using Backbone in combination with jQuery mobile).
 
 **Uses:**
 - Backbone.js for MVC
@@ -13,4 +13,4 @@ A sample Backbone app with native routing (something tricky to achieve when usin
 This is one of the first Backbone sample projects (I've seen) to include information on how to override jQuery Mobile's standard routing so that your app can still make use of all of Backbone's native routing goodness without having to hack up jQMobile directly (an issue a large number of developers run into regularly).
 
 **Current status:**
-Being heavily refactored and re-written. Bookmarking has been fixed since the last version, however mobile Safari support is broken until I decide whether to maintain a single all-in-one view for search/results or introduce multiple views.
+Being heavily refactored and re-written. Fixed compatibility issues with mobile Safari and FF4. Only one left at the moment appears to be mobile bookmarking.
