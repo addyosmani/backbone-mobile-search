@@ -1,11 +1,3 @@
-/*
-This is meant as a global config option for end users to disable hashchange listening 
-(as opposed to urlHistory.listeningEnabled, which is an internal toggle)
-*/
-
-
-$.mobile.hashListeningEnabled = false;
-$.mobile.urlHistory.listeningEnabled = false;
 
 
 var appview = new AppView;	
@@ -24,7 +16,6 @@ function dfdQuery(ctx, query, sort, page){
 		
               }, ctx ) ); 
 }
-
 
 workspace = new Workspace();
 Backbone.history.start();

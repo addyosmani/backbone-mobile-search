@@ -5,8 +5,14 @@ AppView = Backbone.View.extend({
     },
     events: {
 		"submit #queryForm" : "keyLoadResults",
-		"change #sortBy": "keyLoadResults"
+		"change #sortBy": "keyLoadResults",
+		"keydown #searchbox" : "handleKey"
     },
+
+	handleKey : function(event){
+		if(event.which == 13){
+		}
+	},
 
 	keyLoadResults: function(event){
         query = $('#searchbox').val();
@@ -21,7 +27,6 @@ AppView = Backbone.View.extend({
 		    quantity = 24;
 			(page == undefined) ? page = 0 : page = page;
 			(sort == undefined) ? sort = ($('#sortBy').val()) : sort = sort;
-			
 		return $.ajax("http://api.flickr.com/services/rest/?format=json&jsoncallback=?" + "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey, { dataType: "json" });
       
     }

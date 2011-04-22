@@ -71,16 +71,22 @@
 		$LAB
 		.script("http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js").wait()
 		.script("https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js")
+		.script("http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js").wait(function(){
+			/*
+			This is meant as a global config option for end users to disable hashchange listening 
+			(as opposed to urlHistory.listeningEnabled, which is an internal toggle)
+			*/
+			$.mobile.hashListeningEnabled = false;
+		})
 		.script("http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js")
 		.script("http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js").wait()
-		.script("http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js").wait()
 		.script("app/controllers/controller.js")
 		.script("app/models/searchentry.js")
 		.script("app/models/searchcollection.js")
+		.script("app/plugins/jquery.scrollTo.js")
 		.script("app/views/searchlist.js")
 		.script("app/views/appview.js").wait()
-		.script("app/app.js")
-		.script("app/plugins/jquery.scrollTo.js")
+		.script("app/app.js").wait()
 		.script("app/views/domready.js");
 		</script>
 				

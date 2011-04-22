@@ -3,6 +3,5 @@ NewsCollection = Backbone.Collection.extend({
     initialize: function(){
         this.newslist = new NewsList;
         this.bind("refresh", this.newslist.renderList);
-
-    },
+    }
 });
