@@ -12,13 +12,7 @@ function dfdQuery(ctx, query, sort, page){
 				workspace.q = query;
 				workspace.p = page;
 				workspace.s = sort;
-				//
-			    //console.log(response.photos.page);
-		        //console.log(response.photos.pages);
-				//photos.total
-				//photos.perpage
-				//
-				
+
 				$('.search-meta p').html('Page: ' + response.photos.page 
 												  + ' / ' + response.photos.pages 
 												  + ' of ' + response.photos.total + ' images');
@@ -37,6 +31,7 @@ $("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>"+ messa
 		$(this).remove();
 });
 }
+
 
 workspace = new Workspace();
 Backbone.history.start();

@@ -34,3 +34,10 @@ body { background:#666; margin:0 auto;}
 .search-meta{
 	text-align:center;
 }
+
+.ui-lightbox{
+	width:90%;
+	height:90%;
+	background-color:white;
+	display:none;
+}
