@@ -6,17 +6,7 @@ NewsList = Backbone.View.extend({
     },
     renderList: function( collection ){
         var compiled_template = _.template( $("#newslistul").html() );
-
-/*
-		$("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>"+ "Loading results..." +"</h1></div>")
-			.css({ "display": "block", "opacity": 0.96, "top": $(window).scrollTop() + 100 })
-			.appendTo( $.mobile.pageContainer )
-			.delay( 800 )
-			.fadeOut( 400, function(){
-				$(this).remove();
-	    });
-*/
-		
+		loadPrompt("Loading results...");
 		$('#nextSet').show();
         collection.newslist.el.html( compiled_template( { news: collection.models } ) );
 
