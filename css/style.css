@@ -38,6 +38,9 @@ body { background:#666; margin:0 auto;}
 .ui-lightbox{
 	width:90%;
 	height:90%;
-	background-color:white;
+	background:transparent;
+	position:absolute;
+	z-index:50;
 	display:none;
+	margin:0 auto;
 }

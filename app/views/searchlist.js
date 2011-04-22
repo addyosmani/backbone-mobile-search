@@ -15,15 +15,21 @@ NewsList = Backbone.View.extend({
         collection.newslist.el.html( compiled_template( { news: collection.models } ) );
 
 		var resultList		  = $('#newslist').find('ul li'),
-		resultImages	  	  = resultList.find('img');
+		resultImages	  	  = resultList.find('img'),
+		resultLinks			  = resultList.find('a');
 		
 		resultList.append("<div class='loader'></div>");
 	    resultImages.bind("load", function(){ 
 				$('.loader').remove();
 				$(this).show();
 			});
+			
+		$('.ui-result').click(function(e){
+			e.preventDefault();
+			displayLightbox($(this).attr('href'));
+		});
 		
-		$.scrollTo('250px'); //improve. this shouldn't be a fixed number at all
+		$.scrollTo('250px');//todo: update
 
     }
 });

@@ -48,14 +48,15 @@
 	
 
 
-
+					<div class="ui-lightbox">	
+						
+					</div>
 		
 	    	</div>
 		</div><!-- /content -->
 		
 	
-		<div class="ui-lightbox">	
-		</div>
+		
 
 	
 	<div data-role="footer">
@@ -67,7 +68,7 @@
 			<ul>
             <% _.each( news, function( item, i ){ %>
                 <li>
-<a class='ui-result' title='<%= item.get("title") %>' href='<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_b.jpg' %>'>
+<a class='ui-result' title='<%= item.get("title") %>' href='<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_m.jpg' %>'>
 				<img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_s.jpg' %>"/></a>
                 </li>
             <% }); %>
