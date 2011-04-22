@@ -30,3 +30,7 @@ body { background:#666; margin:0 auto;}
 	width:110px;
 	height:110px;
 }
+
+.search-meta{
+	text-align:center;
+}

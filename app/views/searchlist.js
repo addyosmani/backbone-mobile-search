@@ -7,7 +7,9 @@ NewsList = Backbone.View.extend({
     renderList: function( collection ){
         var compiled_template = _.template( $("#newslistul").html() );
 		loadPrompt("Loading results...");
+		
 		$('#nextSet').show();
+		
         collection.newslist.el.html( compiled_template( { news: collection.models } ) );
 
 		$('ul li').append("<div class='loader'></div>");

@@ -12,6 +12,17 @@ function dfdQuery(ctx, query, sort, page){
 				workspace.q = query;
 				workspace.p = page;
 				workspace.s = sort;
+				//
+			    //console.log(response.photos.page);
+		        //console.log(response.photos.pages);
+				//photos.total
+				//photos.perpage
+				//
+				
+				$('.search-meta p').html('Page: ' + response.photos.page 
+												  + ' / ' + response.photos.pages 
+												  + ' of ' + response.photos.total + ' images');
+				
                	ctx.news_collection.refresh( entries );
 		
               }, ctx ) ); 
