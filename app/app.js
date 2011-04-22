@@ -38,11 +38,13 @@ function switchTitle(title){
 }
 
 function displayLightbox(imgSrc){
+	loadPrompt('Loading image...');
 	var ui = $('.ui-lightbox');
 		ui.show()
 		  .html("<img src='" + imgSrc + "' width='100%' height:'100%'/>")
-		  .css({ "display": "block", "opacity": 0.96, "top": $(window).scrollTop() + 100 });
+		  .css({ "display": "block", "opacity": 1, "top": $(window).scrollTop() + 100 });
 }
+
 
 $('.ui-lightbox').bind('click', function(){
 	$(this).hide();
