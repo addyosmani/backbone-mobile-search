@@ -10,7 +10,7 @@ NewsList = Backbone.View.extend({
 			
 		loadPrompt("Loading results...");
 		
-		$('#nextSet').show();
+		$('#nextSet,#prevSet').show();
 		
         collection.newslist.el.html( compiled_template( { news: collection.models } ) );
 
