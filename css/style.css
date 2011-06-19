@@ -7,12 +7,12 @@ body {
 	margin: 0 auto;
 }
 
-#newslist ul {
+#resultlist ul {
 	list-style-type: none;
 	margin-left: -25px;
 }
 
-#newslist ul li {
+#resultlist ul li {
 	float: left;
 	padding: 2px;
 	width: 80px;
@@ -22,11 +22,11 @@ body {
 	border-radius: 5px;
 }
 
-#newslist ul li span {
+#resultlist ul li span {
 	clear: both;
 }
 
-#newslist ul li img {
+#resultlist ul li img {
 	border-radius: 5px;
 	-moz-box-shadow: 0px 2px 4px #000;
 	-webkit-box-shadow: 0px 2px 4px #000;
@@ -38,7 +38,7 @@ body {
 	display: none;
 }
 
-#newslist ul li img:hover {
+#resultlist ul li img:hover {
 	-moz-box-shadow: 0px 2px 4px #fff;
 	-webkit-box-shadow: 0px 2px 4px #fff;
 	box-shadow: 0px 2px 4px #fff;

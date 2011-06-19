@@ -1,2 +1,2 @@
-NewsEntry = Backbone.Model.extend({
+ResultEntry = Backbone.Model.extend({
 });

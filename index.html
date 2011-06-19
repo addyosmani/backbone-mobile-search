@@ -49,7 +49,7 @@
 						</div>
 					</div>
 					
-	        		<div id="newslist">
+	        		<div id="resultlist">
 	        		</div>
 	
 					<div class="ui-lightbox">	
@@ -68,9 +68,9 @@
 		</div><!-- /footer -->
 	   
 
-	    <script type="text/template" id="newslistul">
+	    <script type="text/template" id="resultlistul">
 			<ul>
-            <% _.each( news, function( item, i ){ %>
+            <% _.each( results, function( item, i ){ %>
                 <li>
 <a class='ui-result' title='<%= item.get("title") %>' href='<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_m.jpg' %>'>
 				<img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_s.jpg' %>"/></a>
@@ -94,7 +94,7 @@
 		})
 		.script("http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js")
 		.script("http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js").wait()
-		.script("app/controllers/controller.js")
+		.script("app/controllers/controller.js").wait()
 		.script("app/models/searchentry.js")
 		.script("app/models/searchcollection.js")
 		.script("app/plugins/jquery.scrollTo.js")

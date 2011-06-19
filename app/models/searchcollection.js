@@ -1,7 +1,7 @@
-NewsCollection = Backbone.Collection.extend({
-    model: NewsEntry, 
+ResultCollection = Backbone.Collection.extend({
+    model: ResultEntry, 
     initialize: function(){
-        this.newslist = new NewsList;
-        this.bind("refresh", this.newslist.renderList);
+        this.resultlist = new ResultList;
+        this.bind("refresh", this.resultlist.renderList);
     }
 });

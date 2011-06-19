@@ -1,17 +1,16 @@
 $(function(){
-	
 	var nextOption = $('#nextSet'),
 		prevOption = $('#prevSet');
 	
 	prevOption.hide();	
 	nextOption.hide();
 
-	nextOption.click(function(e){
+	nextOption.bind('click', function(e){
 		e.preventDefault();
 		historySwitch('next');
 	});
 	
-	prevOption.click(function(e){
+	prevOption.bind('click', function(e){
 		e.preventDefault();
 		historySwitch('prev');
 	});
@@ -22,6 +21,7 @@ $(function(){
 
 
 function historySwitch(state){
+
 	var hashQuery = "", pageQuery = 0, increment = 0;
 	(workspace.q == undefined) ? hashQuery = '' : hashQuery = workspace.q;
 	(workspace.p == undefined) ? pageQuery = 1  : pageQuery =  workspace.p;

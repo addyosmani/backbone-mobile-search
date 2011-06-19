@@ -1,19 +1,18 @@
-
-NewsList = Backbone.View.extend({
-    el: $("#newslist"), 
+ResultList = Backbone.View.extend({
+    el: $("#resultlist"), 
 	
     initialize: function(){
     },
     renderList: function( collection ){
-        var compiled_template = _.template( $("#newslistul").html() );
+        var compiled_template = _.template( $("#resultlistul").html() );
 			
 		loadPrompt("Loading results...");
 		
 		$('#nextSet,#prevSet').show();
 		
-        collection.newslist.el.html( compiled_template( { news: collection.models } ) );
+        collection.resultlist.el.html( compiled_template( { results: collection.models } ) );
 
-		var resultList		  = $('#newslist').find('ul li'),
+		var resultList		  = $('#resultlist').find('ul li'),
 		resultImages	  	  = resultList.find('img'),
 		resultLinks			  = resultList.find('a');
 		
@@ -23,7 +22,7 @@ NewsList = Backbone.View.extend({
 				$(this).show();
 			});
 			
-		$('.ui-result').click(function(e){
+		$('.ui-result').bind('click', function(e){
 			e.preventDefault();
 			displayLightbox($(this).attr('href'));
 		});

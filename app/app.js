@@ -8,7 +8,7 @@ function dfdQuery(ctx, query, sort, page){
 		switchTitle('Query: ' + query + ' ( Page ' + page + ' )');
 		
 		loadPrompt('Querying Flickr API...');
-		$.when( ctx.ajaxGetNews( query, sort, page ) )
+		$.when( ctx.ajaxGetResults( query, sort, page ) )
               .then( $.proxy( function( response ){
                	entries = response.photos.photo;
 				workspace.q = query;
@@ -19,7 +19,7 @@ function dfdQuery(ctx, query, sort, page){
 												  + ' / ' + response.photos.pages 
 												  + ' of ' + response.photos.total + ' images');
 				
-               	ctx.news_collection.refresh( entries );
+               	ctx.result_collection.refresh( entries );
 		
               }, ctx ) ); 
 }
