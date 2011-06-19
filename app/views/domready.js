@@ -1,4 +1,5 @@
 $(function(){
+
 	var nextOption = $('#nextSet'),
 		prevOption = $('#prevSet');
 	

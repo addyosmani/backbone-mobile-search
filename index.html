@@ -83,8 +83,9 @@
 		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/labjs/1.2.0/LAB.min.js"></script>
 		<script type="text/javascript">
 		$LAB
-		.script("http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js").wait()
-		.script("https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js")
+		.setOptions({AlwaysPreserveOrder:true})
+		.script("app/libs/json2.js")
+		.script("app/libs/jquery.1.6.1.min.js")
 		.script("http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js").wait(function(){
 			/*
 			This is meant as a global config option for end users to disable hashchange listening 
@@ -92,15 +93,15 @@
 			*/
 			$.mobile.hashListeningEnabled = false;
 		})
-		.script("http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js")
-		.script("http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js").wait()
-		.script("app/controllers/controller.js").wait()
+		.script("app/libs/underscore-min.js")
+		.script("app/libs/backbone-min.js")
+		.script("app/controllers/controller.js")
 		.script("app/models/searchentry.js")
+		.script("app/views/searchlist.js")
 		.script("app/models/searchcollection.js")
 		.script("app/plugins/jquery.scrollTo.js")
-		.script("app/views/searchlist.js")
-		.script("app/views/appview.js").wait()
-		.script("app/app.js").wait()
+		.script("app/views/appview.js")
+		.script("app/app.js")
 		.script("app/views/domready.js");
 		</script>
 		

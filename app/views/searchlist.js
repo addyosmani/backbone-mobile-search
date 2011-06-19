@@ -27,7 +27,7 @@ ResultList = Backbone.View.extend({
 			displayLightbox($(this).attr('href'));
 		});
 		
-		$.scrollTo('250px');//todo: update
+		$.scrollTo('200px');//todo: update
 
     }
 });
