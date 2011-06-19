@@ -3,6 +3,7 @@
 var appview = new AppView;	
 
 function dfdQuery(ctx, query, sort, page){
+		
 		(page == undefined) ? page = 1  : page =  page;
 		switchTitle('Query: ' + query + ' ( Page ' + page + ' )');
 		
@@ -44,7 +45,6 @@ function displayLightbox(imgSrc){
       .html("<img src='" + imgSrc + "' width='100%' height:'100%'/>")
 	  .css({ "display": "block", "opacity": 1, "top": $(window).scrollTop() + 100 });
 }
-
 
 
 

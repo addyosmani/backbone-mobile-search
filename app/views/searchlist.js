@@ -3,7 +3,6 @@ NewsList = Backbone.View.extend({
     el: $("#newslist"), 
 	
     initialize: function(){
-       // this.el.html("Enter in keyword to query Flickr");
     },
     renderList: function( collection ){
         var compiled_template = _.template( $("#newslistul").html() );

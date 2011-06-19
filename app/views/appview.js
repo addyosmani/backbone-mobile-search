@@ -16,9 +16,14 @@ AppView = Backbone.View.extend({
 
 	keyLoadResults: function(event){
         query = $('#searchbox').val();
-        sort = $('#sortBy').val();
-		var hashQuery = query, pageQuery = 1, sortQuery = sort;
-		location.hash = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (parseInt(pageQuery));
+		if(query){		
+			sort = $('#sortBy').val();
+			var hashQuery = query, pageQuery = 1, sortQuery = sort;
+			location.hash = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (parseInt(pageQuery));
+		}else{
+			loadPrompt('Please enter a search query to continue');
+		}
+		
 		return false;
 	},
 
