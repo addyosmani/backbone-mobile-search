@@ -19,10 +19,14 @@ function dfdQuery(ctx, query, sort, page){
 												  + ' / ' + response.photos.pages 
 												  + ' of ' + response.photos.total + ' images');
 				
+               	
                	ctx.result_collection.refresh( entries );
+               	setTimeout(function(){$.mobile.changePage("#search", "slideup", false, false);},0);
 		
               }, ctx ) ); 
 }
+
+
 
 function loadPrompt(message){
 $("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>"+ message +"</h1></div>")
@@ -38,25 +42,7 @@ function switchTitle(title){
 	$('.ui-title').text(title);
 }
 
-function displayLightbox(imgSrc){
-/*
-	loadPrompt('Loading image...');
-	var ui = $('.ui-lightbox');
-	ui.show()
-      .html("<img src='" + imgSrc + "' width='100%' height:'100%'/>")
-	  .css({ "display": "block", "opacity": 1, "top": $(window).scrollTop() + 100 });
-	  */
-	  
-	  //var compiled_template = _.template( $("#photoview").html() );
-	  //$("#resultlist").html(compiled_template);
-	  this.saveLocation("photoView/");
-}
 
-
-/*(
-$('.ui-lightbox').bind('click', function(){
-	$(this).hide();
-});*/
 
 
 $(function(){

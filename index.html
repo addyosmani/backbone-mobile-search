@@ -46,6 +46,7 @@
 							<option value="relevance">Relevance</option>
 							<option value="date-posted-asc">Date Posted</option>
 						</select>
+						
 
 						
 						<div class="search-meta">
@@ -96,11 +97,10 @@
 
 	  <div id="search" data-role="page" data-theme="d"> 
 		<div data-role="header" data-theme="a"> 
-			<h1>ListView</h1> 
+			<h1>Search Results</h1> 
 			
-	<a href="" data-role="button">Back</a>
-	<a href="#" data-role="button" id="prevSet">Previous</a>
-	<a href="#" data-role="button" data-theme="b" id="nextSet">Next</a>
+		<a href="#" data-role="button" id="prevSet">Previous</a>
+		<a href="#" data-role="button" data-theme="b" id="nextSet">Next</a>
 
 		</div> 
 		<div data-role="content"> 
@@ -164,7 +164,6 @@
 		.script("app/models/resultEntry.js")
 		.script("app/views/resultList.js")
 		.script("app/models/resultCollection.js")
-		.script("app/plugins/jquery.scrollTo.js")
 		.script("app/views/appView.js")
 		.script("app/app.js")
 		</script>
