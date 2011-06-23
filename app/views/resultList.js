@@ -1,8 +1,9 @@
-ResultList = Backbone.View.extend({
+/*ResultList = Backbone.View.extend({
     el: $("#resultlist"), 
 	
     initialize: function(){
     },
+    
     renderList: function( collection ){
         var compiled_template = _.template( $("#resultlistul").html() );
 			
@@ -11,6 +12,7 @@ ResultList = Backbone.View.extend({
 		$('#nextSet,#prevSet').show();
 		
         collection.resultlist.el.html( compiled_template( { results: collection.models } ) );
+
 
 		var resultList		  = $('#resultlist').find('ul li'),
 		resultImages	  	  = resultList.find('img'),
@@ -21,7 +23,8 @@ ResultList = Backbone.View.extend({
 				$('.loader').remove();
 				$(this).show();
 			});
-			
+
+		
 		$('.ui-result').bind('click', function(e){
 			e.preventDefault();
 			displayLightbox($(this).attr('href'));
@@ -31,4 +34,27 @@ ResultList = Backbone.View.extend({
 
     }
 });
+*/
+
+ResultList = Backbone.View.extend({
+    el: $("#listviewholder"), 
+	
+    initialize: function(){
+    },
+    
+    renderList: function( collection ){
+        var compiled_template = _.template( $("#listviewul").html() );
+			
+		loadPrompt("Loading results...");
+		
+		$('#nextSet,#prevSet').show();
+		
+        collection.resultlist.el.html( compiled_template( { results: collection.models } ) );
+
+		//resultList.append("<div class='loader'></div>");
+		location.hash = 'search';
+
+    }
+});
+
 

@@ -14,8 +14,15 @@
 	<body lang="en">
 		
 		
-		<div data-role="page" data-theme="b">
-			
+		
+<!--
+/********************************************************
+*  Search template
+*********************************************************/
+-->		
+
+<div data-role="page" data-theme="b">
+		
 			<div data-role="header">
 				<h1>Flickr Mobile Search</h1>
 			</div><!-- /header -->
@@ -25,60 +32,118 @@
 	    		<div id="appview">
 		
 					<form method="post" action="#" id='queryForm' name="queryForm" onsubmit="return false">
-								<div data-role="fieldcontain">
-									<label for="search">Search for:</label>
-				        			<input id="searchbox" type="search" name="searchbox" />
-								</div>
+						<div data-role="fieldcontain">
+							<label for="search">Search for:</label>
+				        	<input id="searchbox" type="search" name="searchbox" />
+						</div>
 					</form>
 			
 					
 					<div data-role="fieldcontain">
-					<label for="sortBy" class="select ui-select">Search by:</label>
-					<select id="sortBy" data-native-menu="false">
-			  			<option value="interestingness-asc" selected>Interesting</option>
-						<option value="relevance">Relevance</option>
-			  			<option value="date-posted-asc">Date Posted</option>
-					</select>
-					
-					<fieldset class="ui-grid-a">
-						<div class="ui-block-a"><a href="#" id="prevSet" data-role="button">Previous</a></div>
-						<div class="ui-block-b"><a href="#" id="nextSet" data-role="button">Next</a></div>
-					</fieldset>
+						<label for="sortBy" class="select ui-select">Search by:</label>
+						<select id="sortBy" data-native-menu="false">
+							<option value="interestingness-asc" selected>Interesting</option>
+							<option value="relevance">Relevance</option>
+							<option value="date-posted-asc">Date Posted</option>
+						</select>
+
+						
 						<div class="search-meta">
-								<p>Information regarding your search will be displayed here.</p>
+							<p>Information regarding your search will be displayed here.</p>
 						</div>
 					</div>
 					
-	        		<div id="resultlist">
-	        		</div>
-	
-					<div class="ui-lightbox">	
-					</div>
-					
 				
-		
+					
+								
 	    	</div>
 		</div><!-- /content -->
 		
-	
-		
+
+
 	
 	<div data-role="footer">
 			<h4>A Backbone.js jQuery Mobile Application</h4>
-		</div><!-- /footer -->
-	   
+	</div><!-- /footer -->
+	
+</div>
 
-	    <script type="text/template" id="resultlistul">
-			<ul>
-            <% _.each( results, function( item, i ){ %>
-                <li>
-<a class='ui-result' title='<%= item.get("title") %>' href='<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_m.jpg' %>'>
-				<img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_s.jpg' %>"/></a>
-                </li>
-            <% }); %>
-            </ul>
-        </script>
+
+
+<!--
+/********************************************************
+*  PhotoView
+*********************************************************/
+-->
+
+
+	  <div id="photoView" data-role="page" data-theme="d"> 
+		<div data-role="header" data-theme="a"> 
+			<h1>PhotoView</h1> 
+		</div> 
+		<div data-role="content"> 
+			<ul id="singlePhoto" data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
+			
+			</ul> 
+		</div> 
+	  </div> 
+	   
+<!--
+/********************************************************
+*  ListView
+*********************************************************/
+-->
+
+	  <div id="search" data-role="page" data-theme="d"> 
+		<div data-role="header" data-theme="a"> 
+			<h1>ListView</h1> 
+			
+	<a href="" data-role="button">Back</a>
+	<a href="#" data-role="button" id="prevSet">Previous</a>
+	<a href="#" data-role="button" data-theme="b" id="nextSet">Next</a>
+
+		</div> 
+		<div data-role="content"> 
+			<ul id="listviewholder" data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
+			
+			</ul> 
+		</div> 
+	  </div> 
+
+<!--
+/********************************************************
+*  Templates
+*********************************************************/
+-->
+
+		
+		
+		<!--template for photoview-->
+		<script type="text/template" id="photoview">
+			<h1><%=title%></h1>
+			<img src="<%=imageLocation%>"/>
+			<p><%=description%></p>
+		</script>
+		
+		<!--template for list view -->
+		<script type="text/template" id="listviewul">
+
+		<% _.each( results, function( item, i ){ %>
+				<li>
+		<a class='ui-result' title='<%= item.get("title") %>' ahref="#photoView" href='<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_m.jpg' %>'>
+				<img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_s.jpg' %>"/>
+				<h3><%= item.get("title") %></h3> 
+				<p>Broken Bells</p> </a>
+			   </li>
+			<% }); %>
+		</script>
+		<!--template-->
     
+<!--
+/********************************************************
+*  Script management
+*********************************************************/
+-->
 
 		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/labjs/1.2.0/LAB.min.js"></script>
 		<script type="text/javascript">
@@ -91,22 +156,24 @@
 			This is meant as a global config option for end users to disable hashchange listening 
 			(as opposed to urlHistory.listeningEnabled, which is an internal toggle)
 			*/
-			$.mobile.hashListeningEnabled = false;
+			//$.mobile.hashListeningEnabled = false;
 		})
 		.script("app/libs/underscore-min.js")
 		.script("app/libs/backbone-min.js")
 		.script("app/controllers/controller.js")
-		.script("app/models/searchentry.js")
-		.script("app/views/searchlist.js")
-		.script("app/models/searchcollection.js")
+		.script("app/models/resultEntry.js")
+		.script("app/views/resultList.js")
+		.script("app/models/resultCollection.js")
 		.script("app/plugins/jquery.scrollTo.js")
-		.script("app/views/appview.js")
+		.script("app/views/appView.js")
 		.script("app/app.js")
-		.script("app/views/domready.js");
 		</script>
+		
+		
 		
 		<div class="ui-tint">
 		</div>
+		
 				
 	</body>
 </html>

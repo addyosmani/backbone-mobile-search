@@ -39,18 +39,62 @@ function switchTitle(title){
 }
 
 function displayLightbox(imgSrc){
+/*
 	loadPrompt('Loading image...');
 	var ui = $('.ui-lightbox');
 	ui.show()
       .html("<img src='" + imgSrc + "' width='100%' height:'100%'/>")
 	  .css({ "display": "block", "opacity": 1, "top": $(window).scrollTop() + 100 });
+	  */
+	  
+	  //var compiled_template = _.template( $("#photoview").html() );
+	  //$("#resultlist").html(compiled_template);
+	  this.saveLocation("photoView/");
 }
 
 
-
+/*(
 $('.ui-lightbox').bind('click', function(){
 	$(this).hide();
+});*/
+
+
+$(function(){
+
+	var nextOption = $('#nextSet'),
+		prevOption = $('#prevSet');
+	
+	prevOption.hide();	
+	nextOption.hide();
+
+	nextOption.bind('click', function(e){
+		e.preventDefault();
+		historySwitch('next');
+	});
+	
+	prevOption.bind('click', function(e){
+		e.preventDefault();
+		historySwitch('prev');
+	});
+	
+
 });
+
+
+
+function historySwitch(state){
+
+	var hashQuery = "", pageQuery = 0, increment = 0;
+	(workspace.q == undefined) ? hashQuery = '' : hashQuery = workspace.q;
+	(workspace.p == undefined) ? pageQuery = 1  : pageQuery =  workspace.p;
+	(workspace.s == undefined) ? sortQuery = 'relevance' : sortQuery = workspace.s;
+	
+	pageQuery = parseInt(pageQuery);
+	(state == 'next')? pageQuery +=1 : pageQuery -=1;
+	
+	(pageQuery <1)? null : location.hash = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (pageQuery);
+}
+
 
 
 workspace = new Workspace();

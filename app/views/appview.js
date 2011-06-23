@@ -19,7 +19,10 @@ AppView = Backbone.View.extend({
 		if(query){		
 			sort = $('#sortBy').val();
 			var hashQuery = query, pageQuery = 1, sortQuery = sort;
+			
 			location.hash = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (parseInt(pageQuery));
+			
+			//location.hash = 'search';
 		}else{
 			loadPrompt('Please enter a search query to continue');
 		}
