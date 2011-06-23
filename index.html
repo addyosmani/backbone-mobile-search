@@ -155,8 +155,10 @@
 			/*
 			This is meant as a global config option for end users to disable hashchange listening 
 			(as opposed to urlHistory.listeningEnabled, which is an internal toggle)
+			
+			-- avoids broken/error url clashes
 			*/
-			//$.mobile.hashListeningEnabled = false;
+			$.mobile.hashListeningEnabled = false;
 		})
 		.script("app/libs/underscore-min.js")
 		.script("app/libs/backbone-min.js")
