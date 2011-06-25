@@ -1,5 +1,5 @@
 
-A sample Backbone app with overridden native routing (something tricky to achieve when using Backbone in combination with jQuery mobile).
+A complete Backbone mobile application demonstrating searching for images using the Flickr API with full support for pagination, bookmarking and more.
 
 **Uses:**
 - Backbone.js for MVC
@@ -8,9 +8,6 @@ A sample Backbone app with overridden native routing (something tricky to achiev
 - LABjs for script loading
 - Flickr API for data
 
-**Why is this worth checking out:**
-
-This is one of the first Backbone sample projects (I've seen) to include information on how to override jQuery Mobile's standard routing so that your app can still make use of all of Backbone's native routing goodness without having to hack up jQMobile directly (an issue a large number of developers run into regularly).
 
 **Current status:**
-Being heavily refactored and re-written. Fixed compatibility issues with mobile Safari and FF4. Only one left at the moment appears to be mobile bookmarking.
+Being heavily refactored and re-written. 
