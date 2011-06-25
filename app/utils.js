@@ -26,7 +26,10 @@ function dfdQuery( ctx, query , sort , page ){
 			
 			
 			ctx.result_collection.refresh( entries );
+			//
 			$.mobile.changePage("#search", "slideup", false, false);
+			//$.mobile.changePage('#' + location.hash, "slideup",false,false);
+			//
 	
 		  }, ctx ) ); 
 }
@@ -48,8 +51,11 @@ function historySwitch( state ){
 	(pageQuery <1)? null : location.hash = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (pageQuery);
 }
 
-
-
+/*
+$('div').live('pageshow',function(event, ui){
+  console.log('This page was just hidden: '+ ui.prevPage);
+});
+*/
 
 /**
 	Display a custom notification message

@@ -17,18 +17,12 @@ AppView = Backbone.View.extend({
 	keyLoadResults: function(event){
         query = $('#searchbox').val();
 		if(query){	
-
-
+			
 			sort = $('#sortBy').val();
 			var hashQuery = query, pageQuery = 1, sortQuery = sort;
 			
-			
 			var endPoint = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (parseInt(pageQuery));
 			location.hash = endPoint;
-			//setTimeout(function(){$.mobile.changePage("#search", "slideup", false, false);},0);
-			//$.mobile.path(endPoint);
-			//location.hash = 'search';
-			//fixes initial page: dfdQuery(appview, query, sort, pageQuery);
 
 			
 		}else{

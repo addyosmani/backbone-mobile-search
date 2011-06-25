@@ -5,12 +5,18 @@ ResultList = Backbone.View.extend({
     },
     
     renderList: function( collection ){
+
         var compiled_template = _.template( $("#listviewul").html() );
 
 		loadPrompt("Loading results...");
 		showNavigation();
-		
+				
         collection.resultlist.el.html( compiled_template( { results: collection.models } ) );
+       
+        setTimeout(function(){
+        	$('#search').find("ul").listview("refresh");
+        }, 0);
+        
 
     }
 });
