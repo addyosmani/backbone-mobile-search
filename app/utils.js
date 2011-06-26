@@ -15,10 +15,12 @@ function dfdQuery( ctx, query , sort , page ){
 	loadPrompt('Querying Flickr API...');
 	$.when( ctx.ajaxGetResults( query, sort, page ) )
 		  .then( $.proxy( function( response ){
+		  
 			entries = response.photos.photo;
-			mobileSearch.workspace.q = query;
-			mobileSearch.workspace.p = page;
-			mobileSearch.workspace.s = sort;
+			
+			mobileSearch.controllers.workspace.q = query;
+			mobileSearch.controllers.workspace.p = page;
+			mobileSearch.controllers.workspace.s = sort;
 
 			$('.search-meta p').html('Page: ' + response.photos.page 
 											  + ' / ' + response.photos.pages 
@@ -40,9 +42,9 @@ function dfdQuery( ctx, query , sort , page ){
 function historySwitch( state ){
 
 	var hashQuery = "", pageQuery = 0, increment = 0;
-	(mobileSearch.workspace.q == undefined) ? hashQuery = '' : hashQuery = mobileSearch.workspace.q;
-	(mobileSearch.workspace.p == undefined) ? pageQuery = 1  : pageQuery =  mobileSearch.workspace.p;
-	(mobileSearch.workspace.s == undefined) ? sortQuery = 'relevance' : sortQuery = mobileSearch.workspace.s;
+	(mobileSearch.controllers.workspace.q == undefined) ? hashQuery = '' : hashQuery = mobileSearch.controllers.workspace.q;
+	(mobileSearch.controllers.workspace.p == undefined) ? pageQuery = 1  : pageQuery =  mobileSearch.controllers.workspace.p;
+	(mobileSearch.controllers.workspace.s == undefined) ? sortQuery = 'relevance' : sortQuery = mobileSearch.controllers.workspace.s;
 	
 	pageQuery = parseInt(pageQuery);
 	(state == 'next')? pageQuery +=1 : pageQuery -=1;

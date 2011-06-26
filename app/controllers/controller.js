@@ -7,7 +7,7 @@ var Workspace = Backbone.Controller.extend({
     "search/:query/s:sort/p:page": "search"   // #search/kiwis/srelevance/p7
   },
   search: function( query , sort , page ){
-	    dfdQuery(mobileSearch.appview, query, sort, page);
+	    dfdQuery(mobileSearch.views.appview, query, sort, page);
   }
 });
 
