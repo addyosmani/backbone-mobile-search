@@ -49,8 +49,8 @@ mobileSearch.utils.historySwitch = function( state ){
 	
 	pageQuery = parseInt(pageQuery);
 	(state == 'next')? pageQuery +=1 : pageQuery -=1;
-	
-	(pageQuery <1)? null : location.hash = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (pageQuery);
+		
+	(pageQuery <1)? null : location.hash = mobileSearch.utils.queryConstructor(hashQuery, sortQuery, pageQuery);
 }
 
 
@@ -80,6 +80,14 @@ mobileSearch.utils.loadPrompt = function( message ){
 **/
 mobileSearch.utils.switchTitle = function( title ){
 	$('.ui-title').text(title);
+}
+
+
+/**
+	Construct the complete search query for passing to dfdQuery later.
+**/
+mobileSearch.utils.queryConstructor = function( query , sortType , pageNum ){
+	return 'search/' + query + '/s' + sortType + '/p' + pageNum;
 }
 
 

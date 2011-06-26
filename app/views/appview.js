@@ -21,8 +21,11 @@ AppView = Backbone.View.extend({
 		if( query ){	
 			
 			sort = $('#sortBy').val();
-			var hashQuery = query, pageQuery = 1, sortQuery = sort;
-			var endPoint = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (parseInt(pageQuery));
+			var hashQuery = query, 
+				pageQuery = 1, 
+				sortQuery = sort,
+				endPoint = mobileSearch.utils.queryConstructor(hashQuery, sortQuery, parseInt(pageQuery));
+				
 			location.hash = endPoint;
 
 			
@@ -41,5 +44,6 @@ AppView = Backbone.View.extend({
 		return $.ajax("http://api.flickr.com/services/rest/?format=json&jsoncallback=?" + "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey, { dataType: "json" });  
     }
 });
+
 
 
