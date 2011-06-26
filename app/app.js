@@ -7,5 +7,5 @@
 mobileSearch.views.appview = new AppView;	
 mobileSearch.controllers.workspace = new Workspace();
 
-hideNavigation();
+toggleNavigation(false); //hide
 Backbone.history.start();

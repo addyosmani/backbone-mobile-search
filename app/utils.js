@@ -10,7 +10,7 @@ mobileSearch.utils.dfdQuery = function( ctx, query , sort , page ){
 		
 	(page == undefined) ? page = 1  : page =  page;
 	
-	mobileSearch.utils.switchTitle('Query: ' + query + ' ( Page ' + page + ' )');
+	mobileSearch.utils.switchTitle('Results for: ' + query + ' ( Page ' + page + ' )');
 	
 	mobileSearch.utils.loadPrompt('Querying Flickr API...');
 	
@@ -83,18 +83,10 @@ mobileSearch.utils.switchTitle = function( title ){
 }
 
 
+
 var nextOption = $('#nextSet'),
 	prevOption = $('#prevSet');
 
-function hideNavigation(){
-	prevOption.hide();	
-	nextOption.hide();
-}
-
-function showNavigation(){
-	prevOption.show();	
-	nextOption.show();
-}
 nextOption.bind('click', function(e){
 	e.preventDefault();
 	mobileSearch.utils.historySwitch('next');
@@ -105,8 +97,14 @@ prevOption.bind('click', function(e){
 	mobileSearch.utils.historySwitch('prev');
 });
 	
-	
-
+/**
+	Toggle whether the navigation is displayed or hidden
+	@b: boolean value specifying whether to show or hide the controls
+**/
+function toggleNavigation(b){
+	nextOption.toggle(b),
+	prevOption.toggle(b);
+}	
 
 
 

@@ -9,18 +9,19 @@ AppView = Backbone.View.extend({
 		"keydown #searchbox" : "handleKey"
     },
 
-	handleKey : function(event){
+	handleKey : function( event ){
 		if(event.which == 13){
 		}
 	},
 
-	keyLoadResults: function(event){
+	keyLoadResults: function( event ){
+	
         query = $('#searchbox').val();
-		if(query){	
+        
+		if( query ){	
 			
 			sort = $('#sortBy').val();
 			var hashQuery = query, pageQuery = 1, sortQuery = sort;
-			
 			var endPoint = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (parseInt(pageQuery));
 			location.hash = endPoint;
 

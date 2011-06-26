@@ -10,7 +10,7 @@ ResultList = Backbone.View.extend({
 
 		mobileSearch.utils.loadPrompt("Loading results...");
 		
-		showNavigation();
+		toggleNavigation(true);//show
 				
         collection.resultlist.el.html( compiled_template( { results: collection.models } ) );
        
