@@ -1,5 +1,6 @@
 /**
 	Backbone Mobile Search Demo by Addy Osmani
+	Copyright AddyOsmani.com 2011.
 **/
 
 var mobileSearch = {};
