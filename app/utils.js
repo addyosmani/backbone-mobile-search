@@ -16,9 +16,9 @@ function dfdQuery( ctx, query , sort , page ){
 	$.when( ctx.ajaxGetResults( query, sort, page ) )
 		  .then( $.proxy( function( response ){
 			entries = response.photos.photo;
-			workspace.q = query;
-			workspace.p = page;
-			workspace.s = sort;
+			mobileSearch.workspace.q = query;
+			mobileSearch.workspace.p = page;
+			mobileSearch.workspace.s = sort;
 
 			$('.search-meta p').html('Page: ' + response.photos.page 
 											  + ' / ' + response.photos.pages 
@@ -26,10 +26,9 @@ function dfdQuery( ctx, query , sort , page ){
 			
 			
 			ctx.result_collection.refresh( entries );
-			//
+
 			$.mobile.changePage("#search", "slideup", false, false);
-			//$.mobile.changePage('#' + location.hash, "slideup",false,false);
-			//
+
 	
 		  }, ctx ) ); 
 }
@@ -41,9 +40,9 @@ function dfdQuery( ctx, query , sort , page ){
 function historySwitch( state ){
 
 	var hashQuery = "", pageQuery = 0, increment = 0;
-	(workspace.q == undefined) ? hashQuery = '' : hashQuery = workspace.q;
-	(workspace.p == undefined) ? pageQuery = 1  : pageQuery =  workspace.p;
-	(workspace.s == undefined) ? sortQuery = 'relevance' : sortQuery = workspace.s;
+	(mobileSearch.workspace.q == undefined) ? hashQuery = '' : hashQuery = mobileSearch.workspace.q;
+	(mobileSearch.workspace.p == undefined) ? pageQuery = 1  : pageQuery =  mobileSearch.workspace.p;
+	(mobileSearch.workspace.s == undefined) ? sortQuery = 'relevance' : sortQuery = mobileSearch.workspace.s;
 	
 	pageQuery = parseInt(pageQuery);
 	(state == 'next')? pageQuery +=1 : pageQuery -=1;
@@ -51,11 +50,6 @@ function historySwitch( state ){
 	(pageQuery <1)? null : location.hash = 'search/' + hashQuery + '/s' + sortQuery + '/p' + (pageQuery);
 }
 
-/*
-$('div').live('pageshow',function(event, ui){
-  console.log('This page was just hidden: '+ ui.prevPage);
-});
-*/
 
 /**
 	Display a custom notification message
