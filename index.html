@@ -147,6 +147,7 @@
 		<script type="text/javascript">
 		$LAB
 		.setOptions({AlwaysPreserveOrder:true})
+		.script("app/init.js")
 		.script("app/libs/json2.js")
 		.script("app/libs/jquery.1.6.1.min.js")
 		.script("http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js").wait(function(){
@@ -160,11 +161,11 @@
 		})
 		.script("app/libs/underscore-min.js")
 		.script("app/libs/backbone-min.js")
+		.script("app/utils.js")
 		.script("app/controllers/controller.js")
 		.script("app/models/resultEntry.js")
 		.script("app/views/resultList.js")
 		.script("app/models/resultCollection.js")
-		.script("app/utils.js")
 		.script("app/views/appView.js")
 		.script("app/app.js")
 		</script>

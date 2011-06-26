@@ -8,7 +8,8 @@ ResultList = Backbone.View.extend({
 
         var compiled_template = _.template( $("#listviewul").html() );
 
-		loadPrompt("Loading results...");
+		mobileSearch.utils.loadPrompt("Loading results...");
+		
 		showNavigation();
 				
         collection.resultlist.el.html( compiled_template( { results: collection.models } ) );

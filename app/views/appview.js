@@ -26,7 +26,7 @@ AppView = Backbone.View.extend({
 
 			
 		}else{
-			loadPrompt('Please enter a search query to continue');
+			mobileSearch.utils.loadPrompt('Please enter a search query to continue');
 		}
 		
 		return false;

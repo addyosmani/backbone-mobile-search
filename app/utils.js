@@ -6,13 +6,14 @@
 	@sort: how the result set should be sorted
 	@page: the page within the result set to be returned
 **/
-function dfdQuery( ctx, query , sort , page ){
+mobileSearch.utils.dfdQuery = function( ctx, query , sort , page ){
 		
 	(page == undefined) ? page = 1  : page =  page;
 	
-	switchTitle('Query: ' + query + ' ( Page ' + page + ' )');
+	mobileSearch.utils.switchTitle('Query: ' + query + ' ( Page ' + page + ' )');
 	
-	loadPrompt('Querying Flickr API...');
+	mobileSearch.utils.loadPrompt('Querying Flickr API...');
+	
 	$.when( ctx.ajaxGetResults( query, sort, page ) )
 		  .then( $.proxy( function( response ){
 		  
@@ -39,7 +40,7 @@ function dfdQuery( ctx, query , sort , page ){
 /**
 	
 **/
-function historySwitch( state ){
+mobileSearch.utils.historySwitch = function( state ){
 
 	var hashQuery = "", pageQuery = 0, increment = 0;
 	(mobileSearch.controllers.workspace.q == undefined) ? hashQuery = '' : hashQuery = mobileSearch.controllers.workspace.q;
@@ -53,12 +54,14 @@ function historySwitch( state ){
 }
 
 
+
+
+
 /**
 	Display a custom notification message
 	@message: the message to display
-**/
-function loadPrompt( message ){
-
+**/	
+mobileSearch.utils.loadPrompt = function( message ){
 	(message == undefined)? message= "" : message = message;
 
 	$("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>"+ message +"</h1></div>")
@@ -68,11 +71,14 @@ function loadPrompt( message ){
 		.fadeOut( 400, function(){
 			$(this).remove();
 		});
-
 }
 
 
-function switchTitle( title ){
+/**
+	Change the title of the search view
+	@title: the title to be used
+**/
+mobileSearch.utils.switchTitle = function( title ){
 	$('.ui-title').text(title);
 }
 
@@ -91,12 +97,12 @@ function showNavigation(){
 }
 nextOption.bind('click', function(e){
 	e.preventDefault();
-	historySwitch('next');
+	mobileSearch.utils.historySwitch('next');
 });
 
 prevOption.bind('click', function(e){
 	e.preventDefault();
-	historySwitch('prev');
+	mobileSearch.utils.historySwitch('prev');
 });
 	
 	
