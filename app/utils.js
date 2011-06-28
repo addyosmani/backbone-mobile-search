@@ -37,6 +37,32 @@ mobileSearch.utils.dfdQuery = function( ctx, query , sort , page ){
 }
 
 
+
+/**
+	Search service for querying search results or individual photos
+**/
+mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
+	
+	var serviceUrl = "http://api.flickr.com/services/rest/?format=json&jsoncallback=?",
+		apiKey	   = "8662e376985445d92a07c79ff7d12ff8";
+
+
+	if(searchType == 'search' || searchType == undefined){
+	
+		var quantity = 16;
+		(page == undefined) ? page = 0 : page = page;
+		(sort == undefined) ? sort = ($('#sortBy').val()) : sort = sort;
+		serviceUrl +=  "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey;
+		
+	}else if(searchType == 'photo'){
+		serviceUrl +=  "&method=flickr.photos.getInfo&photo_id=" + query +  "&api_key=" + apiKey;
+	}
+	
+	return $.ajax(serviceUrl, { dataType: "json" });  
+}
+
+
+
 /**
 	
 **/

@@ -10,29 +10,18 @@ AppView = Backbone.View.extend({
     },
 
 	handleKey : function( event ){
-		if(event.which == 13){
-		}
 	},
 
 	keyLoadResults: function( event ){
-	
-        query = $('#searchbox').val();
-        
+        var query = $('#searchbox').val();
 		if( query ){	
-			
-			sort = $('#sortBy').val();
-			var hashQuery = query, 
-				pageQuery = 1, 
-				sortQuery = sort,
-				endPoint = mobileSearch.utils.queryConstructor(hashQuery, sortQuery, parseInt(pageQuery));
-				
+			var sort = $('#sortBy').val(),
+			    endPoint = mobileSearch.utils.queryConstructor(query, sort, 1);
 			location.hash = endPoint;
 
-			
 		}else{
 			mobileSearch.utils.loadPrompt('Please enter a search query to continue');
 		}
-		
 		return false;
 	},
 
@@ -44,6 +33,9 @@ AppView = Backbone.View.extend({
 		return $.ajax("http://api.flickr.com/services/rest/?format=json&jsoncallback=?" + "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey, { dataType: "json" });  
     }
 });
+
+
+
 
 
 
