@@ -2,6 +2,9 @@ AppView = Backbone.View.extend({
     el: $("#appview"),
     initialize: function(){
         this.result_collection = new ResultCollection;
+        
+        //figure out how to only create photocollection if needed...
+        //this.photo_collection = new PhotoCollection;
     },
     events: {
 		"submit #queryForm" : "keyLoadResults",

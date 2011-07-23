@@ -9,6 +9,7 @@
 **/
 mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 
+console.log(ctx);
     var entries = null;
 	(page == undefined) ? page = 1  : page =  page;
 	
@@ -29,15 +30,22 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 			mobileSearch.routers.workspace.s = sort;
 
 			$('.search-meta p').html('Page: ' + response.photos.page 
-											  + ' / ' + response.photos.pages 
-											  + ' of ' + response.photos.total + ' images');
-											  }
+											  + ' / ' + response.photos.pages );
 			
 			//note .refresh renamed .reset...
+			
 			ctx.result_collection.reset(entries);
-
-
 			$.mobile.changePage("#search", "slideup", false, false);
+			
+			}else{
+			$('.search-meta p').html('Viewing Photo');
+			ctx.photo_collection.reset(entries);
+			$.mobile.changePage("#photo", "slideup", false, false);
+			
+			}
+
+
+			
 
 	
 		  }, ctx ) ); 

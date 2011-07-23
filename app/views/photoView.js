@@ -1,12 +1,11 @@
+/*
 PhotoView = Backbone.View.extend({
-    el: $("#singlePhoto"),
+    el: $("#photoview"),
     initialize: function(){
-        this.result_collection = new ResultCollection;
+        this.photo_collection = new PhotoCollection;
     }
-
-    //mobileSearch.utils.fetchResults( 'photo', photo_id) 
 });
-
+*/
 
 /*
 http://api.flickr.com/services/rest/?format=json&jsoncallback=?&method=flickr.photos.getInfo&photo_id=64321&api_key=8662e376985445d92a07c79ff7d12ff8

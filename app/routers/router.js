@@ -12,7 +12,7 @@ var Workspace = Backbone.Router.extend({
 	  },
 	  photo: function ( id ){
 	  	//photo id intercepted.
-	  	mobileSearch.utils.dfdQuery('photo', mobileSearch.views.photoview, id);
+	  	mobileSearch.utils.dfdQuery('photo', mobileSearch.views.appview, id);
 	  }	
 });
 
