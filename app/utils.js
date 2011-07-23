@@ -9,9 +9,11 @@
 **/
 mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 
-console.log(ctx);
+
     var entries = null;
 	(page == undefined) ? page = 1  : page =  page;
+	
+	
 	
 	mobileSearch.utils.switchTitle('Results for: ' + query + ' ( Page ' + page + ' )');
 	mobileSearch.utils.loadPrompt('Querying Flickr API...');
@@ -24,6 +26,8 @@ console.log(ctx);
 		   
 		   //clean this up
 		   if(searchType == 'search'){
+		   
+		   ctx.setCollection(searchType);
 		  
 			mobileSearch.routers.workspace.q = query;
 			mobileSearch.routers.workspace.p = page;
@@ -38,6 +42,9 @@ console.log(ctx);
 			$.mobile.changePage("#search", "slideup", false, false);
 			
 			}else{
+			
+			ctx.setCollection(searchType);
+			 
 			$('.search-meta p').html('Viewing Photo');
 			ctx.photo_collection.reset(entries);
 			$.mobile.changePage("#photo", "slideup", false, false);
