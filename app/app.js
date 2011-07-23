@@ -5,6 +5,7 @@
 
 
 mobileSearch.views.appview = new AppView;	
+mobileSearch.views.photoview = new PhotoView;
 mobileSearch.routers.workspace = new Workspace();
 toggleNavigation(false); //hide
 Backbone.history.start();

@@ -81,8 +81,7 @@
 			<h1>Photo</h1> 
 		</div> 
 		<div data-role="content"> 
-			<ul id="singlePhoto" data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
-			
+			<ul id="singlePhoto" data-inset="true" data-theme="c" data-dividertheme="c">
 			</ul> 
 		</div> 
 	  </div> 
@@ -94,11 +93,14 @@
 -->
 
 	  <div id="search" data-role="page" data-theme="d"> 
+
+
 		<div data-role="header" data-theme="a" data-role="controlgroup"> 
 			<h1>Search Results</h1>
-			<a href="#" data-role="button" id="prevSet">Previous</a>
-			<a href="#" data-role="button" data-theme="b" id="nextSet">Next</a>
+			<a href="#" id="prevSet">Previous</a>
+			<a href="#" class="ui-btn-active" id="nextSet">Next</a>
 			
+
 		</div> 
 		<div data-role="content"> 
 			<ul id="listviewholder" data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
@@ -117,16 +119,21 @@
 		
 		<!--template for photoview-->
 		<script type="text/template" id="photoview">
-			<h1><%=title%></h1>
-			<img src="<%=imageLocation%>"/>
-			<p><%=description%></p>
+		<% _.each( results, function( item, i ){ %>
+				
+				<h3><%= item.get("title") %></h3> 
+				<img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_m.jpg' %>"/>
+				<h3><%= item.get("description") %></h3> 
+				<p></p> </a>
+			
+			<% }); %>
 		</script>
 		
 		<!--template for list view -->
 		<script type="text/template" id="listviewul">
 		<% _.each( results, function( item, i ){ %>
 				<li>
-		<a class='ui-result' title='<%= item.get("title") %>' href="#photo" data-href='<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_m.jpg' %>'>
+		<a class='ui-result' title='<%= item.get("title") %>' data-ajax="false" href="/#photo/<%= item.get("id") %>">
 				<img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_s.jpg' %>"/>
 				<h3><%= item.get("title") %></h3> 
 				<p></p> </a>
@@ -165,6 +172,8 @@
 		.script("app/views/resultList.js")
 		.script("app/models/resultCollection.js")
 		.script("app/views/appView.js")
+		.script("app/views/photoView.js")
+		.script("app/views/photoList.js")
 		.script("app/app.js")
 		</script>
 		

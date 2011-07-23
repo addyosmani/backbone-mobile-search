@@ -1,24 +1,29 @@
 
 /**
 	Perform a deferred jQuery request for results.
+	@searchType: search or photo
 	@ctx: the context handling the the results
 	@query: the search query being looked up
 	@sort: how the result set should be sorted
 	@page: the page within the result set to be returned
 **/
-mobileSearch.utils.dfdQuery = function( ctx, query , sort , page ){
+mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 
-		
+    var entries = null;
 	(page == undefined) ? page = 1  : page =  page;
 	
 	mobileSearch.utils.switchTitle('Results for: ' + query + ' ( Page ' + page + ' )');
 	mobileSearch.utils.loadPrompt('Querying Flickr API...');
 	
-	$.when( ctx.ajaxGetResults( query, sort, page ) )
+	//ctx.ajaxGetResults
+	$.when( mobileSearch.utils.fetchResults( searchType, query, sort, page ) )
 		  .then( $.proxy( function( response ){
 		  
-		  	var entries = response.photos.photo;
-			
+		   (searchType == 'photo')? entries = response.photo : entries = response.photos.photo;
+		   
+		   //clean this up
+		   if(searchType == 'search'){
+		  
 			mobileSearch.routers.workspace.q = query;
 			mobileSearch.routers.workspace.p = page;
 			mobileSearch.routers.workspace.s = sort;
@@ -26,6 +31,7 @@ mobileSearch.utils.dfdQuery = function( ctx, query , sort , page ){
 			$('.search-meta p').html('Page: ' + response.photos.page 
 											  + ' / ' + response.photos.pages 
 											  + ' of ' + response.photos.total + ' images');
+											  }
 			
 			//note .refresh renamed .reset...
 			ctx.result_collection.reset(entries);
@@ -41,6 +47,7 @@ mobileSearch.utils.dfdQuery = function( ctx, query , sort , page ){
 
 /**
 	Search service for querying search results or individual photos
+	query is either the search term or photo_id
 **/
 mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 	
