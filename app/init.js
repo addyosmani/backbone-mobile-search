@@ -6,6 +6,6 @@ var mobileSearch = {};
 
 mobileSearch = {
 	views:{},
-	controllers:{},
+	routers:{workspace:{}},
 	utils:{}
 };

@@ -1,7 +1,10 @@
 ResultCollection = Backbone.Collection.extend({
     model: ResultEntry, 
+    parse: function(response){
+    	return response;
+    },
     initialize: function(){
         this.resultlist = new ResultList;
-        this.bind("refresh", this.resultlist.renderList);
+        this.bind("reset", this.resultlist.renderList);
     }
 });

@@ -7,28 +7,29 @@
 	@page: the page within the result set to be returned
 **/
 mobileSearch.utils.dfdQuery = function( ctx, query , sort , page ){
+
 		
 	(page == undefined) ? page = 1  : page =  page;
 	
 	mobileSearch.utils.switchTitle('Results for: ' + query + ' ( Page ' + page + ' )');
-	
 	mobileSearch.utils.loadPrompt('Querying Flickr API...');
 	
 	$.when( ctx.ajaxGetResults( query, sort, page ) )
 		  .then( $.proxy( function( response ){
 		  
-			entries = response.photos.photo;
+		  	var entries = response.photos.photo;
 			
-			mobileSearch.controllers.workspace.q = query;
-			mobileSearch.controllers.workspace.p = page;
-			mobileSearch.controllers.workspace.s = sort;
+			mobileSearch.routers.workspace.q = query;
+			mobileSearch.routers.workspace.p = page;
+			mobileSearch.routers.workspace.s = sort;
 
 			$('.search-meta p').html('Page: ' + response.photos.page 
 											  + ' / ' + response.photos.pages 
 											  + ' of ' + response.photos.total + ' images');
 			
-			
-			ctx.result_collection.refresh( entries );
+			//note .refresh renamed .reset...
+			ctx.result_collection.reset(entries);
+
 
 			$.mobile.changePage("#search", "slideup", false, false);
 
@@ -69,9 +70,9 @@ mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 mobileSearch.utils.historySwitch = function( state ){
 
 	var hashQuery = "", pageQuery = 0, increment = 0;
-	(mobileSearch.controllers.workspace.q == undefined) ? hashQuery = '' : hashQuery = mobileSearch.controllers.workspace.q;
-	(mobileSearch.controllers.workspace.p == undefined) ? pageQuery = 1  : pageQuery =  mobileSearch.controllers.workspace.p;
-	(mobileSearch.controllers.workspace.s == undefined) ? sortQuery = 'relevance' : sortQuery = mobileSearch.controllers.workspace.s;
+	(mobileSearch.routers.workspace.q == undefined) ? hashQuery = '' : hashQuery = mobileSearch.routers.workspace.q;
+	(mobileSearch.routers.workspace.p == undefined) ? pageQuery = 1  : pageQuery =  mobileSearch.routers.workspace.p;
+	(mobileSearch.routers.workspace.s == undefined) ? sortQuery = 'relevance' : sortQuery = mobileSearch.routers.workspace.s;
 	
 	pageQuery = parseInt(pageQuery);
 	(state == 'next')? pageQuery +=1 : pageQuery -=1;

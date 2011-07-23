@@ -1,4 +1,4 @@
-var Workspace = Backbone.Controller.extend({
+var Workspace = Backbone.Router.extend({
 	  q:'',
 	  p:1,
 	  s:'relevance',
