@@ -13,7 +13,7 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 	(page == undefined) ? page = 1  : page =  page;
 
 
-	mobileSearch.utils.switchTitle('Results for: ' + query + ' ( Page ' + page + ' )');
+	
 	mobileSearch.utils.loadPrompt('Querying Flickr API...');
 	
 	$.when( mobileSearch.utils.fetchResults( searchType, query, sort, page ) )
@@ -23,6 +23,7 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 		  
 		  if(searchType == 'search' || searchType == undefined){
 		  	
+		  		
 		  		entries = response.photos.photo;
 				mobileSearch.routers.workspace.q = query;
 				mobileSearch.routers.workspace.p = page;
@@ -30,6 +31,7 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 				$('.search-meta p').html('Page: ' + response.photos.page  + ' / ' + response.photos.pages );				
 				ctx.result_collection.reset(entries);
 				$.mobile.changePage("#search", "slide", false, false);
+				mobileSearch.utils.switchTitle('Results for: ' + query + ' ( Page ' + page + ' )');
 				
 		  }else{
 		  		
