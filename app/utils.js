@@ -58,7 +58,8 @@ mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 
 	if(searchType == 'search' || searchType == undefined){
 	
-		var quantity = 16;
+	
+		var quantity = mobileSearch.config.resultsPerPage;
 		(page == undefined) ? page = 0 : page = page;
 		(sort == undefined) ? sort = ($('#sortBy').val()) : sort = sort;
 		serviceUrl +=  "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey;
@@ -125,7 +126,7 @@ mobileSearch.utils.queryConstructor = function( query , sortType , pageNum ){
 	return 'search/' + query + '/s' + sortType + '/p' + pageNum;
 }
 
-
+/*need to be included in the namespace*/
 
 var nextOption = $('#nextSet'),
 	prevOption = $('#prevSet');

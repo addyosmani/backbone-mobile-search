@@ -6,6 +6,12 @@ var mobileSearch = mobileSearch || {};
 
 mobileSearch = {
 	views:{},
-	routers:{workspace:{}},
-	utils:{}
+	routers:{
+		workspace:{}
+	},
+	utils:{},
+	config:{
+		resultsPerPage: 16
+	}
 };
+
