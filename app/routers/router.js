@@ -1,4 +1,4 @@
-var Workspace = Backbone.Router.extend({
+Workspace = Backbone.Router.extend({
 	  q:'',
 	  p:1,
 	  s:'relevance',
@@ -11,7 +11,6 @@ var Workspace = Backbone.Router.extend({
 	  	mobileSearch.utils.dfdQuery('search', mobileSearch.views.appview, query, sort, page);
 	  },
 	  photo: function ( id ){
-	  	//photo id intercepted.
 	  	mobileSearch.utils.dfdQuery('photo', mobileSearch.views.appview, id);
 	  }	
 });

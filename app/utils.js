@@ -9,52 +9,36 @@
 **/
 mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 
-
     var entries = null;
 	(page == undefined) ? page = 1  : page =  page;
-	
-	
-	
+
+
 	mobileSearch.utils.switchTitle('Results for: ' + query + ' ( Page ' + page + ' )');
 	mobileSearch.utils.loadPrompt('Querying Flickr API...');
 	
-	//ctx.ajaxGetResults
 	$.when( mobileSearch.utils.fetchResults( searchType, query, sort, page ) )
 		  .then( $.proxy( function( response ){
 		  
-		   (searchType == 'photo')? entries = response.photo : entries = response.photos.photo;
-		   
-		   //clean this up
-		   if(searchType == 'search'){
-		   
-		   ctx.setCollection(searchType);
+		  ctx.setCollection(searchType);
 		  
-			mobileSearch.routers.workspace.q = query;
-			mobileSearch.routers.workspace.p = page;
-			mobileSearch.routers.workspace.s = sort;
+		  if(searchType == 'search' || searchType == undefined){
+		  	
+		  		entries = response.photos.photo;
+				mobileSearch.routers.workspace.q = query;
+				mobileSearch.routers.workspace.p = page;
+				mobileSearch.routers.workspace.s = sort;	
+				$('.search-meta p').html('Page: ' + response.photos.page  + ' / ' + response.photos.pages );				
+				ctx.result_collection.reset(entries);
+				$.mobile.changePage("#search", "slide", false, false);
+				
+		  }else{
+		  		
+		  		entries = response.photo;
+		  		ctx.photo_collection.reset(entries);
+		  		$.mobile.changePage("#photo", "slide", false, false);
 
-			$('.search-meta p').html('Page: ' + response.photos.page 
-											  + ' / ' + response.photos.pages );
-			
-			//note .refresh renamed .reset...
-			
-			ctx.result_collection.reset(entries);
-			$.mobile.changePage("#search", "slideup", false, false);
-			
-			}else{
-			
-			ctx.setCollection(searchType);
-			 
-			$('.search-meta p').html('Viewing Photo');
-			ctx.photo_collection.reset(entries);
-			$.mobile.changePage("#photo", "slideup", false, false);
-			
-			}
+		  }
 
-
-			
-
-	
 		  }, ctx ) ); 
 }
 

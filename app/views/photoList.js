@@ -5,9 +5,7 @@ PhotoList = Backbone.View.extend({
     },
     
     renderList: function( collection ){
-    
-    console.log(collection.models);
-    
+        
         var compiled_template = _.template( $("#photoviewul").html() );
 
 		mobileSearch.utils.loadPrompt("Loading photo...");
@@ -16,8 +14,6 @@ PhotoList = Backbone.View.extend({
             
         setTimeout(function(){
         	$('#photo').find('ul').listview("refresh");
-        	/*note this needs to be written better otherwise multiple calls will
-        	be made.*/
         }, 0);
         
 

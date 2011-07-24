@@ -2,7 +2,7 @@
 	Initialize namespacing
 */
 
-var mobileSearch = {};
+var mobileSearch = mobileSearch || {};
 
 mobileSearch = {
 	views:{},
