@@ -20,25 +20,29 @@
 *********************************************************/
 -->		
 
-<div data-role="page" data-theme="b">
+<div data-role="page" data-theme="a">
 		
 			<div data-role="header">
 				<h1>Flickr Mobile Search</h1>
 			</div><!-- /header -->
 
 				
-			<div data-role="content">
+			<div data-role="content"  data-theme="b" id="content-main">
+
+			
 	    		<div id="appview">
+	    		
+	    	
 		
 					<form method="post" action="#" id='queryForm' name="queryForm" onsubmit="return false">
-						<div data-role="fieldcontain">
-							<label for="search">Search for:</label>
+						<div data-role="fieldcontain" class="cent">
+							<label for="searchbox">Search for:</label>
 				        	<input id="searchbox" type="search" name="searchbox" />
 						</div>
 					</form>
 			
 					
-					<div data-role="fieldcontain">
+					<div data-role="fieldcontain" class="cent">
 						<label for="sortBy" class="select ui-select">Search by:</label>
 						<select id="sortBy" data-native-menu="false">
 							<option value="interestingness-asc" selected>Interesting</option>
@@ -46,6 +50,10 @@
 							<option value="date-posted-asc">Date Posted</option>
 						</select>
 						
+						<div data-role="fieldcontain">
+							<label for="slider">Results per page:</label>
+ 							<input type="range" name="slider" id="slider" value="0" min="10" max="25"  />
+						</div>
 
 						
 						<div class="search-meta">
@@ -61,7 +69,7 @@
 
 
 	
-	<div data-role="footer" data-position="fixed">
+	<div data-role="footer">
 			<h4>A mobile backbone.js app by @addyosmani</h4>
 	</div>
 	

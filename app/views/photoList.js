@@ -7,10 +7,10 @@ PhotoList = Backbone.View.extend({
     renderList: function( collection ){
         
         var compiled_template = _.template( $("#photoviewul").html() );
-        
-        //$('#photo').find('ul').listview();
 
 		mobileSearch.utils.loadPrompt("Loading photo...");
+		
+		$('#photo .ui-title').html('Photo view');
 				
         collection.photolist.el.html( compiled_template( { results: collection.models } ) );
             

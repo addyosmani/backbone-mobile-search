@@ -9,6 +9,8 @@ ResultList = Backbone.View.extend({
         var compiled_template = _.template( $("#listviewul").html() );
         
         //$('#search').find("ul").listview();
+        
+        
 
 		mobileSearch.utils.loadPrompt("Loading results...");
 		
