@@ -15,8 +15,9 @@ PhotoList = Backbone.View.extend({
         collection.photolist.el.html( compiled_template( { results: collection.models } ) );
             
         setTimeout(function(){
-        	$('#photo').find('ul').listview();
-        	$('#photo').find('ul').listview("refresh");
+        	$photo = $('#photo');
+        	$photo.find('ul').listview();
+        	$photo.find('ul').listview("refresh");
         }, 0);
         
 

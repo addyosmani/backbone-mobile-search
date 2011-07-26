@@ -6,7 +6,7 @@
 		<title>Backbone Mobile Flickr App</title>
 		<link rel="stylesheet" media="all" href=""/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		
+		<link rel="shortcut" HREF="img/flickly.png">
 		<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
 		<link rel="stylesheet"  href="css/style.css" />
 	</head>
@@ -16,51 +16,67 @@
 
 <!--
 /********************************************************
-*  Search template
+*  Index 
 *********************************************************/
 -->		
 
 <div data-role="page" data-theme="a">
 		
 			<div data-role="header">
-				<h1>Flickr Mobile Search</h1>
+				<div id="sub-header">
+					<h1 id="logo"><img src="img/flickly.png" alt="Flickly" />
+						<div class="pink">Flick</div>
+						<div class="blue">ly</div>
+					</h1>
+				</div>
 			</div><!-- /header -->
 
 				
-			<div data-role="content"  data-theme="b" id="content-main">
+			<div data-role="content"  data-theme="c" id="content-main">
 
 			
 	    		<div id="appview">
 	    		
+	    		
+	    		<div id="homeheader">	
+				</div>
+	    		
 	    	
-		
-					<form method="post" action="#" id='queryForm' name="queryForm" onsubmit="return false">
-						<div data-role="fieldcontain" class="cent">
-							<label for="searchbox">Search for:</label>
-				        	<input id="searchbox" type="search" name="searchbox" />
-						</div>
-					</form>
-			
-					
-					<div data-role="fieldcontain" class="cent">
-						<label for="sortBy" class="select ui-select">Search by:</label>
-						<select id="sortBy" data-native-menu="false">
-							<option value="interestingness-asc" selected>Interesting</option>
-							<option value="relevance">Relevance</option>
-							<option value="date-posted-asc">Date Posted</option>
-						</select>
-						
-						<div data-role="fieldcontain">
-							<label for="slider">Results per page:</label>
- 							<input type="range" name="slider" id="slider" value="0" min="10" max="25"  />
-						</div>
-
-						
-						<div class="search-meta">
-						</div>
-					</div>
-					
+					<ul data-role="listview" data-inset="true" data-theme="b" data-dividertheme="b">
+						<li data-role="list-divider">Search</li>
+						<li>
 				
+				
+				
+							<form method="post" action="#" id='queryForm' name="queryForm" onsubmit="return false">
+								<div data-role="fieldcontain" class="cent">
+									<label for="searchbox">Keywords:</label>
+									<input id="searchbox" type="search" name="searchbox" />
+								</div>
+							</form>
+					
+							
+							<div data-role="fieldcontain" class="cent">
+								<label for="sortBy" class="select ui-select">Search by:</label>
+								<select id="sortBy" data-native-menu="false">
+									<option value="interestingness-asc" selected>Interesting</option>
+									<option value="relevance">Relevance</option>
+									<option value="date-posted-asc">Date Posted</option>
+								</select>
+								
+								<div data-role="fieldcontain">
+									<label for="slider">Results per page:</label>
+									<input type="range" name="slider" id="slider" value="10" min="5" max="25"  />
+								</div>
+		
+								
+								<div class="search-meta">
+								</div>
+							</div>
+							
+
+				</li>
+			</ul>
 					
 								
 	    	</div>
@@ -79,7 +95,7 @@
 
 <!--
 /********************************************************
-*  PhotoView
+*  PhotoView template
 *********************************************************/
 -->
 
@@ -98,7 +114,7 @@
 	   
 <!--
 /********************************************************
-*  ListView
+*  ListView template
 *********************************************************/
 -->
 

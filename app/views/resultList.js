@@ -7,10 +7,6 @@ ResultList = Backbone.View.extend({
     renderList: function( collection ){
 
         var compiled_template = _.template( $("#listviewul").html() );
-        
-        //$('#search').find("ul").listview();
-        
-        
 
 		mobileSearch.utils.loadPrompt("Loading results...");
 		
@@ -19,8 +15,9 @@ ResultList = Backbone.View.extend({
         collection.resultlist.el.html( compiled_template( { results: collection.models } ) );
     
         setTimeout(function(){
-        $('#search').find("ul").listview();
-        	$('#search').find("ul").listview("refresh");
+        	$search = $('#search');
+        	$search.find("ul").listview();
+        	$search.find("ul").listview("refresh");
         }, 0);
         
 

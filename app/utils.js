@@ -22,6 +22,8 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 		  ctx.setCollection(searchType);
 		  
 		  if(searchType == 'search' || searchType == undefined){
+		  
+		  console.log(response);
 		  	
 		  		
 		  		entries = response.photos.photo;
@@ -31,7 +33,7 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 				$('.search-meta p').html('Page: ' + response.photos.page  + ' / ' + response.photos.pages );				
 				ctx.result_collection.reset(entries);
 				$.mobile.changePage("#search", "slide", false, false);
-				mobileSearch.utils.switchTitle('Results for: ' + query + ' ( Page ' + page + ' )');
+				mobileSearch.utils.switchTitle('Results for: ' + query + ' ( Page ' + page + ' of ' + response.photos.total + ')');
 				
 		  }else{
 		  		
@@ -58,8 +60,7 @@ mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 
 	if(searchType == 'search' || searchType == undefined){
 	
-	
-		var quantity = mobileSearch.config.resultsPerPage;
+		var quantity = $('#slider').val() || mobileSearch.config.resultsPerPage;
 		(page == undefined) ? page = 0 : page = page;
 		(sort == undefined) ? sort = ($('#sortBy').val()) : sort = sort;
 		serviceUrl +=  "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey;

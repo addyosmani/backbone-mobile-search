@@ -28,7 +28,7 @@ AppView = Backbone.View.extend({
 		if( query ){	
 			var sort = $('#sortBy').val(),
 			    endPoint = mobileSearch.utils.queryConstructor(query, sort, 1);
-			location.hash = endPoint;
+				location.hash = endPoint;
 
 		}else{
 			mobileSearch.utils.loadPrompt('Please enter a search query to continue');
