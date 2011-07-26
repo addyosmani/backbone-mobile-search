@@ -57,18 +57,41 @@
 					
 							
 							<div data-role="fieldcontain" class="cent">
+							
+								<!--search type--->
 								<label for="sortBy" class="select ui-select">Search by:</label>
 								<select id="sortBy" data-native-menu="false">
 									<option value="interestingness-asc" selected>Interesting</option>
 									<option value="relevance">Relevance</option>
 									<option value="date-posted-asc">Date Posted</option>
 								</select>
+								<!--end search type-->
 								
+								<!--safe search--->
+								<label for="safeSearch" class="select ui-select">Safe search:</label>
+								<select id="safeSearch" data-native-menu="false">
+									<option value="1">Safe</option>
+									<option value="2" selected>Moderate</option>
+									<option value="3">Restricted</option>
+								</select>
+								<!--end safe search-->
+								
+								<!--max results shown slider-->
 								<div data-role="fieldcontain">
 									<label for="slider">Results per page:</label>
 									<input type="range" name="slider" id="slider" value="10" min="5" max="25"  />
 								</div>
-		
+								<!--end slider-->
+								
+								<!--is geo-->
+								<fieldset data-role="controlgroup"  data-type="horizontal" data-role="fieldcontain">
+									<legend>Geo-tagged? :</legend>
+									<input type="radio" name="radio-choice-z1" id="radio-choice-y1" value="1" />
+									<label for="radio-choice-y1">On</label>
+									<input type="radio" name="radio-choice-z1" id="radio-choice-z1" value="0"  checked="checked" />
+									<label for="radio-choice-z1">Off</label>
+								</fieldset>
+								<!--end geo-->
 								
 								<div class="search-meta">
 								</div>
@@ -77,7 +100,15 @@
 
 				</li>
 			</ul>
-					
+			
+			
+			
+			<!--end search section-->
+			
+			<ul data-role="listview" data-inset="true" data-theme="b" data-dividertheme="b">
+						<li data-role="list-divider">Discover</li>
+						<li>Keep up with your friends using Flickly, a mobile client for Flickr.com.</li>
+			</ul>
 								
 	    	</div>
 		</div><!-- /content -->

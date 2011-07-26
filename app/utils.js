@@ -60,15 +60,17 @@ mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 
 	if(searchType == 'search' || searchType == undefined){
 	
-		var quantity = $('#slider').val() || mobileSearch.config.resultsPerPage;
+		var quantity = $('#slider').val() || mobileSearch.config.resultsPerPage,
+			safeSearch = $('#safeSearch').val() || mobileSearch.config.safeSearch;
 		(page == undefined) ? page = 0 : page = page;
 		(sort == undefined) ? sort = ($('#sortBy').val()) : sort = sort;
-		serviceUrl +=  "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey;
+		serviceUrl +=  "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&safe_search=" + safeSearch + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey;
 		
 	}else if(searchType == 'photo'){
 		serviceUrl +=  "&method=flickr.photos.getInfo&photo_id=" + query +  "&api_key=" + apiKey;
 	}
 	
+	console.log(serviceUrl);
 	return $.ajax(serviceUrl, { dataType: "json" });  
 }
 

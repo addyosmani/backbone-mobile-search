@@ -11,7 +11,9 @@ mobileSearch = {
 	},
 	utils:{},
 	config:{
-		resultsPerPage: 16
+		//defaults
+		resultsPerPage: 16,
+		safeSearch: 2
 	}
 };
 
