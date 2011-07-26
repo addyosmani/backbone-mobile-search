@@ -1,0 +1,32 @@
+CACHE MANIFEST
+
+CACHE:
+
+/img/flickly.png
+
+/css/style.css
+
+/app/init.js
+/app/libs/json2.js
+/app/libs/jquery.1.6.1.min.js
+/app/libs/underscore-min.js
+/app/libs/backbone-min.js
+/app/utils.js
+/app/routers/router.js
+/app/models/resultEntry.js
+/app/views/resultList.js
+/app/models/resultCollection.js
+/app/models/photoCollection.js
+/app/views/appView.js
+/app/views/photoList.js
+/app/app.js
+
+
+FALLBACK:
+/ /index.html
+
+NETWORK:
+*
+http://ajax.cdnjs.com/ajax/libs/labjs/1.2.0/LAB.min.js
+http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js
+http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css
