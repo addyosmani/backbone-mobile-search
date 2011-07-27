@@ -6,8 +6,9 @@
 		<title>Backbone Mobile Flickr App</title>
 		<link rel="stylesheet" media="all" href=""/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<link rel="shortcut" HREF="img/flickly.png">
+		<link rel="shortcut" href="img/flickly.png">
 		<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
+		<link rel="stylesheet"  href="css/jquery.ui.datepicker.css" />
 		<link rel="stylesheet"  href="css/style.css" />
 	</head>
 	
@@ -92,6 +93,24 @@
 									<label for="geo-choice-z1">Off</label>
 								</fieldset>
 								<!--end geo-->
+							
+								<!--date pickers for max min taken-->
+								<div data-role="collapsible" data-collapsed="true">
+								<h3>Select date ranges</h3>
+								<form action="#" method="get">
+									<div data-role="fieldcontain">
+										<label for="date">Min taken date:</label>
+										<input type="date" name="date" id="date-min" value=""  />
+									</div>		
+									
+									<div data-role="fieldcontain">
+										<label for="date">Max taken date:</label>
+										<input type="date" name="date" id="date-max" value=""  />
+									</div>
+									
+								</form>	
+								</div>
+								<!--end datepickers-->
 								
 								<div class="search-meta">
 								</div>
@@ -224,6 +243,8 @@
 		.script("app/init.js")
 		.script("app/libs/json2.js")
 		.script("app/libs/jquery.1.6.1.min.js")
+		.script("app/libs/jQuery.ui.datepicker.js")
+		.script("app/libs/jquery.ui.datepicker.mobile.js")
 		.script("http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js").wait(function(){
 			/*
 			This is meant as a global config option for end users to disable hashchange listening 
@@ -232,6 +253,8 @@
 			-- avoids broken/error url clashes
 			*/
 			$.mobile.hashListeningEnabled = false;
+			$.mobile.page.prototype.options.degradeInputs.date = true;
+			$( "#date-max,#date-min" ).datepicker();
 		})
 		.script("app/libs/underscore-min.js")
 		.script("app/libs/backbone-min.js")
@@ -243,7 +266,7 @@
 		.script("app/models/photoCollection.js")
 		.script("app/views/appView.js")
 		.script("app/views/photoList.js")
-		.script("app/app.js")
+		.script("app/app.js");
 		</script>
 		
 		

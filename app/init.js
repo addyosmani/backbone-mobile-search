@@ -13,7 +13,9 @@ mobileSearch = {
 	ui:{},
 	defaults:{
 		resultsPerPage: 16,
-		safeSearch: 2
+		safeSearch: 2,
+		maxDate:'',
+		minDate:''
 	}
 };
 

@@ -55,21 +55,28 @@ mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 		apiKey	   = "8662e376985445d92a07c79ff7d12ff8",
 		geoTagged = null,
 		quantity  = 0,
-		safeSearch = null;
+		safeSearch = null,
+		maxDate = null,
+		minDate = null;
 
 
 	if(searchType == 'search' || searchType == undefined){
 	
 		quantity = $('#slider').val() || mobileSearch.defaults.resultsPerPage,
-		safeSearch = $('#safeSearch').val() || mobileSearch.defaults.safeSearch;
+		safeSearch = $('#safeSearch').val() || mobileSearch.defaults.safeSearch,
+		maxDate = $.datepicker.formatDate('@', new Date( $('#date-max').val() || mobileSearch.defaults.maxDate)),
+		minDate = $.datepicker.formatDate('@', new Date( $('#date-min').val() || mobileSearch.defaults.minDate));
+		
 		($('#geo-choice-z1').prop('checked') || mobileSearch.defaults.geoTagged)?  geoTagged = 0 : geoTagged =  1;
 		(page == undefined) ? page = 0 : page = page;
 		(sort == undefined) ? sort = ($('#sortBy').val()) : sort = sort;
-		serviceUrl +=  "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&is_geo=" + geoTagged +"&safe_search=" + safeSearch + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey;
+		serviceUrl +=  "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&is_geo=" + geoTagged +"&safe_search=" + safeSearch + "&sort=" + sort + "&min_taken_date=" + minDate + "&max_taken_date=" + maxDate + "&text=" + query +  "&api_key=" + apiKey;
 		
 	}else if(searchType == 'photo'){
 		serviceUrl +=  "&method=flickr.photos.getInfo&photo_id=" + query +  "&api_key=" + apiKey;
 	}
+	
+	console.log(serviceUrl);
 	
 	return $.ajax(serviceUrl, { dataType: "json" });  
 }
