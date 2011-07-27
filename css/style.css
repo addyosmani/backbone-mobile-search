@@ -98,3 +98,11 @@ body {
 	text-align:center;
 	margin:0 auto;
 }
+
+.nav-glyphish-example .ui-btn .ui-btn-inner { padding-top: 40px !important; }
+.nav-glyphish-example .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: none !important; border-radius: none !important; }
+#search-icon .ui-icon { background:  url(/img/icons/06-magnify.png) 50% 50% no-repeat; background-size: 24px 22px; }
+#options-icon .ui-icon { background:  url(/img/icons/36-toolbox.png) 50% 50% no-repeat; background-size: 24px 16px;  }
+#instructions-icon .ui-icon { background:  url(/img/icons/179-notepad.png) 50% 50% no-repeat;  background-size: 12px 26px; }
+#source-icon .ui-icon { background:  url(/img/icons/157-wrench.png) 50% 50% no-repeat;  background-size: 22px 27px; }
+#about-icon .ui-icon { background:  url(/img/icons/111-user.png) 50% 50% no-repeat;  background-size: 20px 24px; }

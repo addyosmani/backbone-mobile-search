@@ -21,31 +21,22 @@
 *********************************************************/
 -->		
 
-<div data-role="page" data-theme="a">
-		
-			<div data-role="header">
-				<div id="sub-header">
+<div id="index" data-role="page" data-theme="b">
+				
+			<div data-role="content"  data-theme="c" id="content-main">
+
+			<div id="sub-header">
 					<h1 id="logo"><img src="img/flickly.png" alt="Flickly" />
 						<div class="pink">Flick</div>
 						<div class="blue">ly</div>
 					</h1>
 				</div>
-			</div><!-- /header -->
-
 				
-			<div data-role="content"  data-theme="c" id="content-main">
-
-			
 	    		<div id="appview">
-	    		
-	    		
+
 	    		<div id="homeheader">	
 				</div>
-	    		
-	    	
-					<ul data-role="listview" data-inset="true" data-theme="b" data-dividertheme="b">
-						<li data-role="list-divider">Search</li>
-						<li>
+	
 				
 				
 				
@@ -68,81 +59,177 @@
 								</select>
 								<!--end search type-->
 								
-								<!--safe search--->
-								<label for="safeSearch" class="select ui-select">Safe search:</label>
-								<select id="safeSearch" data-native-menu="false">
-									<option value="1">Safe</option>
-									<option value="2" selected>Moderate</option>
-									<option value="3">Restricted</option>
-								</select>
-								<!--end safe search-->
+
 								
-								<!--max results shown slider-->
-								<div data-role="fieldcontain">
-									<label for="slider">Results per page:</label>
-									<input type="range" name="slider" id="slider" value="10" min="5" max="25"  />
-								</div>
-								<!--end slider-->
 								
-								<!--is geo-->
-								<fieldset data-role="controlgroup"  data-type="horizontal" data-role="fieldcontain">
-									<legend>Geo-tagged? :</legend>
-									<input type="radio" name="geo-choice-z1" id="geo-choice-y1" value="1" />
-									<label for="geo-choice-y1">On</label>
-									<input type="radio" name="radio-choice-z1" id="geo-choice-z1" value="0"  checked="checked" />
-									<label for="geo-choice-z1">Off</label>
-								</fieldset>
-								<!--end geo-->
-							
-								<!--date pickers for max min taken-->
-								<div data-role="collapsible" data-collapsed="true">
-								<h3>Select date ranges</h3>
-								<form action="#" method="get">
-									<div data-role="fieldcontain">
-										<label for="date">Min taken date:</label>
-										<input type="date" name="date" id="date-min" value=""  />
-									</div>		
-									
-									<div data-role="fieldcontain">
-										<label for="date">Max taken date:</label>
-										<input type="date" name="date" id="date-max" value=""  />
-									</div>
-									
-								</form>	
-								</div>
-								<!--end datepickers-->
 								
 								<div class="search-meta">
 								</div>
 							</div>
-							
-
-				</li>
-			</ul>
 			
 			
-			
+		
 			<!--end search section-->
-			
-			<ul data-role="listview" data-inset="true" data-theme="b" data-dividertheme="b">
-						<li data-role="list-divider">Discover</li>
-						<li>Keep up with your friends using Flickly, a mobile client for Flickr.com.</li>
-			</ul>
-								
+						
 	    	</div>
 		</div><!-- /content -->
 		
 
-
-	
-	<div data-role="footer">
-			<h4>A mobile backbone.js app by @addyosmani</h4>
-	</div>
+		<!--footer menu-->
+		<div data-role="footer" class="nav-glyphish-example">
+			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+			<ul>
+				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Instructions</a></li>
+				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+			</ul>
+			</div>
+		</div>
+		<!--end footer-->
 	
 </div>
 
 
 
+<!--
+/********************************************************
+*  Options
+*********************************************************/
+-->
+
+
+	  <div id="options" data-role="page" data-theme="b"> 
+		<div data-role="header" data-theme="a"> 
+			<h1>Options</h1> 
+		</div> 
+		<div data-role="content"> 
+		
+			<!--safe search--->
+			<label for="safeSearch" class="select ui-select">Safe search:</label>
+			<select id="safeSearch" data-native-menu="false">
+				<option value="1">Safe</option>
+				<option value="2" selected>Moderate</option>
+				<option value="3">Restricted</option>
+			</select>
+			<!--end safe search-->
+								
+			<!--max results shown slider-->
+			<div data-role="fieldcontain">
+				<label for="slider">Results per page:</label>
+				<input type="range" name="slider" id="slider" value="10" min="5" max="25"  />
+			</div>
+			<!--end slider-->
+			
+			<!--is geo-->
+			<fieldset data-role="controlgroup"  data-type="horizontal" data-role="fieldcontain">
+				<legend>Geo-tagged? :</legend>
+				<input type="radio" name="geo-choice-z1" id="geo-choice-y1" value="1" />
+				<label for="geo-choice-y1">On</label>
+				<input type="radio" name="radio-choice-z1" id="geo-choice-z1" value="0"  checked="checked" />
+				<label for="geo-choice-z1">Off</label>
+			</fieldset>
+			<!--end geo-->
+		
+			<!--date pickers for max min taken-->
+			<div data-role="collapsible" data-collapsed="true">
+			<h3>Select date ranges</h3>
+			<form action="#" method="get">
+				<div data-role="fieldcontain">
+					<label for="date">Min taken date:</label>
+					<input type="date" name="date" id="date-min" value=""  />
+				</div>		
+				
+				<div data-role="fieldcontain">
+					<label for="date">Max taken date:</label>
+					<input type="date" name="date" id="date-max" value=""  />
+				</div>
+				
+			</form>	
+			</div>
+			<!--end datepickers--> 
+		</div> 
+			
+			
+		<!--footer menu-->
+		<div data-role="footer" class="nav-glyphish-example">
+			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+			<ul>
+				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Instructions</a></li>
+				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+			</ul>
+			</div>
+		</div>
+		<!--end footer-->
+	
+	  </div> 
+
+
+<!--
+/********************************************************
+*  Instructions
+*********************************************************/
+-->
+
+
+	  <div id="instructions" data-role="page" data-theme="b"> 
+		<div data-role="header" data-theme="a"> 
+			<h1>Instructions</h1> 
+		</div> 
+		<div data-role="content"> 
+			<p>Content there</p>
+		</div> 
+		<!--footer menu-->
+		<div data-role="footer" class="nav-glyphish-example">
+			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+			<ul>
+				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Instructions</a></li>
+				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+			</ul>
+			</div>
+		</div>
+		<!--end footer-->			
+	  </div> 
+	  
+	  
+
+<!--
+/********************************************************
+*  Source
+*********************************************************/
+-->
+
+
+	  <div id="source" data-role="page" data-theme="b"> 
+		<div data-role="header" data-theme="a"> 
+			<h1>Source</h1> 
+		</div> 
+		<div data-role="content"> 
+			<p>Content there</p>
+		</div> 
+		<!--footer menu-->
+		<div data-role="footer" class="nav-glyphish-example">
+			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+			<ul>
+				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Instructions</a></li>
+				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+			</ul>
+			</div>
+		</div>
+		<!--end footer-->			
+	  </div> 
+	  
+	  
 <!--
 /********************************************************
 *  PhotoView template
