@@ -1,7 +1,3 @@
-/*
-effectively have three views - appview, photolist and resultlist 
-the last two of which are dynamically used.
-*/
 AppView = Backbone.View.extend({
     el: $("#appview"),
     initialize: function(){

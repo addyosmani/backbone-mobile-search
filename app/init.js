@@ -10,8 +10,8 @@ mobileSearch = {
 		workspace:{}
 	},
 	utils:{},
-	config:{
-		//defaults
+	ui:{},
+	defaults:{
 		resultsPerPage: 16,
 		safeSearch: 2
 	}

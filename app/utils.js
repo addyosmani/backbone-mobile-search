@@ -23,9 +23,6 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 		  
 		  if(searchType == 'search' || searchType == undefined){
 		  
-		  console.log(response);
-		  	
-		  		
 		  		entries = response.photos.photo;
 				mobileSearch.routers.workspace.q = query;
 				mobileSearch.routers.workspace.p = page;
@@ -55,29 +52,32 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 	
 	var serviceUrl = "http://api.flickr.com/services/rest/?format=json&jsoncallback=?",
-		apiKey	   = "8662e376985445d92a07c79ff7d12ff8";
+		apiKey	   = "8662e376985445d92a07c79ff7d12ff8",
+		geoTagged = null,
+		quantity  = 0,
+		safeSearch = null;
 
 
 	if(searchType == 'search' || searchType == undefined){
 	
-		var quantity = $('#slider').val() || mobileSearch.config.resultsPerPage,
-			safeSearch = $('#safeSearch').val() || mobileSearch.config.safeSearch;
+		quantity = $('#slider').val() || mobileSearch.defaults.resultsPerPage,
+		safeSearch = $('#safeSearch').val() || mobileSearch.defaults.safeSearch;
+		($('#geo-choice-z1').prop('checked') || mobileSearch.defaults.geoTagged)?  geoTagged = 0 : geoTagged =  1;
 		(page == undefined) ? page = 0 : page = page;
 		(sort == undefined) ? sort = ($('#sortBy').val()) : sort = sort;
-		serviceUrl +=  "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&safe_search=" + safeSearch + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey;
+		serviceUrl +=  "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&is_geo=" + geoTagged +"&safe_search=" + safeSearch + "&sort=" + sort + "&text=" + query +  "&api_key=" + apiKey;
 		
 	}else if(searchType == 'photo'){
 		serviceUrl +=  "&method=flickr.photos.getInfo&photo_id=" + query +  "&api_key=" + apiKey;
 	}
 	
-	console.log(serviceUrl);
 	return $.ajax(serviceUrl, { dataType: "json" });  
 }
 
 
 
 /**
-	
+	history switching - needs cleanup
 **/
 mobileSearch.utils.historySwitch = function( state ){
 
@@ -88,11 +88,10 @@ mobileSearch.utils.historySwitch = function( state ){
 	
 	pageQuery = parseInt(pageQuery);
 	(state == 'next')? pageQuery +=1 : pageQuery -=1;
-		
-	(pageQuery <1)? null : location.hash = mobileSearch.utils.queryConstructor(hashQuery, sortQuery, pageQuery);
+
+	(pageQuery <1)? $.mobile.changePage("/", "slide") : location.hash = mobileSearch.utils.queryConstructor(hashQuery, sortQuery, pageQuery);
+	
 }
-
-
 
 
 
@@ -131,15 +130,15 @@ mobileSearch.utils.queryConstructor = function( query , sortType , pageNum ){
 
 /*need to be included in the namespace*/
 
-var nextOption = $('#nextSet'),
-	prevOption = $('#prevSet');
+mobileSearch.ui.nextOption = $('#nextSet'),
+mobileSearch.ui.prevOption = $('#prevSet');
 
-nextOption.bind('click', function(e){
+mobileSearch.ui.nextOption.bind('click', function(e){
 	e.preventDefault();
 	mobileSearch.utils.historySwitch('next');
 });
 
-prevOption.bind('click', function(e){
+mobileSearch.ui.prevOption.bind('click', function(e){
 	e.preventDefault();
 	mobileSearch.utils.historySwitch('prev');
 });
@@ -148,9 +147,9 @@ prevOption.bind('click', function(e){
 	Toggle whether the navigation is displayed or hidden
 	@b: boolean value specifying whether to show or hide the controls
 **/
-function toggleNavigation(b){
-	nextOption.toggle(b),
-	prevOption.toggle(b);
+mobileSearch.utils.toggleNavigation = function(b){
+	mobileSearch.ui.nextOption.toggle(b),
+	mobileSearch.ui.prevOption.toggle(b);
 }	
 
 
