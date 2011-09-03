@@ -1,8 +1,9 @@
-/**
-	Backbone Mobile Search Demo by Addy Osmani
-	Copyright AddyOsmani.com 2011.
-**/
-
+/*!
+* Flickly - Backbone jQuery Mobile demo
+* http://addyosmani.com
+* Copyright (c) 2011 Addy Osmani
+* Dual licensed under the MIT and GPL licenses.
+*/
 
 mobileSearch.views.appview = new AppView;	
 mobileSearch.routers.workspace = new Workspace();

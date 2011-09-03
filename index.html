@@ -32,6 +32,7 @@
 				
 	    		<div id="appview">
 
+					<a data-ajax="false" href="#search/red/sinterestingness-asc/p1">Sample search</a>
 	    		<div id="homeheader">	
 				</div>
 	
@@ -72,12 +73,12 @@
 		
 
 		<!--footer menu-->
-		<div data-role="footer" class="nav-glyphish-example">
+		<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
 			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
 			<ul>
 				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
 				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Instructions</a></li>
+				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
 				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
 				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
 			</ul>
@@ -154,7 +155,7 @@
 			<ul>
 				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
 				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Instructions</a></li>
+				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
 				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
 				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
 			</ul>
@@ -172,28 +173,41 @@
 -->
 
 
-	  <div id="instructions" data-role="page" data-theme="b"> 
-		<div data-role="header" data-theme="a"> 
-			<h1>Instructions</h1> 
-		</div> 
-		<div data-role="content"> 
-			<p>Content</p>
-		</div> 
-		<!--footer menu-->
-		<div data-role="footer" class="nav-glyphish-example">
-			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
-			<ul>
-				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Instructions</a></li>
-				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-			</ul>
-			</div>
+
+<div id="instructions" data-role="page" data-theme="b"> 
+	<div data-role="header" data-theme="a"> 
+		<h1>Help</h1> 
+	</div> 
+	<div data-role="content"> 
+		<ul data-role="listview">
+			<li data-role="list-divider">Quick guidelines to get started</li>
+			<li>
+					<h3>Searching</h3>
+					<p><strong>Looking up photos on Flickr is simple.</strong></p>
+					<p>Enter a term and hit 'enter' or search</p>
+				
+			</li>
+			<li>					
+				<h3>Options</h3>
+				<p><strong>Advanced search options are available.</strong></p>
+				<p>Search by type, geo-location and more.</p>
+			</li>
+		</ul>
+	</div> 
+	<!--footer menu-->
+	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
+		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+		<ul>
+			<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+			<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+			<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
+			<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+			<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+		</ul>
 		</div>
-		<!--end footer-->			
-	  </div> 
-	  
+	</div>
+	<!--end footer-->			
+</div>
 	  
 
 <!--
@@ -203,58 +217,59 @@
 -->
 
 
-	  <div id="source" data-role="page" data-theme="b"> 
-		<div data-role="header" data-theme="a"> 
-			<h1>Source</h1> 
-		</div> 
-		<div data-role="content"> 
-			<p>Content</p>
-		</div> 
-		<!--footer menu-->
-		<div data-role="footer" class="nav-glyphish-example">
-			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
-			<ul>
-				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Instructions</a></li>
-				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-			</ul>
-			</div>
+<div id="source" data-role="page" data-theme="b"> 
+	<div data-role="header" data-theme="a"> 
+		<h1>Source</h1> 
+	</div> 
+	<div data-role="content"> 
+		<ul data-role="listview" data-inset="true">
+			<li><a href="http://github.com/addyosmani"><img src="img/icons/github.png" alt="Github" class="ui-li-icon">Github</a></li>
+			<li><a href="#"><img src="img/icons/demo.png" alt="Demo" class="ui-li-icon">Demo</a></li>
+		</ul>
+	</div> 
+	<!--footer menu-->
+	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
+		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+		<ul>
+			<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+			<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+			<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
+			<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+			<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+		</ul>
 		</div>
-		<!--end footer-->			
-	  </div> 
-	  
+	</div>
+	<!--end footer-->			
+</div>
 	
-	<!--
-	/********************************************************
-	*  About
-	*********************************************************/
-	-->
+<!--
+/********************************************************
+*  About
+*********************************************************/
+-->
 
 
-		  <div id="about" data-role="page" data-theme="b"> 
-			<div data-role="header" data-theme="a"> 
-				<h1>About</h1> 
-			</div> 
-			<div data-role="content"> 
-				<p>Content</p>
-			</div> 
-			<!--footer menu-->
-			<div data-role="footer" class="nav-glyphish-example">
-				<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
-				<ul>
-					<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-					<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-					<li><a href="#instructions" id="instructions-icon" data-icon="custom">Instructions</a></li>
-					<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-					<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-				</ul>
-				</div>
-			</div>
-			<!--end footer-->			
-		  </div> 
-
+<div id="about" data-role="page" data-theme="b"> 
+	<div data-role="header" data-theme="a"> 
+		<h1>About</h1> 
+	</div> 
+	<div data-role="content"> 
+		<p>A wireframe for the about page.</p>
+	</div> 
+	<!--footer menu-->
+	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
+		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+		<ul>
+			<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+			<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+			<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
+			<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+			<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+		</ul>
+		</div>
+	</div>
+	<!--end footer-->			
+</div>
 	  
 <!--
 /********************************************************
@@ -350,41 +365,7 @@
 -->
 
 		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/labjs/1.2.0/LAB.min.js"></script>
-		<script type="text/javascript">
-		$LAB
-		.setOptions({AlwaysPreserveOrder:true})
-		.script("app/init.js")
-		.script("app/libs/json2.js")
-		.script("app/libs/jquery.1.6.1.min.js")
-		.script("app/libs/jQuery.ui.datepicker.js")
-		.script("app/libs/jquery.ui.datepicker.mobile.js")
-		.script("http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js").wait(function(){
-			/*
-			This is meant as a global config option for end users to disable hashchange listening 
-			(as opposed to urlHistory.listeningEnabled, which is an internal toggle)
-			*/
-			$.mobile.hashListeningEnabled = false;
-			$.mobile.page.prototype.options.degradeInputs.date = true;
-			
-			$('#date-min,#date-max').datepicker();
-			
-
-			
-
-			
-		})
-		.script("app/libs/underscore-min.js")
-		.script("app/libs/backbone-min.js")
-		.script("app/utils.js")
-		.script("app/routers/router.js")
-		.script("app/models/resultEntry.js")
-		.script("app/views/resultList.js")
-		.script("app/models/resultCollection.js")
-		.script("app/models/photoCollection.js")
-		.script("app/views/appView.js")
-		.script("app/views/photoList.js")
-		.script("app/app.js");
-		</script>
+		<script type="text/javascript" src="app/scripts.js"></script>
 		
 		
 		
