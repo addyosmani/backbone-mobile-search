@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8"/>
-		<title>Backbone Mobile Flickr App</title>
+		<title>Flickly</title>
 		<link rel="stylesheet" media="all" href=""/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<link rel="shortcut" href="img/flickly.png">
@@ -22,23 +22,19 @@
 -->		
 
 <div id="index" data-role="page" data-theme="b">
+	
+			<div  data-role="header"> 
+				<img class="logo" src="img/ribbon.png" alt="Flickly" /> 
+			</div>
+	
 				
 			<div data-role="content"  data-theme="c" id="content-main">
-
-			<div id="sub-header">
-					<h1 id="logo"><img src="img/flickly.png" alt="Flickly" />
-						<div class="pink">Flick</div>
-						<div class="blue">ly</div>
-					</h1>
-				</div>
 				
 	    		<div id="appview">
 
 	    		<div id="homeheader">	
 				</div>
 	
-				
-				
 				
 							<form method="post" action="#" id='queryForm' name="queryForm" onsubmit="return false">
 								<div data-role="fieldcontain" class="cent">
@@ -181,7 +177,7 @@
 			<h1>Instructions</h1> 
 		</div> 
 		<div data-role="content"> 
-			<p>Content there</p>
+			<p>Content</p>
 		</div> 
 		<!--footer menu-->
 		<div data-role="footer" class="nav-glyphish-example">
@@ -212,7 +208,7 @@
 			<h1>Source</h1> 
 		</div> 
 		<div data-role="content"> 
-			<p>Content there</p>
+			<p>Content</p>
 		</div> 
 		<!--footer menu-->
 		<div data-role="footer" class="nav-glyphish-example">
@@ -229,6 +225,36 @@
 		<!--end footer-->			
 	  </div> 
 	  
+	
+	<!--
+	/********************************************************
+	*  About
+	*********************************************************/
+	-->
+
+
+		  <div id="about" data-role="page" data-theme="b"> 
+			<div data-role="header" data-theme="a"> 
+				<h1>About</h1> 
+			</div> 
+			<div data-role="content"> 
+				<p>Content</p>
+			</div> 
+			<!--footer menu-->
+			<div data-role="footer" class="nav-glyphish-example">
+				<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+				<ul>
+					<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+					<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+					<li><a href="#instructions" id="instructions-icon" data-icon="custom">Instructions</a></li>
+					<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+					<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+				</ul>
+				</div>
+			</div>
+			<!--end footer-->			
+		  </div> 
+
 	  
 <!--
 /********************************************************
@@ -336,12 +362,16 @@
 			/*
 			This is meant as a global config option for end users to disable hashchange listening 
 			(as opposed to urlHistory.listeningEnabled, which is an internal toggle)
-			
-			-- avoids broken/error url clashes
 			*/
 			$.mobile.hashListeningEnabled = false;
 			$.mobile.page.prototype.options.degradeInputs.date = true;
-			$( "#date-max,#date-min" ).datepicker();
+			
+			$('#date-min,#date-max').datepicker();
+			
+
+			
+
+			
 		})
 		.script("app/libs/underscore-min.js")
 		.script("app/libs/backbone-min.js")

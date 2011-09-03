@@ -12,8 +12,6 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
     var entries = null;
 	(page == undefined) ? page = 1  : page =  page;
 
-
-	
 	mobileSearch.utils.loadPrompt('Querying Flickr API...');
 	
 	$.when( mobileSearch.utils.fetchResults( searchType, query, sort, page ) )
@@ -50,22 +48,28 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 	query is either the search term or photo_id
 **/
 mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
+
 	
 	var serviceUrl = "http://api.flickr.com/services/rest/?format=json&jsoncallback=?",
 		apiKey	   = "8662e376985445d92a07c79ff7d12ff8",
 		geoTagged = null,
 		quantity  = 0,
-		safeSearch = null,
-		maxDate = null,
-		minDate = null;
-
+		safeSearch = '',
+		minDate = $('#date-min').val(),
+		maxDate = $('#date-max').val();
+		
 
 	if(searchType == 'search' || searchType == undefined){
-	
+		
 		quantity = $('#slider').val() || mobileSearch.defaults.resultsPerPage,
-		safeSearch = $('#safeSearch').val() || mobileSearch.defaults.safeSearch,
-		maxDate = $.datepicker.formatDate('@', new Date( $('#date-max').val() || mobileSearch.defaults.maxDate)),
-		minDate = $.datepicker.formatDate('@', new Date( $('#date-min').val() || mobileSearch.defaults.minDate));
+		safeSearch = $('#safeSearch').val() || mobileSearch.defaults.safeSearch;
+		
+		if(minDate == maxDate){
+			minDate = 0;
+		}
+		
+			maxDate = $.datepicker.formatDate('@', new Date( maxDate)),
+			minDate = $.datepicker.formatDate('@', new Date( minDate));
 		
 		($('#geo-choice-z1').prop('checked') || mobileSearch.defaults.geoTagged)?  geoTagged = 0 : geoTagged =  1;
 		(page == undefined) ? page = 0 : page = page;
@@ -75,7 +79,8 @@ mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 	}else if(searchType == 'photo'){
 		serviceUrl +=  "&method=flickr.photos.getInfo&photo_id=" + query +  "&api_key=" + apiKey;
 	}
-	
+		
+		
 	console.log(serviceUrl);
 	
 	return $.ajax(serviceUrl, { dataType: "json" });  

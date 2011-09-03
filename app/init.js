@@ -15,7 +15,7 @@ mobileSearch = {
 		resultsPerPage: 16,
 		safeSearch: 2,
 		maxDate:'',
-		minDate:''
+		minDate:'01/01/1970'
 	}
 };
 

@@ -10,12 +10,15 @@
 	var prevDp = $.fn.datepicker;
 	
 	//rewrite datepicker
-	$.fn.datepicker = function( options ){
-		
+	//$.fn.datepicker = function( options ){
+	$.fn.datepicker = function( option1 ,option2){
+			
 		var dp = this;
 	
 		//call cached datepicker plugin
-		prevDp.call( this, options );
+		//prevDp.call( this, options );
+		//prevDp.apply( this, arguments );
+		prevDp.call( this, option1, option2 );
 		
 		//extend with some dom manipulation to update the markup for jQM
 		//call immediately
