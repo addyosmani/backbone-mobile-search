@@ -28,7 +28,9 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 				$('.search-meta p').html('Page: ' + response.photos.page  + ' / ' + response.photos.pages );				
 				ctx.result_collection.reset(entries);
 				$.mobile.changePage("#search", "slide", false, false);
-				mobileSearch.utils.switchTitle('Results for: ' + query + ' ( Page ' + page + ' of ' + response.photos.total + ')');
+				
+				//results view title
+				mobileSearch.utils.switchTitle(query + ' ( Page ' + page + ' of ' + response.photos.total + ')');
 				
 		  }else{
 		  		
