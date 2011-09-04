@@ -13,6 +13,8 @@ $LAB
 	$.mobile.hashListeningEnabled = false;
 	$.mobile.page.prototype.options.degradeInputs.date = true;
 	$('#date-min,#date-max').datepicker();
+	
+	
 
 })
 .script("app/libs/underscore-min.js")

@@ -9,6 +9,7 @@
 		<link rel="shortcut" href="img/flickly.png">
 		<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
 		<link rel="stylesheet"  href="css/jquery.ui.datepicker.css" />
+		<link rel="stylesheet" href="css/productscape_z_jquerymobile(958).css"/>
 		<link rel="stylesheet"  href="css/style.css" />
 	</head>
 	
@@ -21,60 +22,59 @@
 *********************************************************/
 -->		
 
-<div id="index" data-role="page" data-theme="b">
-	
-			<div  data-role="header"> 
-				<img class="logo" src="img/ribbon.png" alt="Flickly" /> 
+<div id="index" data-role="page" data-theme="z">
+
+	<div  data-role="header"> 
+		<h1>Flickly</h1> 
+	</div>
+
+
+	<div data-role="content"  data-theme="b" id="content-main">
+
+		<span class="intro"><strong>Welcome.</strong> Enter a term below and click enter or touch search to begin.</span>
+
+		<div id="appview">
+
+			<a data-ajax="false" href="#search/red/sinterestingness-asc/p1">Sample search</a>
+			<div id="homeheader">	
 			</div>
-	
-				
-			<div data-role="content"  data-theme="c" id="content-main">
-				
-	    		<div id="appview">
 
-					<a data-ajax="false" href="#search/red/sinterestingness-asc/p1">Sample search</a>
-	    		<div id="homeheader">	
+
+			<form method="post" action="#" id='queryForm' name="queryForm" onsubmit="return false">
+				<div data-role="fieldcontain" class="cent">
+					<label for="searchbox">Keywords:</label>
+					<input id="searchbox" type="search" name="searchbox" />
 				</div>
-	
-				
-							<form method="post" action="#" id='queryForm' name="queryForm" onsubmit="return false">
-								<div data-role="fieldcontain" class="cent">
-									<label for="searchbox">Keywords:</label>
-									<input id="searchbox" type="search" name="searchbox" />
-								</div>
-							</form>
-					
-							
-							<div data-role="fieldcontain" class="cent">
-							
-								<!--search type--->
-								<label for="sortBy" class="select ui-select">Search by:</label>
-								<select id="sortBy" data-native-menu="false">
-									<option value="interestingness-asc" selected>Interesting</option>
-									<option value="relevance">Relevance</option>
-									<option value="date-posted-asc">Date Posted</option>
-								</select>
-								<!--end search type-->
-								
+			</form>
 
-								
-								
-								
-								<div class="search-meta">
-								</div>
-							</div>
-			
-			
-		
+
+			<div data-role="fieldcontain" class="cent">
+
+				<!--search type-->
+				<label for="sortBy" class="select ui-select">Search by:</label>
+				<select id="sortBy" data-native-menu="false">
+				<option value="interestingness-asc" selected>Interesting</option>
+				<option value="relevance">Relevance</option>
+				<option value="date-posted-asc">Date Posted</option>
+				</select>
+				<!--end search type-->
+
+
+				<div class="search-meta">
+				</div>
+			</div>
+
+
+
 			<!--end search section-->
-						
-	    	</div>
-		</div><!-- /content -->
-		
 
-		<!--footer menu-->
-		<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
-			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+		</div>
+	</div><!-- /content -->
+
+
+	<!--footer menu-->
+	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
+		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
 			<ul>
 				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
 				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
@@ -82,10 +82,10 @@
 				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
 				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
 			</ul>
-			</div>
 		</div>
-		<!--end footer-->
-	
+	</div>
+	<!--end footer-->
+
 </div>
 
 
@@ -97,61 +97,61 @@
 -->
 
 
-	  <div id="options" data-role="page" data-theme="b"> 
-		<div data-role="header" data-theme="a"> 
-			<h1>Options</h1> 
-		</div> 
-		<div data-role="content"> 
-		
-			<!--safe search--->
-			<label for="safeSearch" class="select ui-select">Safe search:</label>
-			<select id="safeSearch" data-native-menu="false">
-				<option value="1">Safe</option>
-				<option value="2" selected>Moderate</option>
-				<option value="3">Restricted</option>
-			</select>
-			<!--end safe search-->
-								
-			<!--max results shown slider-->
-			<div data-role="fieldcontain">
-				<label for="slider">Results per page:</label>
-				<input type="range" name="slider" id="slider" value="10" min="5" max="25"  />
-			</div>
-			<!--end slider-->
-			
-			<!--is geo-->
-			<fieldset data-role="controlgroup"  data-type="horizontal" data-role="fieldcontain">
-				<legend>Geo-tagged? :</legend>
-				<input type="radio" name="geo-choice-z1" id="geo-choice-y1" value="1" />
-				<label for="geo-choice-y1">On</label>
-				<input type="radio" name="radio-choice-z1" id="geo-choice-z1" value="0"  checked="checked" />
-				<label for="geo-choice-z1">Off</label>
-			</fieldset>
-			<!--end geo-->
-		
-			<!--date pickers for max min taken-->
-			<div data-role="collapsible" data-collapsed="true">
+<div id="options" data-role="page" data-theme="b"> 
+	<div data-role="header" data-theme="a"> 
+		<h1>Options</h1> 
+	</div> 
+	<div data-role="content"> 
+
+		<!--safe search--->
+		<label for="safeSearch" class="select ui-select">Safe search:</label>
+		<select id="safeSearch" data-native-menu="false">
+		<option value="1">Safe</option>
+		<option value="2" selected>Moderate</option>
+		<option value="3">Restricted</option>
+		</select>
+		<!--end safe search-->
+
+		<!--max results shown slider-->
+		<div data-role="fieldcontain">
+			<label for="slider">Results per page:</label>
+			<input type="range" name="slider" id="slider" value="10" min="5" max="25"  />
+		</div>
+		<!--end slider-->
+
+		<!--is geo-->
+		<fieldset data-role="controlgroup"  data-type="horizontal" data-role="fieldcontain">
+			<legend>Geo-tagged? :</legend>
+			<input type="radio" name="geo-choice-z1" id="geo-choice-y1" value="1" />
+			<label for="geo-choice-y1">On</label>
+			<input type="radio" name="radio-choice-z1" id="geo-choice-z1" value="0"  checked="checked" />
+			<label for="geo-choice-z1">Off</label>
+		</fieldset>
+		<!--end geo-->
+
+		<!--date pickers for max min taken-->
+		<div data-role="collapsible" data-collapsed="true">
 			<h3>Select date ranges</h3>
 			<form action="#" method="get">
 				<div data-role="fieldcontain">
 					<label for="date">Min taken date:</label>
 					<input type="date" name="date" id="date-min" value=""  />
 				</div>		
-				
+
 				<div data-role="fieldcontain">
 					<label for="date">Max taken date:</label>
 					<input type="date" name="date" id="date-max" value=""  />
 				</div>
-				
+
 			</form>	
-			</div>
-			<!--end datepickers--> 
-		</div> 
-			
-			
-		<!--footer menu-->
-		<div data-role="footer" class="nav-glyphish-example">
-			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+		</div>
+		<!--end datepickers--> 
+	</div> 
+
+
+	<!--footer menu-->
+	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
+		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
 			<ul>
 				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
 				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
@@ -159,11 +159,10 @@
 				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
 				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
 			</ul>
-			</div>
 		</div>
-		<!--end footer-->
-	
-	  </div> 
+	</div>
+	<!--end footer-->
+</div> 
 
 
 <!--
@@ -182,10 +181,10 @@
 		<ul data-role="listview">
 			<li data-role="list-divider">Quick guidelines to get started</li>
 			<li>
-					<h3>Searching</h3>
-					<p><strong>Looking up photos on Flickr is simple.</strong></p>
-					<p>Enter a term and hit 'enter' or search</p>
-				
+				<h3>Searching</h3>
+				<p><strong>Looking up photos on Flickr is simple.</strong></p>
+				<p>Enter a term and hit 'enter' or search</p>
+
 			</li>
 			<li>					
 				<h3>Options</h3>
@@ -197,18 +196,18 @@
 	<!--footer menu-->
 	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
-		<ul>
-			<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-			<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-			<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
-			<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-			<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-		</ul>
+			<ul>
+				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
+				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+			</ul>
 		</div>
 	</div>
 	<!--end footer-->			
 </div>
-	  
+
 
 <!--
 /********************************************************
@@ -230,18 +229,18 @@
 	<!--footer menu-->
 	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
-		<ul>
-			<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-			<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-			<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
-			<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-			<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-		</ul>
+			<ul>
+				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
+				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+			</ul>
 		</div>
 	</div>
 	<!--end footer-->			
 </div>
-	
+
 <!--
 /********************************************************
 *  About
@@ -259,18 +258,18 @@
 	<!--footer menu-->
 	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
-		<ul>
-			<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-			<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-			<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
-			<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-			<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-		</ul>
+			<ul>
+				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
+				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+			</ul>
 		</div>
 	</div>
 	<!--end footer-->			
 </div>
-	  
+
 <!--
 /********************************************************
 *  PhotoView template
@@ -278,45 +277,45 @@
 -->
 
 
-	  <div id="photo" data-role="page" data-theme="d"> 
-		<div data-role="header" data-theme="a"> 
-			<h1>Viewing photo</h1> 
-		</div> 
-		<div data-role="content"> 
-			<div id="photoview"></div>
-			<ul id="photoviewholder"  data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
-			</ul> 
-		</div> 
-			
-	  </div> 
-	   
+<div id="photo" data-role="page" data-theme="d"> 
+	<div data-role="header" data-theme="a"> 
+		<h1>Viewing photo</h1> 
+	</div> 
+	<div data-role="content"> 
+		<div id="photoview"></div>
+		<ul id="photoviewholder"  data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
+		</ul> 
+	</div> 
+
+</div> 
+
 <!--
 /********************************************************
 *  ListView template
 *********************************************************/
 -->
 
-	  <div id="search" data-role="page" data-theme="d"> 
+<div id="search" data-role="page" data-theme="d"> 
 
-		<div data-role="header" data-theme="a" data-role="controlgroup"> 
-			<h1>Search Results</h1>
-			<a href="#" id="prevSet">Previous</a>
-			<a href="#" class="ui-btn-active" id="nextSet">Next</a>
-			
-		</div> 
-		<div data-role="content"> 
-			<ul id="listviewholder" data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
-			
-			</ul> 
-		</div> 
-		
-		<div data-role="footer" data-position="fixed">
-			<div data-role="navbar">
+	<div data-role="header" data-theme="a" data-role="controlgroup"> 
+		<h1>Search Results</h1>
+		<a href="#" id="prevSet">Previous</a>
+		<a href="#" class="ui-btn-active" id="nextSet">Next</a>
+
+	</div> 
+	<div data-role="content"> 
+		<ul id="listviewholder" data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
+
+		</ul> 
+	</div> 
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
 			<ul><a href="/" class="ui-btn-active" data-ajax="false"  class="ui-btn-right"  data-direction="reverse">New Search</a></ul>
-			</div>
 		</div>
-		
-	  </div> 
+	</div>
+
+</div> 
 
 <!--
 /********************************************************
@@ -324,7 +323,7 @@
 *********************************************************/
 -->
 
-		
+
 		
 		<!--template for photoview-->
 		<script type="text/template" id="photoviewul">
