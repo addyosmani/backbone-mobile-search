@@ -14,6 +14,7 @@ $LAB
 	$.mobile.page.prototype.options.degradeInputs.date = true;
 	$.mobile.page.prototype.options.addBackBtn = true;
 	$('#date-min,#date-max').datepicker();
+	//
 
 })
 .script("app/libs/underscore-min.js")
