@@ -5,16 +5,15 @@ $LAB
 .script("app/libs/jquery.1.6.1.min.js")
 .script("app/libs/jQuery.ui.datepicker.js")
 .script("app/libs/jquery.ui.datepicker.mobile.js")
-.script("http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js").wait(function(){
+.script("http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.js").wait(function(){
 	/*
 	This is meant as a global config option for end users to disable hashchange listening 
 	(as opposed to urlHistory.listeningEnabled, which is an internal toggle)
 	*/
 	$.mobile.hashListeningEnabled = false;
 	$.mobile.page.prototype.options.degradeInputs.date = true;
+	$.mobile.page.prototype.options.addBackBtn = true;
 	$('#date-min,#date-max').datepicker();
-	
-	
 
 })
 .script("app/libs/underscore-min.js")
@@ -28,3 +27,6 @@ $LAB
 .script("app/views/appView.js")
 .script("app/views/photoList.js")
 .script("app/app.js");
+
+//http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.js
+//http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js

@@ -7,7 +7,7 @@
 		<link rel="stylesheet" media="all" href=""/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<link rel="shortcut" href="img/flickly.png">
-		<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
+		<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css" />
 		<link rel="stylesheet"  href="css/jquery.ui.datepicker.css" />
 		<link rel="stylesheet" href="css/productscape_z_jquerymobile(958).css"/>
 		<link rel="stylesheet"  href="css/style.css" />
@@ -18,14 +18,15 @@
 
 <!--
 /********************************************************
-*  Index 
+*  Index/Home 
 *********************************************************/
 -->		
 
-<div id="index" data-role="page" data-theme="z">
+<div id="index" data-role="page" data-theme="b">
 
 	<div  data-role="header"> 
-		<h1>Flickly</h1> 
+		<h1 class="app-title">Flickly</h1> 
+		<a href="#options" data-icon="gear" class="ui-btn-right">Options</a>
 	</div>
 
 	<div class="app-message"><p>
@@ -39,8 +40,6 @@
 
 		<div id="appview">
 
-
-			
 			<div id="homeheader">	
 			</div>
 
@@ -82,7 +81,7 @@
 
 	<!--footer menu-->
 	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+		<div data-role="navbar" class="nav-glyphish-example" data-grid="d" data-theme="b">
 			<ul>
 				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
 				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
@@ -111,7 +110,7 @@
 	</div> 
 	<div data-role="content"> 
 
-		<!--safe search--->
+		<!--safe search-->
 		<label for="safeSearch" class="select ui-select">Safe search:</label>
 		<select id="safeSearch" data-native-menu="false">
 		<option value="1">Safe</option>

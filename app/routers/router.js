@@ -15,7 +15,7 @@ Workspace = Backbone.Router.extend({
 	  	mobileSearch.utils.dfdQuery('photo', mobileSearch.views.appview, id);
 	  },
 	  default:function(){
-		$.mobile.changePage("#index", "slide", false, false);
+		mobileSearch.utils.changePage("#index", "slide", false, false);
 	}
 });
 

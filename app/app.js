@@ -8,6 +8,5 @@
 mobileSearch.views.appview = new AppView;	
 mobileSearch.routers.workspace = new Workspace();
 mobileSearch.utils.toggleNavigation(false); 
-
 Backbone.history.start();
-$( "#tabs" ).tabs();
+

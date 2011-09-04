@@ -16,7 +16,7 @@ ResultList = Backbone.View.extend({
     
         setTimeout(function(){
         	$search = $('#search');
-        	$search.find("ul").listview();
+        	//$search.find("ul").listview();
         	$search.find("ul").listview("refresh");
         }, 0);
         

@@ -27,7 +27,8 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 				mobileSearch.routers.workspace.s = sort;	
 				$('.search-meta p').html('Page: ' + response.photos.page  + ' / ' + response.photos.pages );				
 				ctx.result_collection.reset(entries);
-				$.mobile.changePage("#search", "slide", false, false);
+				
+				mobileSearch.utils.changePage("#search", "slide", false, false);
 				
 				//results view title
 				mobileSearch.utils.switchTitle(query + ' ( Page ' + page + ' of ' + response.photos.total + ')');
@@ -36,14 +37,20 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 		  		
 		  		entries = response.photo;
 		  		ctx.photo_collection.reset(entries);
-		  		$.mobile.changePage("#photo", "slide", false, false);
+		  		mobileSearch.utils.changePage("#photo", "slide", false, false);
 
 		  }
 
 		  }, ctx ) ); 
 }
 
-
+mobileSearch.utils.changePage = function(pageID, effect, p1, p2){
+	//$.mobile.changePage(pageID, effect, p1, p2);
+	setTimeout(function(){
+	$.mobile.changePage(pageID, { transition: effect, reverse:p1, changeHash: p2});
+}, 10);
+	//$.mobile.changePage('#index', { transition: 'pop'});
+}
 
 /**
 	Search service for querying search results or individual photos
@@ -66,12 +73,11 @@ mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 		quantity = $('#slider').val() || mobileSearch.defaults.resultsPerPage,
 		safeSearch = $('#safeSearch').val() || mobileSearch.defaults.safeSearch;
 		
-		if(minDate == maxDate){
-			minDate = 0;
-		}
-		
-			maxDate = $.datepicker.formatDate('@', new Date( maxDate)),
-			minDate = $.datepicker.formatDate('@', new Date( minDate));
+		/*all of this will be going once date support is built into URL routing*/
+		maxDate = mobileSearch.utils.dateFormatter(maxDate);
+		minDate = mobileSearch.utils.dateFormatter(minDate);
+		minDate="";
+		maxDate = "";
 		
 		($('#geo-choice-z1').prop('checked') || mobileSearch.defaults.geoTagged)?  geoTagged = 0 : geoTagged =  1;
 		(page == undefined) ? page = 0 : page = page;
@@ -88,7 +94,12 @@ mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 	return $.ajax(serviceUrl, { dataType: "json" });  
 }
 
-
+mobileSearch.utils.dateFormatter = function ( date ){
+	console.log(date);
+	date = $.datepicker.formatDate('@', new Date( date ));
+	(date == undefined)? date = '' : date = date;
+	return date;
+}
 
 /**
 	history switching - needs cleanup
@@ -103,7 +114,7 @@ mobileSearch.utils.historySwitch = function( state ){
 	pageQuery = parseInt(pageQuery);
 	(state == 'next')? pageQuery +=1 : pageQuery -=1;
 
-	(pageQuery <1)? $.mobile.changePage("/", "slide") : location.hash = mobileSearch.utils.queryConstructor(hashQuery, sortQuery, pageQuery);
+	(pageQuery <1)? mobileSearch.utils.changePage("/", "slide") : location.hash = mobileSearch.utils.queryConstructor(hashQuery, sortQuery, pageQuery);
 	
 }
 
