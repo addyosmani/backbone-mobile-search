@@ -111,3 +111,18 @@ body {
 .ui-page .ui-header, .ui-page .ui-footer{
 	text-align:center;
 }
+
+.app-message{
+	background:#fff;
+	padding:7px;
+	width:100%;
+	text-align:center;
+}
+.app-message p{
+	width:90%;
+	margin:0 auto;
+	padding:4px;
+	color: #333333;
+	text-shadow: 0 1px 0 #FFFFFF;
+}
+
