@@ -45,8 +45,10 @@ mobileSearch.utils.dfdQuery = function( searchType, ctx, query , sort , page ){
 }
 
 mobileSearch.utils.changePage = function(pageID, effect, p1, p2){
+	console.log(arguments);
 	//$.mobile.changePage(pageID, effect, p1, p2);
 	setTimeout(function(){
+		//changepage deprecated
 	$.mobile.changePage(pageID, { transition: effect, reverse:p1, changeHash: p2});
 }, 10);
 	//$.mobile.changePage('#index', { transition: 'pop'});
@@ -64,20 +66,20 @@ mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 		geoTagged = null,
 		quantity  = 0,
 		safeSearch = '',
-		minDate = $('#date-min').val(),
-		maxDate = $('#date-max').val();
+		minDate = "",
+		maxDate = "";
 		
 
 	if(searchType == 'search' || searchType == undefined){
 		
-		quantity = $('#slider').val() || mobileSearch.defaults.resultsPerPage,
-		safeSearch = $('#safeSearch').val() || mobileSearch.defaults.safeSearch;
+		quantity = $('#slider').val() || mobileSearch.defaults.resultsPerPage;
+		//safeSearch = $('#safeSearch').val() || "";
 		
 		/*all of this will be going once date support is built into URL routing*/
-		maxDate = mobileSearch.utils.dateFormatter(maxDate);
-		minDate = mobileSearch.utils.dateFormatter(minDate);
-		minDate="";
-		maxDate = "";
+		maxDate = mobileSearch.utils.dateFormatter($('#date-max').val()) || "";
+		minDate = mobileSearch.utils.dateFormatter($('#date-min').val()) || "";
+		
+		minDate="",maxDate = "";
 		
 		($('#geo-choice-z1').prop('checked') || mobileSearch.defaults.geoTagged)?  geoTagged = 0 : geoTagged =  1;
 		(page == undefined) ? page = 0 : page = page;
@@ -95,7 +97,6 @@ mobileSearch.utils.fetchResults = function( searchType, query, sort, page ){
 }
 
 mobileSearch.utils.dateFormatter = function ( date ){
-	console.log(date);
 	date = $.datepicker.formatDate('@', new Date( date ));
 	(date == undefined)? date = '' : date = date;
 	return date;

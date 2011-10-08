@@ -1,13 +1,12 @@
 <!doctype html>
-<html manifest='manifest.appcache'>
+<html>
 
 	<head>
 		<meta charset="utf-8"/>
 		<title>Flickly</title>
 		<link rel="stylesheet" media="all" href=""/>
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<link rel="shortcut" href="img/flickly.png">
-		<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css" />
+		<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
 		<link rel="stylesheet"  href="css/jquery.ui.datepicker.css" />
 		<link rel="stylesheet" href="css/productscape_z_jquerymobile(958).css"/>
 		<link rel="stylesheet"  href="css/style.css" />
@@ -22,20 +21,37 @@
 *********************************************************/
 -->		
 
-<div id="index" data-role="page" data-theme="b">
+<div id="index" data-role="page" data-theme="d">
 
-	<div  data-role="header"> 
+	<div class="app-header" data-role="header"> 
 		<h1 class="app-title">Flickly</h1> 
 		<a href="#options" data-icon="gear" class="ui-btn-right">Options</a>
 	</div>
 
-	<div class="app-message"><p>
-		<strong>Welcome!</strong> 
-		Enter a term below and click enter or touch 'search' to find photos.</p> 
+
+	<!--menu-->
+	<div class="nav-glyphish-example app-nav"  data-position="fixed">
+		<div data-role="navbar" class="nav-glyphish-example" data-grid="d" data-theme="b">
+			<ul>
+				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
+				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+			</ul>
+		</div>
+	</div>
+	<!--end menu-->
+
+
+
+
+	<div class="app-logo-cont">
+		<img class="app-logo" src="img/flicklylogo.png"/>
 	</div>
 
 
-	<div data-role="content"  data-theme="b" id="content-main">
+	<div data-role="content"  data-theme="d" id="content-main">
 
 
 		<div id="appview">
@@ -45,19 +61,16 @@
 
 
 			<form method="post" action="#" id='queryForm' name="queryForm" onsubmit="return false">
-				<div data-role="fieldcontain" class="cent">
-					<label for="searchbox">Keywords:</label>
-					<input id="searchbox" type="search" name="searchbox" />
-				</div>
+					<input id="searchbox" type="search" name="searchbox" placeholder="Keywords"/>
 			</form>
 
 
-			<div data-role="fieldcontain" class="cent">
+			 
 
 				<!--search type-->
-				<label for="sortBy" class="select ui-select">Search by:</label>
-				<select id="sortBy" data-native-menu="false">
-				<option value="interestingness-asc" selected>Interesting</option>
+				<select id="sortBy" data-native-menu="false" data-theme="b">
+				<option value="" selected>Search by:</option>
+				<option value="interestingness-asc">Interesting</option>
 				<option value="relevance">Relevance</option>
 				<option value="date-posted-asc">Date Posted</option>
 				</select>
@@ -66,8 +79,6 @@
 
 				<div class="search-meta">
 				</div>
-			</div>
-
 
 
 			<!--end search section-->
@@ -79,21 +90,21 @@
 		<strong>Tip: </strong>For more search options, see the 'Options' tab below for advanced filters.</p> 
 	</div>
 
-	<!--footer menu-->
-	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="d" data-theme="b">
-			<ul>
-				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
-				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-			</ul>
-		</div>
+	<div class="app-thumbnails">
+		<ul>
+			<li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
+			<li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
+			<li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
+			<li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
+		</ul>
 	</div>
-	<!--end footer-->
+
+
+
 
 </div>
+
+
 
 
 
@@ -156,19 +167,6 @@
 	</div> 
 
 
-	<!--footer menu-->
-	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
-			<ul>
-				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
-				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-			</ul>
-		</div>
-	</div>
-	<!--end footer-->
 </div> 
 
 
@@ -199,20 +197,7 @@
 				<p>Search by type, geo-location and more.</p>
 			</li>
 		</ul>
-	</div> 
-	<!--footer menu-->
-	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
-			<ul>
-				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
-				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-			</ul>
-		</div>
-	</div>
-	<!--end footer-->			
+	</div> 			
 </div>
 
 
@@ -232,20 +217,7 @@
 			<li><a href="http://github.com/addyosmani"><img src="img/icons/github.png" alt="Github" class="ui-li-icon">Github</a></li>
 			<li><a href="#"><img src="img/icons/demo.png" alt="Demo" class="ui-li-icon">Demo</a></li>
 		</ul>
-	</div> 
-	<!--footer menu-->
-	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
-			<ul>
-				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
-				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-			</ul>
-		</div>
-	</div>
-	<!--end footer-->			
+	</div> 		
 </div>
 
 <!--
@@ -261,20 +233,7 @@
 	</div> 
 	<div data-role="content"> 
 		<p>A wireframe for the about page.</p>
-	</div> 
-	<!--footer menu-->
-	<div data-role="footer" class="nav-glyphish-example"  data-position="fixed">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
-			<ul>
-				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
-				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-			</ul>
-		</div>
-	</div>
-	<!--end footer-->			
+	</div> 			
 </div>
 
 <!--
@@ -308,8 +267,9 @@
 		<h1>Search Results</h1>
 		<a href="#" id="prevSet">Previous</a>
 		<a href="#" class="ui-btn-active" id="nextSet">Next</a>
-
 	</div> 
+	
+	
 	<div data-role="content"> 
 		<ul id="listviewholder" data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
 
@@ -370,7 +330,7 @@
 *********************************************************/
 -->
 
-		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/labjs/1.2.0/LAB.min.js"></script>
+		<script type="text/javascript" src="app/libs/LAB.min.js"></script>
 		<script type="text/javascript" src="app/scripts.js"></script>
 		
 		

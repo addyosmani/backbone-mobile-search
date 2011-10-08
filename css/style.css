@@ -5,6 +5,7 @@ body {
 
 #appview {
 	margin: 0 auto;
+	text-align:center;
 }
 
 #resultlist ul {
@@ -45,7 +46,7 @@ body {
 }
 
 .loader {
-	background: url(/img/loader.gif) no-repeat center center;
+	background: url(img/loader.gif) no-repeat center center;
 	width: 110px;
 	height: 110px;
 }
@@ -102,11 +103,11 @@ body {
 
 .nav-glyphish-example .ui-btn .ui-btn-inner { padding-top: 40px !important; }
 .nav-glyphish-example .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: none !important; border-radius: none !important; }
-#search-icon .ui-icon { background:  url(/img/icons/06-magnify.png) 50% 50% no-repeat; background-size: 24px 22px; }
-#options-icon .ui-icon { background:  url(/img/icons/36-toolbox.png) 50% 50% no-repeat; background-size: 24px 16px;  }
-#instructions-icon .ui-icon { background:  url(/img/icons/179-notepad.png) 50% 50% no-repeat;  background-size: 12px 26px; }
-#source-icon .ui-icon { background:  url(/img/icons/157-wrench.png) 50% 50% no-repeat;  background-size: 22px 27px; }
-#about-icon .ui-icon { background:  url(/img/icons/111-user.png) 50% 50% no-repeat;  background-size: 20px 24px; }
+#search-icon .ui-icon { background:  url(../img/icons/06-magnify.png) 50% 50% no-repeat; background-size: 24px 22px; }
+#options-icon .ui-icon { background:  url(../img/icons/36-toolbox.png) 50% 50% no-repeat; background-size: 24px 16px;  }
+#instructions-icon .ui-icon { background:  url(../img/icons/179-notepad.png) 50% 50% no-repeat;  background-size: 12px 26px; }
+#source-icon .ui-icon { background:  url(../img/icons/157-wrench.png) 50% 50% no-repeat;  background-size: 22px 27px; }
+#about-icon .ui-icon { background:  url(../img/icons/111-user.png) 50% 50% no-repeat;  background-size: 20px 24px; }
 
 .ui-page .ui-header, .ui-page .ui-footer{
 	text-align:center;
@@ -127,4 +128,76 @@ body {
 }
 
 
+
+
+.app-logo-cont {
+	margin:0 auto;
+	width:100%;
+	text-align:center;
+}
+
+.app-logo{
+	width:250px;
+}
+
+.app-thumbnails{
+	margin:0 auto;
+	width:300px;
+	text-align:center;
+}
+
+.app-thumbnails ul{
+	list-style-type:none;
+	width:100%;
+	
+}
+
+.app-thumbnails li {
+	float:left;
+	margin:5px;
+}
+
+.app-thumbnails li img{
+	width:50px;
+}
+
+
+
+/*additional media queries*/
+
+@media only screen 
+and (max-width : 500px){
+	.app-nav{ top:300px;}
+	.app-logo {display:none;}
+	
+}
+
+/*ipad*/
+@media only screen 
+and (max-width : 768px){
+	.app-nav{ top:300px;}
+	.app-logo {width:200px;}
+}
+
+
+/*larger screen*/
+@media only screen 
+and (min-width : 900px) {
+	.app-nav{ top:0px;}
+	.nav-glyphish-example .ui-btn .ui-btn-inner {padding-top:10px !important; }
+	.ui-navbar li .ui-btn {border:0px; color:#0063DC;}
+	.app-nav .ui-btn-inner .ui-icon { display:none;}
+	#content-main {width:80%; margin:0 auto;}
+	.app-message { font-size:13px;}
+	.app-header{display:none;}
+	.app-nav { width: 60%;margin: 0 auto;}
+
+	.ui-listview-inset .ui-li{
+		width: 300px;
+		float: left;
+		margin: 20px;
+		border-bottom:1px;
+	}
+
+}
 
