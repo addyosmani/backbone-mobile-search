@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Flickly</title>
-    <link rel="stylesheet" media="all" href=""/>
+    
     <link rel="shortcut" href="img/flickly.png">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css"/>
     <link rel="stylesheet" href="css/jquery.ui.datepicker.css"/>
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/style.css"/>
 
     <script type="text/javascript" src="app/libs/require-1.0.2.min.js"></script>
+    <!--<script type="text/javascript" src="release/app.js"></script>-->
     <script type="text/javascript">
         require.config( {
             paths: {
@@ -39,6 +40,7 @@
                                  (as opposed to urlHistory.listeningEnabled, which is an internal toggle)
                                  */
                                 $.mobile.hashListeningEnabled = false;
+                                $.mobile.pushStateEnabled = false;
                                 $.mobile.page.prototype.options.degradeInputs.date = true;
                                 //$.mobile.page.prototype.options.addBackBtn = true;
                                 $( '#date-min, #date-max' ).datepicker();
@@ -313,7 +315,7 @@
 
     <div data-role="footer" data-position="fixed">
         <div data-role="navbar">
-            <ul><a href="." class="ui-btn-active" data-ajax="false" class="ui-btn-right" data-direction="reverse">New
+            <ul><a href="/" class="ui-btn-active" data-ajax="false" class="ui-btn-right" data-direction="reverse">New
                 Search</a></ul>
         </div>
     </div>
