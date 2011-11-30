@@ -1,12 +1,38 @@
 /*!
-* Flickly - Backbone jQuery Mobile demo
-* http://addyosmani.com
-* Copyright (c) 2011 Addy Osmani
-* Dual licensed under the MIT and GPL licenses.
-*/
+ * Flickly - Backbone jQuery Mobile demo
+ * http://addyosmani.com
+ * Copyright (c) 2011 Addy Osmani
+ * Dual licensed under the MIT and GPL licenses.
+ *
+ Initialize namespacing
+ */
+define( ['backbone', 'views/appview', 'routers/workspace', 'utils', 'ui'],
+        function( Backbone, AppView, Workspace, utils, ui ) {
+            // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
+            "use strict";
+            window.mobileSearch = window.mobileSearch || {};
 
-mobileSearch.views.appview = new AppView;	
-mobileSearch.routers.workspace = new Workspace();
-mobileSearch.utils.toggleNavigation(false); 
-Backbone.history.start();
 
+
+            window.mobileSearch = {
+                views: {
+                    appview: new AppView
+                },
+                routers:{
+                    workspace:new Workspace()
+                },
+                utils: utils,
+                ui: ui,
+                defaults:{
+                    resultsPerPage: 16,
+                    safeSearch: 2,
+                    maxDate:'',
+                    minDate:'01/01/1970'
+                }
+            };
+
+
+            window.mobileSearch.utils.toggleNavigation( false );
+            Backbone.history.start();
+
+        } );

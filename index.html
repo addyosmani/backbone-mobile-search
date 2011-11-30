@@ -1,111 +1,143 @@
 <!doctype html>
 <html>
 
-	<head>
-		<meta charset="utf-8"/>
-		<title>Flickly</title>
-		<link rel="stylesheet" media="all" href=""/>
-		<link rel="shortcut" href="img/flickly.png">
-		<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
-		<link rel="stylesheet"  href="css/jquery.ui.datepicker.css" />
-		<link rel="stylesheet" href="css/productscape_z_jquerymobile(958).css"/>
-		<link rel="stylesheet"  href="css/style.css" />
-	</head>
-	
-	<body lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Flickly</title>
+    
+    <link rel="shortcut" href="img/flickly.png">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css"/>
+    <link rel="stylesheet" href="css/jquery.ui.datepicker.css"/>
+    <link rel="stylesheet" href="css/productscape_z_jquerymobile(958).css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <script type="text/javascript" src="app/libs/require-1.0.2.min.js"></script>
+    <!--<script type="text/javascript" src="release/app.js"></script>-->
+    <script type="text/javascript">
+        require.config( {
+            paths: {
+                'backbone':         'libs/AMDbackbone-0.5.3',
+                'underscore':       'libs/underscore-1.2.2',
+                'jquery':           'libs/jQuery-1.7.1',
+                'json2':            'libs/json2',
+                'datepicker':       'libs/jQuery.ui.datepicker',
+                'datepickermobile': 'libs/jquery.ui.datepicker.mobile',
+                'jquerymobile':     'libs/jquery.mobile-1.0'
+            },
+            baseUrl: 'app'
+        } );
+
+        require(
+                ['require', 'backbone', 'jquery', 'underscore' ],
+                function( require, Backbone, $, _ ) {
+                    // framework loaded
+                    require(
+                            ['require', 'jquerymobile', 'json2', 'datepicker', 'datepickermobile',
+                                'app'],
+                            function( require ) {
+                                /*
+                                 This is meant as a global config option for end users to disable hashchange listening
+                                 (as opposed to urlHistory.listeningEnabled, which is an internal toggle)
+                                 */
+                                $.mobile.hashListeningEnabled = false;
+                                $.mobile.pushStateEnabled = false;
+                                $.mobile.page.prototype.options.degradeInputs.date = true;
+                                //$.mobile.page.prototype.options.addBackBtn = true;
+                                $( '#date-min, #date-max' ).datepicker();
+                                //
+
+                                // require('app').init(options);
+                            } );
+                } );
+    </script>
+</head>
+
+<body lang="en">
 
 
 <!--
 /********************************************************
 *  Index/Home 
 *********************************************************/
--->		
+-->
 
 <div id="index" data-role="page" data-theme="d">
 
-	<div class="app-header" data-role="header"> 
-		<h1 class="app-title">Flickly</h1> 
-		<a href="#options" data-icon="gear" class="ui-btn-right">Options</a>
-	</div>
+    <div class="app-header" data-role="header">
+        <h1 class="app-title">Flickly</h1>
+        <a href="#options" data-icon="gear" class="ui-btn-right">Options</a>
+    </div>
 
 
-	<!--menu-->
-	<div class="nav-glyphish-example app-nav"  data-position="fixed">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="d" data-theme="b">
-			<ul>
-				<li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
-				<li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
-				<li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
-				<li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
-				<li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
-			</ul>
-		</div>
-	</div>
-	<!--end menu-->
+    <!--menu-->
+    <div class="nav-glyphish-example app-nav" data-position="fixed">
+        <div data-role="navbar" class="nav-glyphish-example" data-grid="d" data-theme="b">
+            <ul>
+                <li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
+                <li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
+                <li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
+                <li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+                <li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--end menu-->
 
 
+    <div class="app-logo-cont">
+        <img class="app-logo" src="img/flicklylogo.png"/>
+    </div>
 
 
-	<div class="app-logo-cont">
-		<img class="app-logo" src="img/flicklylogo.png"/>
-	</div>
+    <div data-role="content" data-theme="d" id="content-main">
 
 
-	<div data-role="content"  data-theme="d" id="content-main">
+        <div id="appview">
+
+            <div id="homeheader">
+            </div>
 
 
-		<div id="appview">
-
-			<div id="homeheader">	
-			</div>
-
-
-			<form method="post" action="#" id='queryForm' name="queryForm" onsubmit="return false">
-					<input id="searchbox" type="search" name="searchbox" placeholder="Keywords"/>
-			</form>
+            <form method="post" action="#" id='queryForm' name="queryForm" onsubmit="return false">
+                <input id="searchbox" type="search" name="searchbox" placeholder="Keywords"/>
+            </form>
 
 
-			 
-
-				<!--search type-->
-				<select id="sortBy" data-native-menu="false" data-theme="b">
-				<option value="" selected>Search by:</option>
-				<option value="interestingness-asc">Interesting</option>
-				<option value="relevance">Relevance</option>
-				<option value="date-posted-asc">Date Posted</option>
-				</select>
-				<!--end search type-->
+            <!--search type-->
+            <select id="sortBy" data-native-menu="false" data-theme="b">
+                <option value="" selected>Search by:</option>
+                <option value="interestingness-asc">Interesting</option>
+                <option value="relevance">Relevance</option>
+                <option value="date-posted-asc">Date Posted</option>
+            </select>
+            <!--end search type-->
 
 
-				<div class="search-meta">
-				</div>
+            <div class="search-meta">
+            </div>
 
 
-			<!--end search section-->
+            <!--end search section-->
 
-		</div>
-	</div><!-- /content -->
+        </div>
+    </div>
+    <!-- /content -->
 
-	<div class="app-message"><p>
-		<strong>Tip: </strong>For more search options, see the 'Options' tab below for advanced filters.</p> 
-	</div>
+    <div class="app-message"><p>
+        <strong>Tip: </strong>For more search options, see the 'Options' tab below for advanced filters.</p>
+    </div>
 
-	<div class="app-thumbnails">
-		<ul>
-			<li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
-			<li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
-			<li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
-			<li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
-		</ul>
-	</div>
-
-
+    <div class="app-thumbnails">
+        <ul>
+            <li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
+            <li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
+            <li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
+            <li><img src="http://farm4.static.flickr.com/3157/3111006453_bcb766242c_s.jpg"/></li>
+        </ul>
+    </div>
 
 
 </div>
-
-
-
 
 
 <!--
@@ -115,59 +147,60 @@
 -->
 
 
-<div id="options" data-role="page" data-theme="b"> 
-	<div data-role="header" data-theme="a"> 
-		<h1>Options</h1> 
-	</div> 
-	<div data-role="content"> 
+<div id="options" data-role="page" data-theme="b">
+    <div data-role="header" data-theme="a">
+        <h1>Options</h1>
+    </div>
+    <div data-role="content">
 
-		<!--safe search-->
-		<label for="safeSearch" class="select ui-select">Safe search:</label>
-		<select id="safeSearch" data-native-menu="false">
-		<option value="1">Safe</option>
-		<option value="2" selected>Moderate</option>
-		<option value="3">Restricted</option>
-		</select>
-		<!--end safe search-->
+        <!--safe search-->
+        <label for="safeSearch" class="select ui-select">Safe search:</label>
+        <select id="safeSearch" data-native-menu="false">
+            <option value="1">Safe</option>
+            <option value="2" selected>Moderate</option>
+            <option value="3">Restricted</option>
+        </select>
+        <!--end safe search-->
 
-		<!--max results shown slider-->
-		<div data-role="fieldcontain">
-			<label for="slider">Results per page:</label>
-			<input type="range" name="slider" id="slider" value="10" min="5" max="25"  />
-		</div>
-		<!--end slider-->
+        <!--max results shown slider-->
+        <div data-role="fieldcontain">
+            <label for="slider">Results per page:</label>
+            <input type="range" name="slider" id="slider" value="10" min="5" max="25"/>
+        </div>
+        <!--end slider-->
 
-		<!--is geo-->
-		<fieldset data-role="controlgroup"  data-type="horizontal" data-role="fieldcontain">
-			<legend>Geo-tagged? :</legend>
-			<input type="radio" name="geo-choice-z1" id="geo-choice-y1" value="1" />
-			<label for="geo-choice-y1">On</label>
-			<input type="radio" name="radio-choice-z1" id="geo-choice-z1" value="0"  checked="checked" />
-			<label for="geo-choice-z1">Off</label>
-		</fieldset>
-		<!--end geo-->
+        <!--is geo-->
+        <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+            <legend>Geo-tagged? :</legend>
+            <input type="radio" name="geo-choice-z1" id="geo-choice-y1" value="1"/>
+            <label for="geo-choice-y1">On</label>
+            <input type="radio" name="radio-choice-z1" id="geo-choice-z1" value="0" checked="checked"/>
+            <label for="geo-choice-z1">Off</label>
+        </fieldset>
+        <!--end geo-->
 
-		<!--date pickers for max min taken-->
-		<div data-role="collapsible" data-collapsed="true">
-			<h3>Select date ranges</h3>
-			<form action="#" method="get">
-				<div data-role="fieldcontain">
-					<label for="date">Min taken date:</label>
-					<input type="date" name="date" id="date-min" value=""  />
-				</div>		
+        <!--date pickers for max min taken-->
+        <div data-role="collapsible" data-collapsed="true">
+            <h3>Select date ranges</h3>
 
-				<div data-role="fieldcontain">
-					<label for="date">Max taken date:</label>
-					<input type="date" name="date" id="date-max" value=""  />
-				</div>
+            <form action="#" method="get">
+                <div data-role="fieldcontain">
+                    <label for="date">Min taken date:</label>
+                    <input type="date" name="date" id="date-min" value=""/>
+                </div>
 
-			</form>	
-		</div>
-		<!--end datepickers--> 
-	</div> 
+                <div data-role="fieldcontain">
+                    <label for="date">Max taken date:</label>
+                    <input type="date" name="date" id="date-max" value=""/>
+                </div>
+
+            </form>
+        </div>
+        <!--end datepickers-->
+    </div>
 
 
-</div> 
+</div>
 
 
 <!--
@@ -177,27 +210,30 @@
 -->
 
 
+<div id="instructions" data-role="page" data-theme="b">
+    <div data-role="header" data-theme="a">
+        <h1>Help</h1>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview">
+            <li data-role="list-divider">Quick guidelines to get started</li>
+            <li>
+                <h3>Searching</h3>
 
-<div id="instructions" data-role="page" data-theme="b"> 
-	<div data-role="header" data-theme="a"> 
-		<h1>Help</h1> 
-	</div> 
-	<div data-role="content"> 
-		<ul data-role="listview">
-			<li data-role="list-divider">Quick guidelines to get started</li>
-			<li>
-				<h3>Searching</h3>
-				<p><strong>Looking up photos on Flickr is simple.</strong></p>
-				<p>Enter a term and hit 'enter' or search</p>
+                <p><strong>Looking up photos on Flickr is simple.</strong></p>
 
-			</li>
-			<li>					
-				<h3>Options</h3>
-				<p><strong>Advanced search options are available.</strong></p>
-				<p>Search by type, geo-location and more.</p>
-			</li>
-		</ul>
-	</div> 			
+                <p>Enter a term and hit 'enter' or search</p>
+
+            </li>
+            <li>
+                <h3>Options</h3>
+
+                <p><strong>Advanced search options are available.</strong></p>
+
+                <p>Search by type, geo-location and more.</p>
+            </li>
+        </ul>
+    </div>
 </div>
 
 
@@ -208,16 +244,17 @@
 -->
 
 
-<div id="source" data-role="page" data-theme="b"> 
-	<div data-role="header" data-theme="a"> 
-		<h1>Source</h1> 
-	</div> 
-	<div data-role="content"> 
-		<ul data-role="listview" data-inset="true">
-			<li><a href="http://github.com/addyosmani"><img src="img/icons/github.png" alt="Github" class="ui-li-icon">Github</a></li>
-			<li><a href="#"><img src="img/icons/demo.png" alt="Demo" class="ui-li-icon">Demo</a></li>
-		</ul>
-	</div> 		
+<div id="source" data-role="page" data-theme="b">
+    <div data-role="header" data-theme="a">
+        <h1>Source</h1>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+            <li><a href="http://github.com/addyosmani"><img src="img/icons/github.png" alt="Github" class="ui-li-icon">Github</a>
+            </li>
+            <li><a href="#"><img src="img/icons/demo.png" alt="Demo" class="ui-li-icon">Demo</a></li>
+        </ul>
+    </div>
 </div>
 
 <!--
@@ -227,13 +264,13 @@
 -->
 
 
-<div id="about" data-role="page" data-theme="b"> 
-	<div data-role="header" data-theme="a"> 
-		<h1>About</h1> 
-	</div> 
-	<div data-role="content"> 
-		<p>A wireframe for the about page.</p>
-	</div> 			
+<div id="about" data-role="page" data-theme="b">
+    <div data-role="header" data-theme="a">
+        <h1>About</h1>
+    </div>
+    <div data-role="content">
+        <p>A wireframe for the about page.</p>
+    </div>
 </div>
 
 <!--
@@ -243,17 +280,17 @@
 -->
 
 
-<div id="photo" data-role="page" data-theme="d"> 
-	<div data-role="header" data-theme="a"> 
-		<h1>Viewing photo</h1> 
-	</div> 
-	<div data-role="content"> 
-		<div id="photoview"></div>
-		<ul id="photoviewholder"  data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
-		</ul> 
-	</div> 
+<div id="photo" data-role="page" data-theme="d">
+    <div data-role="header" data-theme="a">
+        <h1>Viewing photo</h1>
+    </div>
+    <div data-role="content">
+        <div id="photoview"></div>
+        <ul id="photoviewholder" data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
+        </ul>
+    </div>
 
-</div> 
+</div>
 
 <!--
 /********************************************************
@@ -261,28 +298,29 @@
 *********************************************************/
 -->
 
-<div id="search" data-role="page" data-theme="d"> 
+<div id="search" data-role="page" data-theme="d">
 
-	<div data-role="header" data-theme="a" data-role="controlgroup"> 
-		<h1>Search Results</h1>
-		<a href="#" id="prevSet">Previous</a>
-		<a href="#" class="ui-btn-active" id="nextSet">Next</a>
-	</div> 
-	
-	
-	<div data-role="content"> 
-		<ul id="listviewholder" data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
+    <div data-role="header" data-theme="a" data-role="controlgroup">
+        <h1>Search Results</h1>
+        <a href="#" id="prevSet">Previous</a>
+        <a href="#" class="ui-btn-active" id="nextSet">Next</a>
+    </div>
 
-		</ul> 
-	</div> 
 
-	<div data-role="footer" data-position="fixed">
-		<div data-role="navbar">
-			<ul><a href="/" class="ui-btn-active" data-ajax="false"  class="ui-btn-right"  data-direction="reverse">New Search</a></ul>
-		</div>
-	</div>
+    <div data-role="content">
+        <ul id="listviewholder" data-role="listview" data-inset="true" data-theme="c" data-dividertheme="c">
 
-</div> 
+        </ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul><a href="/" class="ui-btn-active" data-ajax="false" class="ui-btn-right" data-direction="reverse">New
+                Search</a></ul>
+        </div>
+    </div>
+
+</div>
 
 <!--
 /********************************************************
@@ -291,53 +329,51 @@
 -->
 
 
-		
-		<!--template for photoview-->
-		<script type="text/template" id="photoviewul">
-		<% _.each( results, function( item, i ){ %>
+<!--template for photoview-->
+<script type="text/template" id="photoviewul">
+<% _.each( results, function( item, i ){ %>
 
-				<img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_m.jpg' %>"/>
-			
-			<ul data-role="listview" data-inset="true">
-				<li>Title: <%= item.get("title")._content %></li>
-				<li>Description: <%= item.get("description")._content %></li>
-				<li>Views: <%= item.get("views") %></li> 
-				<li>Location: <%= item.get("owner").location %></li>
-				<li>Taken by: <%= item.get("owner").realname %></li>
-				<li>Date taken: <%= item.get("dates").taken %></li>
-				<li><a href="<%= item.get("urls").url[0]._content %>">View Original On Flickr.com</a></li>
-			</ul>
-		
-			<% }); %>
-		</script>
-		
-		<!--template for list view -->
-		<script type="text/template" id="listviewul">
-		<% _.each( results, function( item, i ){ %>
-				<li>
-		<a class='ui-result' title='<%= item.get("title") %>' data-ajax="false" href="/#photo/<%= item.get("id") %>">
-				<img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_s.jpg' %>"/>
-				<h3><%= item.get("title") %></h3> 
-				<p></p> </a>
-			   </li>
-			<% }); %>
-		</script>
-		<!--template-->
-    
+        <img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_m.jpg' %>"/>
+
+    <ul data-role="listview" data-inset="true">
+        <li>Title: <%= item.get("title")._content %></li>
+        <li>Description: <%= item.get("description")._content %></li>
+        <li>Views: <%= item.get("views") %></li>
+        <li>Location: <%= item.get("owner").location %></li>
+        <li>Taken by: <%= item.get("owner").realname %></li>
+        <li>Date taken: <%= item.get("dates").taken %></li>
+        <li><a href="<%= item.get("urls").url[0]._content %>">View Original On Flickr.com</a></li>
+    </ul>
+
+    <% }); %>
+</script>
+
+
+<!--template for list view -->
+<script type="text/template" id="listviewul">
+<% _.each( results, function( item, i ){ %>
+        <li>
+<a class='ui-result' title='<%= item.get("title") %>' data-ajax="false" href="#photo/<%= item.get("id") %>">
+        <img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_s.jpg' %>"/>
+        <h3><%= item.get("title") %></h3>
+        <p></p> </a>
+       </li>
+    <% }); %>
+</script>
+<!--template-->
+
+
+
 <!--
 /********************************************************
 *  Script management
 *********************************************************/
 -->
 
-		<script type="text/javascript" src="app/libs/LAB.min.js"></script>
-		<script type="text/javascript" src="app/scripts.js"></script>
-		
-		
-		
-		<div class="ui-tint">
-		</div>
-		
-				
-	</body>
+
+<div class="ui-tint">
+</div>
+
+
+</body>
 </html>
