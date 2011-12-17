@@ -23,7 +23,7 @@ define( ['jquery', 'backbone', 'underscore'],
                     setTimeout( function() {
                         var $search = $( '#search' );
                         //$search.find("ul").listview();
-                        $search.find( "ul" ).listview( "refresh" );
+                        //$search.find( "ul" ).listview( "refresh" );
                     }, 10 );
 
 

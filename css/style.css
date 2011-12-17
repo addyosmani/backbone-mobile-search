@@ -140,26 +140,6 @@ body {
 	width:250px;
 }
 
-.app-thumbnails{
-	margin:0 auto;
-	width:300px;
-	text-align:center;
-}
-
-.app-thumbnails ul{
-	list-style-type:none;
-	width:100%;
-	
-}
-
-.app-thumbnails li {
-	float:left;
-	margin:5px;
-}
-
-.app-thumbnails li img{
-	width:50px;
-}
 
 
 

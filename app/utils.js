@@ -51,7 +51,6 @@ define( ['jquery' ],
             };
 
             utils.changePage = function( pageID, effect, p1, p2 ) {
-                console.log( arguments );
                 //$.mobile.changePage(pageID, effect, p1, p2);
                 setTimeout( function() {
                     //changepage deprecated
