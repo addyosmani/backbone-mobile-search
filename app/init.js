@@ -1,21 +1,33 @@
-/*
-	Initialize namespacing
-*/
+/*!
+ * Flickly - Backbone jQuery Mobile demo
+ * http://addyosmani.com
+ * Copyright (c) 2011 Addy Osmani
+ * Dual licensed under the MIT and GPL licenses.
+ *
+ Initialize namespacing
+ */
 
-var mobileSearch = mobileSearch || {};
+define( ['views/appview', 'router/workspace'],
+        function( AppView, Workspace ) {
 
-mobileSearch = {
-	views:{},
-	routers:{
-		workspace:{}
-	},
-	utils:{},
-	ui:{},
-	defaults:{
-		resultsPerPage: 16,
-		safeSearch: 2,
-		maxDate:'',
-		minDate:'01/01/1970'
-	}
-};
+            var mobileSearch = mobileSearch || {};
 
+            mobileSearch = {
+                views: new AppView,
+                routers:{
+                    workspace:new Workspace()
+                },
+                utils:{},
+                ui:{},
+                defaults:{
+                    resultsPerPage: 16,
+                    safeSearch: 2,
+                    maxDate:'',
+                    minDate:'01/01/1970'
+                }
+            };
+
+            mobileSearch.utils.toggleNavigation( false );
+            Backbone.history.start();
+
+        } );
