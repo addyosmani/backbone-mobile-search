@@ -5,15 +5,15 @@ define( ['jquery', 'utils' ],
             "use strict";
 
             var ui = {};
-            ui.nextOption = $( '#nextSet' ),
-                    ui.prevOption = $( '#prevSet' );
+            ui.nextOption = $( '#nextSet' );
+            ui.prevOption = $( '#prevSet' );
 
-            ui.nextOption.bind( 'click', function( e ) {
+            ui.nextOption.on( 'click', function( e ) {
                 e.preventDefault();
                 utils.historySwitch( 'next' );
             } );
 
-            ui.prevOption.bind( 'click', function( e ) {
+            ui.prevOption.on( 'click', function( e ) {
                 e.preventDefault();
                 utils.historySwitch( 'prev' );
             } );

@@ -138,7 +138,6 @@ define( ['jquery' ],
                     serviceUrl += "&method=flickr.photos.getInfo&photo_id=" + query + "&api_key=" + apiKey;
                 }
 
-                console.log(serviceUrl);
 
                 return $.ajax( serviceUrl, { dataType: "json" } );
             };
