@@ -239,7 +239,22 @@ and (max-width : 500px) {
 	width: 300px;
 	float: left;
 	margin: 20px;
-	border-bottom: 1px;
+	border-radius:2px;
 }
+
+.ui-btn-icon-right{
+	border-bottom:1px solid #CCC;
+}
+
+.ui-li-heading {
+	font-size: 14px;
+	font-weight: bold;
+	display: block;
+	margin: .6em 0;
+	overflow: hidden;
+	white-space: normal;
+	max-height: 45px;
+}
+
 
 }
