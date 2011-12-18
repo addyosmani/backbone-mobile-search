@@ -1,17 +1,25 @@
-/**
- Perform a deferred jQuery request for results.
- @searchType: search or photo
- @ctx: the context handling the the results
- @query: the search query being looked up
- @sort: how the result set should be sorted
- @page: the page within the result set to be returned
- **/
-
 define( ['jquery' ],
         function( $ ) {
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
             //"use strict";
             var utils = {};
+
+
+            // summary:
+            //            Query for search results or individual photos from the Flickr API
+            // searchType: String
+            //            The type of search to conduct. Supports 'search' for results or
+            //            'photo' for individual photo entries
+            // ctx: String
+            //            The context (view) for which the requests are being made
+            // query: String
+            //            The query-string to lookup. For search this is a keyword or set of
+            //            keywords in string form, for photos this refers to the photo ID
+            // sort: String
+            //            How the results returned should be sorted. All of the Flickr API sort
+            //            modes are supported here
+            // page: Integer
+            //            The pagination index currently being queried. e.g 2 refers to page 2. 
 
             utils.dfdQuery = function( searchType, ctx, query, sort, page ) {
                 var entries = null;
@@ -27,11 +35,8 @@ define( ['jquery' ],
 
                             // The application can handle routes that come in
                             // through a bookmarked URL differently if needed
-                            // simply check against bookmarkMode
-                            /*
-                            if(!mobileSearch.routers.workspace.bookmarkMode){
-                            }*/
-
+                            // simply check against workspace.bookmarkMode
+                            // e.g if(!mobileSearch.routers.workspace.bookmarkMode) etc.
 
                             if ( searchType == 'search' || searchType == undefined ) {
 
@@ -56,6 +61,8 @@ define( ['jquery' ],
 
                                 entries = response.photo;
                                 ctx.photo_collection.reset( entries );
+
+                                // switch to the individual photo viewer
                                 utils.changePage( "#photo", "slide", false, false );
                                  
                             }
@@ -63,16 +70,45 @@ define( ['jquery' ],
                 }, ctx ) );
             };
 
-            utils.changePage = function( pageID, effect, p1, p2 ) {
-                $.mobile.changePage( pageID, { transition: effect, reverse:p1, changeHash: p2} );
+
+            // summary:
+            //            A convenience method for accessing $mobile.changePage(), included
+            //            in case any other actions are required in the same step.
+            // changeTo: String
+            //            Absolute or relative URL. In this app references to '#index', '#search' etc.
+            // effect: String
+            //            One of the supported jQuery mobile transition effects
+            // direction: Boolean
+            //            Decides the direction the transition will run when showing the page
+            // updateHash: Boolean
+            //            Decides if the hash in the location bar should be updated
+
+            utils.changePage = function( viewID, effect, direction, updateHash ) {
+                $.mobile.changePage( viewID, { transition: effect, reverse:direction, changeHash: updateHash} );
             };
 
-            /**
-             Search service for querying search results or individual photos
-             query is either the search term or photo_id
-             **/
+
+            // summary:
+            //            Query for search results or individual photos from the Flickr API
+            // searchType: String
+            //            The type of search to conduct. Supports 'search' for results or
+            //            'photo' for individual photo entries
+            // query: String
+            //            The query-string to lookup. For search this is a keyword or set of
+            //            keywords in string form, for photos this refers to the photo ID
+            // sort: String
+            //            How the results returned should be sorted. All of the Flickr API sort
+            //            modes are supported here
+            // page: Integer
+            //            The pagination index currently being queried. e.g 2 refers to page 2. 
+            // returns:
+            //            A promise for the ajax call to be completed
+
             utils.fetchResults = function( searchType, query, sort, page ) {
 
+
+                //todo: undefined queries should result in an error being thrown or 
+                // a message passed back to the UI
 
                 var serviceUrl = "http://api.flickr.com/services/rest/?format=json&jsoncallback=?",
                         apiKey = "8662e376985445d92a07c79ff7d12ff8",
@@ -104,19 +140,30 @@ define( ['jquery' ],
                 return $.ajax( serviceUrl, { dataType: "json" } );
             };
 
-            utils.dateFormatter = function ( date ) {
-                date = $.datepicker.formatDate( '@', new Date( date ) );
-                date = (date == undefined) ? '' : date;
-                return date;
+
+            // summary:
+            //            Format dates so that they're compatible with input passed through
+            //            the datepicker component
+            // date: String
+            //            The date string to be formatted
+            // returns:
+            //            A formatted date
+            utils.dateFormatter = function ( dateStr ) {
+                return (dateStr == undefined)? '' : $.datepicker.formatDate( '@', new Date( dateStr ) );
             };
 
-            /**
-             Manages URL construction for pagination
-             @state: next or prev
-             **/
+
+            // summary:
+            //            Manage the URL construction and navigation for pagination
+            //            (e.g next/prev)
+            //
+            // state: String
+            //            The direction in which to navigate (either 'next' or 'prev')
+
             utils.historySwitch = function( state ) {
                 var sortQuery,
                     hashQuery = "", pageQuery = 0, increment = 0;
+
                 (mobileSearch.routers.workspace.q == undefined) ? hashQuery = '' : hashQuery = mobileSearch.routers.workspace.q;
                 (mobileSearch.routers.workspace.p == undefined) ? pageQuery = 1 : pageQuery = mobileSearch.routers.workspace.p;
                 (mobileSearch.routers.workspace.s == undefined) ? sortQuery = 'relevance' : sortQuery = mobileSearch.routers.workspace.s;
@@ -129,10 +176,13 @@ define( ['jquery' ],
             };
 
 
-            /**
-             Display a custom notification message
-             @message: the message to display
-             **/
+            // summary:
+            //            Display a custom notification using the loader extracted from jQuery mobile.
+            //            The only reason this is here is for further customization.
+            //
+            // message: String
+            //            The message to display in the notification dialog
+
             utils.loadPrompt = function( message ) {
                 message = (message == undefined) ? "" : message;
 
@@ -147,30 +197,42 @@ define( ['jquery' ],
             };
 
 
-            /**
-             Change the title of the search view
-             @title: the title to be used
-             **/
+            // summary:
+            //            Adjust the title of the current view
+            //
+            // title: String
+            //            The title to update the view with
             utils.switchTitle = function( title ) {
-                $( '.ui-title' ).text( title );
+                $( '.ui-title' ).text( title || "" );
             };
 
 
-            /**
-             Construct the complete search query for passing to dfdQuery later.
-             **/
-            utils.queryConstructor = function( query, sortType, pageNum ) {
-                return 'search/' + query + '/s' + sortType + '/p' + pageNum;
+            // summary:
+            //            Construct a search query for processing
+            //
+            // query: String
+            //            The query-string to lookup. For search this is a keyword or set of
+            //            keywords in string form, for photos this refers to the photo ID
+            // sortType: String
+            //            How the results returned should be sorted. All of the Flickr API sort
+            //            modes are supported here
+            // page: Integer
+            //            The pagination index currently being queried. e.g 2 refers to page 2
+
+            utils.queryConstructor = function( query, sortType, page ) {
+                return 'search/' + query + '/s' + sortType + '/p' + page;
             };
 
 
-            /**
-             Toggle whether the navigation is displayed or hidden
-             @b: boolean value specifying whether to show or hide the controls
-             **/
-            utils.toggleNavigation = function( b ) {
-                mobileSearch.ui.nextOption.toggle( b ),
-                        mobileSearch.ui.prevOption.toggle( b );
+            // summary:
+            //            Toggle whether the navigation is displayed or hidden
+            //
+            // toggleState: Boolean
+            //            A boolean that decides whether the navigation should be toggled on or off.
+
+            utils.toggleNavigation = function( toggleState ) {
+                mobileSearch.ui.nextOption.toggle( toggleState );
+                mobileSearch.ui.prevOption.toggle( toggleState );
             };
 
             return utils;

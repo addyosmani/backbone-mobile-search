@@ -33,7 +33,6 @@ define( ['jquery', 'backbone', 'utils', 'models/ResultCollection', 'models/Photo
                                 endpoint = mobileSearch.utils.queryConstructor( query, sort, 1 );
 
                         location.hash = endpoint;
-                        //mobileSearch.utils.changePage('#' + endPoint);
 
                     }
                     else {
