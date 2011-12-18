@@ -281,7 +281,46 @@ and (max-width : 500px) {
 	padding: 0px;
 }
 
+#photoviewholder img{
+	width:300px;
+	min-width:300px;
+	float:left;
+}
 
+#photoviewholder ul{
+	float:left;
+	width:500px;
+	margin: 0px 0px 0px 15px;
+}
 
+#photoviewholder ul li{
+	width:100%;
+	height:auto;
+	margin:0px;
+	border-radius:0px;
+	padding:5px;
+}
+
+#photoviewholder ul li .key{
+	color:#ccc;
+}
+
+#photoviewholder .ext{
+	height:65px;
+}
+
+#photoviewholder .ext .ui-btn-inner{
+	height:50px;
+	width:300px;
+}
+
+#photoviewholder .ext .ui-icon{
+	display:none;
+}
+#photoviewholder ul .external_link{
+	width:300px;
+	height:auto;
+	margin:auto;
+}
 
 }
