@@ -15,16 +15,10 @@ define( ['jquery', 'backbone'],
                     "" : "root"                                      //
                 },
                 search: function( query, sort, page ) {
-                     setTimeout(function(){
-                        mobileSearch.utils.dfdQuery( 'search', mobileSearch.views.appview, query, sort, page );
-                    }, 10);
+                    mobileSearch.utils.dfdQuery( 'search', mobileSearch.views.appview, query, sort, page );
                 },
                 photo: function ( id ) {
-
-                    setTimeout(function(){
-                        mobileSearch.utils.dfdQuery( 'photo', mobileSearch.views.appview, id );
-                    }, 10);
-                
+                    mobileSearch.utils.dfdQuery( 'photo', mobileSearch.views.appview, id );
                 },
                 root: function() {
                     this.bookmarkMode = true;

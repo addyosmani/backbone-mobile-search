@@ -25,12 +25,12 @@ define( ['jquery' ],
                             ctx.setCollection( searchType );
 
 
-                            // Fix for bookmarked links - as part of the patches for 
-                            // BB and jQM integration this step requires initially switching
-                            // to the index prior to switching over to search results or photos
+                            // The application can handle routes that come in
+                            // through a bookmarked URL differently if needed
+                            // simply check against bookmarkMode
+                            /*
                             if(!mobileSearch.routers.workspace.bookmarkMode){
-                                mobileSearch.utils.changePage( "#index", "slide", false, false );
-                            }
+                            }*/
 
 
                             if ( searchType == 'search' || searchType == undefined ) {
@@ -64,11 +64,7 @@ define( ['jquery' ],
             };
 
             utils.changePage = function( pageID, effect, p1, p2 ) {
-                
-                setTimeout( function() {
-                    $.mobile.changePage( pageID, { transition: effect, reverse:p1, changeHash: p2} );
-                }, 0 );
-                
+                $.mobile.changePage( pageID, { transition: effect, reverse:p1, changeHash: p2} );
             };
 
             /**
@@ -90,9 +86,7 @@ define( ['jquery' ],
                 if ( searchType == 'search' || searchType == undefined ) {
 
                     quantity = $( '#slider' ).val() || mobileSearch.defaults.resultsPerPage;
-                    //safeSearch = $('#safeSearch').val() || "";
 
-                    /*all of this will be going once date support is built into URL routing*/
                     maxDate = utils.dateFormatter( $( '#date-max' ).val() ) || "";
                     minDate = utils.dateFormatter( $( '#date-min' ).val() ) || "";
 
@@ -106,9 +100,6 @@ define( ['jquery' ],
                 } else if ( searchType == 'photo' ) {
                     serviceUrl += "&method=flickr.photos.getInfo&photo_id=" + query + "&api_key=" + apiKey;
                 }
-
-
-                console.log( serviceUrl );
 
                 return $.ajax( serviceUrl, { dataType: "json" } );
             };
@@ -145,14 +136,13 @@ define( ['jquery' ],
             utils.loadPrompt = function( message ) {
                 message = (message == undefined) ? "" : message;
 
-                
-                        $( "<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>" + message + "</h1></div>" )
-                        .css( { "display": "block", "opacity": 0.96, "top": $( window ).scrollTop() + 100 } )
-                        .appendTo( $.mobile.pageContainer )
-                        .delay( 800 )
-                        .fadeOut( 400, function() {
-                            $( this ).remove();
-                        } );
+                $( "<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>" + message + "</h1></div>" )
+                .css( { "display": "block", "opacity": 0.96, "top": $( window ).scrollTop() + 100 } )
+                .appendTo( $.mobile.pageContainer )
+                .delay( 800 )
+                .fadeOut( 400, function() {
+                    $( this ).remove();
+                } );
                 
             };
 
