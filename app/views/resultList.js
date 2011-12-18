@@ -20,7 +20,6 @@ define( ['jquery', 'backbone', 'underscore'],
 
                     collection.resultlist.el.html( compiled_template( { results: collection.models } ) );
 
-
                     setTimeout( function() {
                        collection.resultlist.el.listview('refresh');
                     }, 50 );
@@ -29,6 +28,6 @@ define( ['jquery', 'backbone', 'underscore'],
             } );
 
             return ResultList;
-        } );
+        });
 
 

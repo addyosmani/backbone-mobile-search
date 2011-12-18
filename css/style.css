@@ -5,7 +5,7 @@ body {
 
 #appview {
 	margin: 0 auto;
-	text-align:center;
+	text-align: center;
 }
 
 #resultlist ul {
@@ -65,119 +65,181 @@ body {
 	margin: 0 auto;
 }
 
-#content-main{
-}
 
-#logo{
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:1.5em;
-	letter-spacing:-1px;
-	/*text-shadow: 0px 1px 1px #fff;*/
-	
-}
 
-#logo img{
-	text-align:center;
-	margin:0 auto;
-	width:30px;
-	margin-top:-5px;
+#logo {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1.5em;
+	letter-spacing: -1px;
 
 }
 
-#logo .pink{
-	color:#D8227F;
-	float:left;
+#logo img {
+	text-align: center;
+	margin: 0 auto;
+	width: 30px;
+	margin-top: -5px;
 }
 
-#logo .blue{
-	color:#197DEB;
-	float:left;
+#logo .pink {
+	color: #D8227F;
+	float: left;
 }
 
-#sub-header{
-	width:120px;
-	height:40px;
-	text-align:center;
-	margin:0 auto;
+#logo .blue {
+	color: #197DEB;
+	float: left;
 }
 
-.nav-glyphish-example .ui-btn .ui-btn-inner { padding-top: 40px !important; }
-.nav-glyphish-example .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: none !important; border-radius: none !important; }
-#search-icon .ui-icon { background:  url(../img/icons/06-magnify.png) 50% 50% no-repeat; background-size: 24px 22px; }
-#options-icon .ui-icon { background:  url(../img/icons/36-toolbox.png) 50% 50% no-repeat; background-size: 24px 16px;  }
-#instructions-icon .ui-icon { background:  url(../img/icons/179-notepad.png) 50% 50% no-repeat;  background-size: 12px 26px; }
-#source-icon .ui-icon { background:  url(../img/icons/157-wrench.png) 50% 50% no-repeat;  background-size: 22px 27px; }
-#about-icon .ui-icon { background:  url(../img/icons/111-user.png) 50% 50% no-repeat;  background-size: 20px 24px; }
-
-.ui-page .ui-header, .ui-page .ui-footer{
-	text-align:center;
+#sub-header {
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	margin: 0 auto;
 }
 
-.app-message{
-	background:#fff;
-	padding:7px;
-	width:100%;
-	text-align:center;
+.nav-glyphish-example .ui-btn .ui-btn-inner {
+	padding-top: 40px !important;
 }
-.app-message p{
-	width:90%;
-	margin:0 auto;
-	padding:4px;
+
+.nav-glyphish-example .ui-btn .ui-icon {
+	width: 30px!important;
+	height: 30px!important;
+	margin-left: -15px !important;
+	box-shadow: none!important;
+	-moz-box-shadow: none!important;
+	-webkit-box-shadow: none!important;
+	-webkit-border-radius: none !important;
+	border-radius: none !important;
+}
+
+#search-icon .ui-icon {
+	background: url(../img/icons/06-magnify.png) 50% 50% no-repeat;
+	background-size: 24px 22px;
+}
+
+#options-icon .ui-icon {
+	background: url(../img/icons/36-toolbox.png) 50% 50% no-repeat;
+	background-size: 24px 16px;
+}
+
+#instructions-icon .ui-icon {
+	background: url(../img/icons/179-notepad.png) 50% 50% no-repeat;
+	background-size: 12px 26px;
+}
+
+#source-icon .ui-icon {
+	background: url(../img/icons/157-wrench.png) 50% 50% no-repeat;
+	background-size: 22px 27px;
+}
+
+#about-icon .ui-icon {
+	background: url(../img/icons/111-user.png) 50% 50% no-repeat;
+	background-size: 20px 24px;
+}
+
+.ui-page .ui-header, .ui-page .ui-footer {
+	text-align: center;
+}
+
+.app-message {
+	background: #fff;
+	padding: 7px;
+	width: 100%;
+	text-align: center;
+}
+
+.app-message p {
+	width: 90%;
+	margin: 0 auto;
+	padding: 4px;
 	color: #333333;
 	text-shadow: 0 1px 0 #FFFFFF;
 }
 
-
-
-
 .app-logo-cont {
-	margin:0 auto;
-	width:100%;
-	text-align:center;
+	margin: 0 auto;
+	width: 100%;
+	text-align: center;
 }
 
-.app-logo{
-	width:250px;
+.app-logo {
+	width: 250px;
 }
 
-
-
-
-/*additional media queries*/
+/*iphone/smaller-size screens*/
 
 @media only screen 
-and (max-width : 500px){
-	.app-nav{ top:300px;}
-	.app-logo {display:none;}
-	
+and (max-width : 500px) {
+
+.app-nav {
+	top: 300px;
 }
 
-/*ipad*/
-@media only screen 
-and (max-width : 768px){
-	.app-nav{ top:300px;}
-	.app-logo {width:200px;}
+.app-logo {
+	display: none;
 }
-
-
-/*larger screen*/
-@media only screen 
-and (min-width : 900px) {
-	.app-nav{ top:0px;}
-	.nav-glyphish-example .ui-btn .ui-btn-inner {padding-top:10px !important; }
-	.ui-navbar li .ui-btn {border:0px; color:#0063DC;}
-	.app-nav .ui-btn-inner .ui-icon { display:none;}
-	#content-main {width:80%; margin:0 auto;}
-	.app-message { font-size:13px;}
-	.app-header{display:none;}
-	.app-nav { width: 60%;margin: 0 auto;}
-
-	.ui-listview-inset .ui-li{
-		width: 300px;
-		float: left;
-		margin: 20px;
-		border-bottom:1px;
-	}
 
 }
 
+/*ipad/tablet*/
+
+@media only screen and (max-width : 768px) {
+
+.app-nav {
+	top: 300px;
+}
+
+.app-logo {
+	width: 200px;
+}
+
+}
+
+/*desktop/larger screens*/
+
+@media only screen and (min-width : 900px) {
+
+.app-nav {
+	top: 0px;
+}
+
+.nav-glyphish-example .ui-btn .ui-btn-inner {
+	padding-top: 10px !important;
+}
+
+.ui-navbar li .ui-btn {
+	border: 0px;
+	color: #0063DC;
+}
+
+.app-nav .ui-btn-inner .ui-icon {
+	display: none;
+}
+
+#content-main {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.app-message {
+	font-size: 13px;
+}
+
+.app-header {
+	display: none;
+}
+
+.app-nav {
+	width: 60%;
+	margin: 0 auto;
+}
+
+.ui-listview-inset .ui-li {
+	width: 300px;
+	float: left;
+	margin: 20px;
+	border-bottom: 1px;
+}
+
+}
