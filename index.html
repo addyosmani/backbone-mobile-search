@@ -154,7 +154,7 @@
         <!--max results shown slider-->
         <div data-role="fieldcontain">
             <label for="slider">Results per page:</label>
-            <input type="range" name="slider" id="slider" value="10" min="5" max="25"/>
+            <input type="range" name="slider" id="slider" value="15" min="5" max="25"/>
         </div>
         <!--end slider-->
 
@@ -283,7 +283,7 @@
 
 <!--
 /********************************************************
-*  ListView template
+*  ListView
 *********************************************************/
 -->
 
@@ -332,6 +332,7 @@
         <li>Taken by: <%= item.get("owner").realname %></li>
         <li>Date taken: <%= item.get("dates").taken %></li>
         <li><a href="<%= item.get("urls").url[0]._content %>">View Original On Flickr.com</a></li>
+        <li><iframe src="http://www.facebook.com/plugins/like.php?href=<%= item.get("urls").url[0]._content %>&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80&amp;appId=160332214053450" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe></li>
     </ul>
 
     <% }); %>
@@ -345,7 +346,7 @@
 <a class='ui-result' title='<%= item.get("title") %>' data-ajax="false" href="#photo/<%= item.get("id") %>">
         <img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_s.jpg' %>"/>
         <h3><%= item.get("title") %></h3>
-        <p></p> </a>
+         </a>
        </li>
     <% }); %>
 </script>

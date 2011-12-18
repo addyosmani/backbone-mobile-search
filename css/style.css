@@ -235,13 +235,19 @@ and (max-width : 500px) {
 	margin: 0 auto;
 }
 
-.ui-listview-inset .ui-li {
-	width: 300px;
+.ui-listview-inset .ui-li{
+	width: 150px;
+	height:150px;
 	float: left;
 	margin: 20px;
-	border-radius:2px;
+	border-radius:2px;	
 }
 
+.ui-listview-inset img{
+	border-radius:0px;
+	width:100px;
+
+}
 .ui-btn-icon-right{
 	border-bottom:1px solid #CCC;
 }
@@ -252,9 +258,30 @@ and (max-width : 500px) {
 	display: block;
 	margin: .6em 0;
 	overflow: hidden;
-	white-space: normal;
-	max-height: 45px;
+	/*white-space: normal;*/
+	max-height: 16px; /*45px;*/
+	clear:both;
+	padding-top:4px;
+	max-width: 120px;
+	text-overflow: ellipsis;
 }
+
+
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb{
+	padding-left:0px;
+}
+
+.ui-li-thumb, .ui-listview .ui-li-icon {
+	position:relative;
+	max-height:140px;
+	max-width:140px;
+}
+
+.ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li{
+	padding: 0px;
+}
+
+
 
 
 }

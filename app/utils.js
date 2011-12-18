@@ -55,7 +55,7 @@ define( ['jquery' ],
                                 utils.changePage( "#search", "slide", false, false );
 
                                 // update title
-                                utils.switchTitle( query + ' ( Page ' + page + ' of ' + response.photos.total + ')' );
+                                utils.switchTitle( query + ' (Page ' + page + ' of ' + response.photos.total + ')' );
 
                             }
                             else {
