@@ -6,7 +6,8 @@ define( ['jquery' ],
 
 
             // summary:
-            //            Query for search results or individual photos from the Flickr API
+            //            Manage passing search queries to the necessary handlers and the UI
+            //            changes that are required based on query-type.
             // searchType: String
             //            The type of search to conduct. Supports 'search' for results or
             //            'photo' for individual photo entries
