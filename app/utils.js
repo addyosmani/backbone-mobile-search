@@ -22,41 +22,53 @@ define( ['jquery' ],
                 $.when( utils.fetchResults( searchType, query, sort, page ) )
                         .then( $.proxy( function( response ) {
 
-                    ctx.setCollection( searchType );
+                            ctx.setCollection( searchType );
 
-                    if ( searchType == 'search' || searchType == undefined ) {
 
-                        entries = response.photos.photo;
-                        mobileSearch.routers.workspace.q = query;
-                        mobileSearch.routers.workspace.p = page;
-                        mobileSearch.routers.workspace.s = sort;
-                        $( '.search-meta p' ).html( 'Page: ' + response.photos.page + ' / ' + response.photos.pages );
-                        ctx.result_collection.reset( entries );
+                            // Fix for bookmarked links - as part of the patches for 
+                            // BB and jQM integration this step requires initially switching
+                            // to the index prior to switching over to search results or photos
+                            if(!mobileSearch.routers.workspace.bookmarkMode){
+                                mobileSearch.utils.changePage( "#index", "slide", false, false );
+                            }
 
-                        utils.changePage( "#search", "slide", false, false );
 
-                        //results view title
-                        utils.switchTitle( query + ' ( Page ' + page + ' of ' + response.photos.total + ')' );
+                            if ( searchType == 'search' || searchType == undefined ) {
 
-                    }
-                    else {
+                                entries = response.photos.photo;
 
-                        entries = response.photo;
-                        ctx.photo_collection.reset( entries );
-                        utils.changePage( "#photo", "slide", false, false );
+                                mobileSearch.routers.workspace.q = query;
+                                mobileSearch.routers.workspace.p = page;
+                                mobileSearch.routers.workspace.s = sort;
 
-                    }
+                                $( '.search-meta p' ).html( 'Page: ' + response.photos.page + ' / ' + response.photos.pages );
+                                
+                                ctx.result_collection.reset( entries );
+
+                                // switch to search results view
+                                utils.changePage( "#search", "slide", false, false );
+
+                                // update title
+                                utils.switchTitle( query + ' ( Page ' + page + ' of ' + response.photos.total + ')' );
+
+                            }
+                            else {
+
+                                entries = response.photo;
+                                ctx.photo_collection.reset( entries );
+                                utils.changePage( "#photo", "slide", false, false );
+                                 
+                            }
 
                 }, ctx ) );
             };
 
             utils.changePage = function( pageID, effect, p1, p2 ) {
-                //$.mobile.changePage(pageID, effect, p1, p2);
+                
                 setTimeout( function() {
-                    //changepage deprecated
                     $.mobile.changePage( pageID, { transition: effect, reverse:p1, changeHash: p2} );
-                }, 10 );
-                //$.mobile.changePage('#index', { transition: 'pop'});
+                }, 0 );
+                
             };
 
             /**
@@ -108,7 +120,8 @@ define( ['jquery' ],
             };
 
             /**
-             history switching - needs cleanup
+             Manages URL construction for pagination
+             @state: next or prev
              **/
             utils.historySwitch = function( state ) {
                 var sortQuery,
@@ -132,13 +145,15 @@ define( ['jquery' ],
             utils.loadPrompt = function( message ) {
                 message = (message == undefined) ? "" : message;
 
-                $( "<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>" + message + "</h1></div>" )
+                
+                        $( "<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>" + message + "</h1></div>" )
                         .css( { "display": "block", "opacity": 0.96, "top": $( window ).scrollTop() + 100 } )
                         .appendTo( $.mobile.pageContainer )
                         .delay( 800 )
                         .fadeOut( 400, function() {
                             $( this ).remove();
                         } );
+                
             };
 
 

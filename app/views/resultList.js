@@ -12,7 +12,6 @@ define( ['jquery', 'backbone', 'underscore'],
 
                 renderList: function( collection ) {
 
-
                     var compiled_template = _.template( $( "#listviewul" ).html() );
 
                     mobileSearch.utils.loadPrompt( "Loading results..." );
@@ -25,7 +24,6 @@ define( ['jquery', 'backbone', 'underscore'],
                     setTimeout( function() {
                        collection.resultlist.el.listview('refresh');
                     }, 50 );
-
 
                 }
             } );
