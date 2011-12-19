@@ -1,5 +1,6 @@
+A complete Backbone.js + jQuery Mobile sample app using AMD for separation of modules, Require.js for dependency management + template externalisation and Underscore for templating.
 
-A complete Backbone.js mobile application demonstrating searching for images using the Flickr API with full support for pagination, bookmarking and more.
+The app allows you to search for images using the Flickr API, lookup individual photos in more detail, bookmark any state for results or photos, supports pagination and more.
 
 **Uses:**
 <ul>
@@ -123,4 +124,6 @@ collection.someview.el.html( compiled_template( { results: collection.models } )
 
 
 All templating solutions will have their own custom methods for handling template compilation, but if you understand the above, substituting Underscore's micro-templating for any other solution should be fairly trivial.
+
+<strong>Note:</strong> You may also be interested in looking at https://github.com/ZeeAgency/requirejs-tpl. It's an AMD-compatible version of the Underscore templating system that also includes support for optimization (pre-compiled templates) which can lead to better performance and no evals. I have yet to use it myself, but it comes as a recommended resource.
 
