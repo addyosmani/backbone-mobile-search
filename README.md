@@ -10,3 +10,6 @@ A complete Backbone.js mobile application demonstrating searching for images usi
 	<li>jQuery Mobile + jQuery for DOM manipulation, mobile helpers</li>
 	<li>Flickr API for data</li>
 </ul>
+
+
+<strong>Note:</strong> This application needs to be run on a HTTP server, local or otherwise. To remove this requirement, simply switch from using external templates via Require.js/the text plugin to inline ones.

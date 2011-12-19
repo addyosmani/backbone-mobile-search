@@ -1,4 +1,3 @@
-/*need to be included in the namespace*/
 define( ['jquery', 'utils' ],
         function( $, utils ) {
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.

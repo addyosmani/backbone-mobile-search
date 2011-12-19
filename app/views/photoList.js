@@ -14,16 +14,11 @@ define( ['jquery', 'backbone', 'underscore','text!templates/photoview.html'],
                     var compiled_template = _.template(photoTemplate);
 
                     mobileSearch.utils.loadPrompt( "Loading photo..." );
-
                     $( '#photo .ui-title' ).html( 'Photo view' );
-
                     collection.photolist.el.html( compiled_template( { results: collection.models } ) );
 
                     setTimeout( function() {
-                        //hack (note all the below are on purpose)
-                        var $photo = $( '#photo' );
-                        $photo.find( 'ul' ).listview();
-                        $photo.find( 'ul' ).listview( "refresh" );
+                        collection.photolist.el.listview('refresh');
                     }, 0 );
 
 

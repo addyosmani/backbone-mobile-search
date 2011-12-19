@@ -15,14 +15,12 @@ define( ['jquery', 'backbone', 'underscore','text!templates/listview.html'],
                     var compiled_template = _.template( listTemplate );
 
                     mobileSearch.utils.loadPrompt( "Loading results..." );
-
                     mobileSearch.utils.toggleNavigation( true );
-
                     collection.resultlist.el.html( compiled_template( { results: collection.models } ) );
 
                     setTimeout( function() {
                        collection.resultlist.el.listview('refresh');
-                    }, 50 );
+                    }, 0 );
 
                 }
             } );

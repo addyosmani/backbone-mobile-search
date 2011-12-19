@@ -28,10 +28,11 @@ define( ['jquery', 'backbone', 'utils', 'models/ResultCollection', 'models/Photo
 
                 keyLoadResults: function( event ) {
                     var query = $( '#searchbox' ).val();
-                    if ( query ) {
-                        var sort = $( '#sortBy' ).val(),
-                            endpoint = mobileSearch.utils.queryConstructor( query, sort, 1 );
 
+                    if ( query ) {
+
+                        var sort = $( '#sortBy' ).val(),
+                        endpoint = mobileSearch.utils.queryConstructor( query, sort, 1 );
                         location.hash = endpoint;
 
                     }
