@@ -1,5 +1,5 @@
-define( ['jquery', 'backbone', 'underscore'],
-        function( $, Backbone, _ ) {
+define( ['jquery', 'backbone', 'underscore','text!templates/listview.html'],
+        function( $, Backbone, _, listTemplate ) {
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
             "use strict";
 
@@ -12,7 +12,7 @@ define( ['jquery', 'backbone', 'underscore'],
 
                 renderList: function( collection ) {
 
-                    var compiled_template = _.template( $( "#listviewul" ).html() );
+                    var compiled_template = _.template( listTemplate );
 
                     mobileSearch.utils.loadPrompt( "Loading results..." );
 

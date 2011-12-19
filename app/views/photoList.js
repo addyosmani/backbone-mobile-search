@@ -1,5 +1,5 @@
-define( ['jquery', 'backbone', 'underscore'],
-        function( $, Backbone, _ ) {
+define( ['jquery', 'backbone', 'underscore','text!templates/photoview.html'],
+        function( $, Backbone, _ , photoTemplate) {
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
             "use strict";
 
@@ -11,7 +11,7 @@ define( ['jquery', 'backbone', 'underscore'],
 
                 renderList: function( collection ) {
 
-                    var compiled_template = _.template( $( "#photoviewul" ).html() );
+                    var compiled_template = _.template(photoTemplate);
 
                     mobileSearch.utils.loadPrompt( "Loading photo..." );
 

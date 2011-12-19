@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="css/custom_mobile_theme.css"/>
     <link rel="stylesheet" href="css/style.css"/>
 
-    <script type="text/javascript" src="app/libs/require-1.0.2.min.js"></script>
+    <script type="text/javascript" src="app/libs/require/require-1.0.2.min.js"></script>
     <!--<script type="text/javascript" src="release/app.js"></script>-->
     <script type="text/javascript">
         require.config( {
             paths: {
                 'backbone':         'libs/AMDbackbone-0.5.3',
                 'underscore':       'libs/underscore-1.2.2',
+                'text':             'libs/require/text',
                 'jquery':           'libs/jQuery-1.7.1',
                 'json2':            'libs/json2',
                 'datepicker':       'libs/jQuery.ui.datepicker',
@@ -36,10 +37,12 @@
                             ['require', 'jquerymobile', 'json2', 'datepicker', 'datepickermobile',
                                 'app'],
                             function( require ) {
-                                /*
-                                 This is meant as a global config option for end users to disable hashchange listening
-                                 (as opposed to urlHistory.listeningEnabled, which is an internal toggle)
-                                 */
+                                
+                                 // Global overrides to disable hashchange listening
+                                 // (as opposed to using urlHistory.listeningEnabled)
+                                 // This makes it easier to focus on using Backbone's own
+                                 // routing:
+                            
                                 $.mobile.hashListeningEnabled = false;
                                 $.mobile.pushStateEnabled = false;
                                 $.mobile.page.prototype.options.degradeInputs.date = true;
@@ -74,7 +77,7 @@
                 <li><a href="#index" id="search-icon" data-icon="custom">Search</a></li>
                 <li><a href="#options" id="options-icon" data-icon="custom">Options</a></li>
                 <li><a href="#instructions" id="instructions-icon" data-icon="custom">Help</a></li>
-                <li><a href="#source" id="source-icon" data-icon="custom">Source</a></li>
+                <li><a href="#source" id="source-icon" data-icon="custom">API Docs</a></li>
                 <li><a href="#about" id="about-icon" data-icon="custom">About</a></li>
             </ul>
         </div>
@@ -235,14 +238,11 @@
 
 <div id="source" data-role="page" data-theme="b">
     <div data-role="header" data-theme="a">
-        <h1>Source</h1>
+        <h1>API Docs</h1>
     </div>
     <div data-role="content">
-        <ul data-role="listview" data-inset="true">
-            <li><a href="http://github.com/addyosmani"><img src="img/icons/github.png" alt="Github" class="ui-li-icon">Github</a>
-            </li>
-            <li><a href="#"><img src="img/icons/demo.png" alt="Demo" class="ui-li-icon">Demo</a></li>
-        </ul>
+        <p>For the complete <strong>Flickr API Documentation</strong> with references to the methods and formats supported, see <a href="http://www.flickr.com/services/api/">here</a>.</p>
+        <p>You can also sign-up for your own <a href="http://www.flickr.com/services/api/keys/">API keys</a>.</p>
     </div>
 </div>
 
@@ -258,7 +258,7 @@
         <h1>About</h1>
     </div>
     <div data-role="content">
-        <p>A wireframe for the about page.</p>
+        <p>Flickly is a demo application written using <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> and <a href="http://jquerymobile.com">jQuery Mobile</a>. <a href="http://requirejs.org/">Require.js</a> and the <a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a> module format are used for breaking components down into modules whilst <a href="http://documentcloud.github.com/underscore/">Underscore.js</a> is used for templating.</p>
     </div>
 </div>
 
@@ -310,51 +310,6 @@
     </div>
 
 </div>
-
-<!--
-/********************************************************
-*  Templates
-*********************************************************/
--->
-
-
-<!--template for photoview-->
-<script type="text/template" id="photoviewul">
-<% _.each( results, function( item, i ){ %>
-
-        <img alt="<%= item.get("title")._content  %>" title="<%= item.get("title")._content  %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_m.jpg' %>"/>
-
-    <ul data-role="listview" data-inset="true">
-        <li><span class="key">Title:</span> <%= item.get("title")._content %></li>
-        <li><span class="key">Description:</span> <%= item.get("description")._content %></li>
-        <li><span class="key">Views:</span> <%= item.get("views") %></li>
-        <li><span class="key">Location:</span> <%= item.get("owner").location %></li>
-        <li><span class="key">Taken by:</span> <%= item.get("owner").realname %></li>
-        <li><span class="key">Date taken:</span> <%= item.get("dates").taken %></li>
-        <li><span class="key">Date uploaded:</span> <%= new Date( item.get("dateuploaded") * 1000).toDateString() %></li>
-        <li class="ext"><iframe src="http://www.facebook.com/plugins/like.php?href=<%= item.get("urls").url[0]._content %>&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80&amp;appId=160332214053450" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe></li>
-         <li class="ext"><a class="external_link" href="<%= item.get("urls").url[0]._content %>">View Original On Flickr.com</a></li>
-
-         
-    </ul>
-
-    <% }); %>
-</script>
-
-
-<!--template for list view -->
-<script type="text/template" id="listviewul">
-<% _.each( results, function( item, i ){ %>
-        <li>
-<a class='ui-result' title='<%= item.get("title") %>' data-ajax="false" href="#photo/<%= item.get("id") %>">
-        <img title="<%= item.get("title") %>" src="<%= 'http://farm' + item.get("farm") + '.static.flickr.com/' + item.get("server") + '/' + item.get("id") + '_' + item.get("secret") + '_s.jpg' %>"/>
-        <h3><%= item.get("title") %></h3>
-         </a>
-       </li>
-    <% }); %>
-</script>
-<!--template-->
-
 
 
 

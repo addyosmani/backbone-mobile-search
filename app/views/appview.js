@@ -30,7 +30,7 @@ define( ['jquery', 'backbone', 'utils', 'models/ResultCollection', 'models/Photo
                     var query = $( '#searchbox' ).val();
                     if ( query ) {
                         var sort = $( '#sortBy' ).val(),
-                                endpoint = mobileSearch.utils.queryConstructor( query, sort, 1 );
+                            endpoint = mobileSearch.utils.queryConstructor( query, sort, 1 );
 
                         location.hash = endpoint;
 
