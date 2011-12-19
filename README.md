@@ -16,7 +16,7 @@ A complete Backbone.js mobile application demonstrating searching for images usi
 
 **Snippets**
 
-**Backbone and jQuery Mobile: Resolving The Routing Conflicts**
+**Backbone and jQuery Mobile: Resolving the routing conflicts**
 
 The first major hurdle developers typically run into when building Backbone applications with jQuery Mobile is that both frameworks have their own opinions about how to handle application navigation. 
 
@@ -36,7 +36,7 @@ prior to initializing any of your other code.
 
 I discovered this method looking through some jQuery Mobile commits that didn't make their way into the official docs, but am happy to see that they are now covered here http://jquerymobile.com/test/docs/api/globalconfig.html in more detail.
 
-The next question that arises is, if we're preventing jQuery Mobile from listening to URL hash changes, how can we still get the benefit of being able to navigate to other sections in a document using the built-in transitions and effects supported?. Good question. This can now be solve by simply calling:
+The next question that arises is, if we're preventing jQuery Mobile from listening to URL hash changes, how can we still get the benefit of being able to navigate to other sections in a document using the built-in transitions and effects supported?. Good question. This can now be solve by simply calling $mobile.changePage() as follows:
 
 <pre>
 var url = '#about',
@@ -47,7 +47,7 @@ var url = '#about',
 $.mobile.changePage( url , { transition: effect}, reverse, changeHash );
 </pre>
 
-In the above sample, <code>url</code> can refer to a URL or a hash, effect is simply the transition effect to animate the page in with and the final two parameters decide the direction for the transition (reverse) and whether or not the hash in the address bar should be updated (changeHash). With respect to the latter, I typically set this to false to avoid managing two sources for hash updates, but feel free to set this to true if you're comfortable doing so. 
+In the above sample, <code>url</code> can refer to a URL or a hash identifier to navigate to, <code>effect</code> is simply the transition effect to animate the page in with and the final two parameters decide the direction for the transition (<code>reverse</code>) and whether or not the hash in the address bar should be updated (<code>changeHash</code>). With respect to the latter, I typically set this to false to avoid managing two sources for hash updates, but feel free to set this to true if you're comfortable doing so. 
 
 **Using External Teplates**
 
