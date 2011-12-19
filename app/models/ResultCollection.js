@@ -1,4 +1,4 @@
-define( ['jquery', 'backbone', 'models/resultentry', 'views/resultList'],
+define( ['jquery', 'backbone', 'models/ResultEntry', 'views/resultList'],
         function( $, Backbone, ResultEntry, ResultList ) {
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
             "use strict";

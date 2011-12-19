@@ -3,7 +3,7 @@ require.config( {
         'backbone':         'libs/AMDbackbone-0.5.3',
         'underscore':       'libs/underscore-1.2.2',
         'text':             'libs/require/text',
-        'jquery':           'libs/jQuery-1.7.1',
+        'jquery':           'libs/jquery-1.7.1',
         'json2':            'libs/json2',
         'datepicker':       'libs/jQuery.ui.datepicker',
         'datepickermobile': 'libs/jquery.ui.datepicker.mobile',
