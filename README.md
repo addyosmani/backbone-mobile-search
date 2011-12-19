@@ -1,8 +1,10 @@
+#Flickly Mobile
+
 A complete Backbone.js + jQuery Mobile sample app using AMD for separation of modules, Require.js for dependency management + template externalisation and Underscore for templating.
 
 The app allows you to search for images using the Flickr API, lookup individual photos in more detail, bookmark any state for results or photos, supports pagination and more.
 
-**Uses:**
+##Uses:
 <ul>
 	<li>Backbone.js to aid application structure, routing</li>
 	<li>Underscore.js for micro-templating and utilities</li>
@@ -15,9 +17,9 @@ The app allows you to search for images using the Flickr API, lookup individual 
 
 <strong>Note:</strong> This application needs to be run on a HTTP server, local or otherwise. To remove this requirement, simply switch from using external templates via Require.js/the text plugin to inline ones.
 
-**Snippets**
+##Snippets
 
-**Backbone and jQuery Mobile: Resolving the routing conflicts**
+###Backbone and jQuery Mobile: Resolving the routing conflicts
 
 The first major hurdle developers typically run into when building Backbone applications with jQuery Mobile is that both frameworks have their own opinions about how to handle application navigation. 
 
@@ -50,7 +52,7 @@ $.mobile.changePage( url , { transition: effect}, reverse, changeHash );
 
 In the above sample, <code>url</code> can refer to a URL or a hash identifier to navigate to, <code>effect</code> is simply the transition effect to animate the page in with and the final two parameters decide the direction for the transition (<code>reverse</code>) and whether or not the hash in the address bar should be updated (<code>changeHash</code>). With respect to the latter, I typically set this to false to avoid managing two sources for hash updates, but feel free to set this to true if you're comfortable doing so. 
 
-**Using External Teplates**
+###External templates using Require.js
 
 Moving your [Underscore/Mustache/Handlebars] templates to external files is actually quite straight-forward. As this application makes use of Require.js, I'll discuss how to implement external templates using this specific script loader.
 
