@@ -299,6 +299,7 @@ and (max-width : 500px) {
 	margin:0px;
 	border-radius:0px;
 	padding:5px;
+	overflow:hidden;
 }
 
 #photoviewholder ul li .key{

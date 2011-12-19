@@ -23,52 +23,57 @@ define( ['jquery' ],
             //            The pagination index currently being queried. e.g 2 refers to page 2. 
 
             utils.dfdQuery = function( searchType, ctx, query, sort, page ) {
-                var entries = null;
-                page = (page == undefined) ? 1 : page;
 
-                utils.loadPrompt( 'Querying Flickr API...' );
+                if(!(query==undefined || query == "")){
 
-                $.when( utils.fetchResults( searchType, query, sort, page ) )
-                        .then( $.proxy( function( response ) {
+                    var entries = null;
+                    page = (page == undefined) ? 1 : page;
 
-                            ctx.setCollection( searchType );
+                    utils.loadPrompt( 'Querying Flickr API...' );
 
+                    $.when( utils.fetchResults( searchType, query, sort, page ) )
+                            .then( $.proxy( function( response ) {
 
-                            // The application can handle routes that come in
-                            // through a bookmarked URL differently if needed
-                            // simply check against workspace.bookmarkMode
-                            // e.g if(!mobileSearch.routers.workspace.bookmarkMode) etc.
+                                ctx.setCollection( searchType );
 
-                            if ( searchType == 'search' || searchType == undefined ) {
+                                // The application can handle routes that come in
+                                // through a bookmarked URL differently if needed
+                                // simply check against workspace.bookmarkMode
+                                // e.g if(!mobileSearch.routers.workspace.bookmarkMode) etc.
 
-                                entries = response.photos.photo;
+                                if ( searchType == 'search' || searchType == undefined ) {
 
-                                mobileSearch.routers.workspace.q = query;
-                                mobileSearch.routers.workspace.p = page;
-                                mobileSearch.routers.workspace.s = sort;
+                                    entries = response.photos.photo;
 
-                                $( '.search-meta p' ).html( 'Page: ' + response.photos.page + ' / ' + response.photos.pages );
-                                
-                                ctx.result_collection.reset( entries );
+                                    mobileSearch.routers.workspace.q = query;
+                                    mobileSearch.routers.workspace.p = page;
+                                    mobileSearch.routers.workspace.s = sort;
 
-                                // switch to search results view
-                                utils.changePage( "#search", "slide", false, false );
+                                    $( '.search-meta p' ).html( 'Page: ' + response.photos.page + ' / ' + response.photos.pages );
+                                    
+                                    ctx.result_collection.reset( entries );
 
-                                // update title
-                                utils.switchTitle( query + ' (Page ' + page + ' of ' + response.photos.total + ')' );
+                                    // switch to search results view
+                                    utils.changePage( "#search", "slide", false, false );
 
-                            }
-                            else {
+                                    // update title
+                                    utils.switchTitle( query + ' (Page ' + page + ' of ' + response.photos.total + ')' );
 
-                                entries = response.photo;
-                                ctx.photo_collection.reset( entries );
+                                }
+                                else {
 
-                                // switch to the individual photo viewer
-                                utils.changePage( "#photo", "slide", false, false );
-                                 
-                            }
+                                    entries = response.photo;
+                                    ctx.photo_collection.reset( entries );
 
-                }, ctx ) );
+                                    // switch to the individual photo viewer
+                                    utils.changePage( "#photo", "slide", false, false );
+                                     
+                                }
+
+                    }, ctx ) );
+                }else{
+                    utils.loadPrompt( 'Please enter a valid search query.' );
+                }
             };
 
 
@@ -107,10 +112,6 @@ define( ['jquery' ],
 
             utils.fetchResults = function( searchType, query, sort, page ) {
 
-
-                //todo: undefined queries should result in an error being thrown or 
-                // a message passed back to the UI
-
                 var serviceUrl = "http://api.flickr.com/services/rest/?format=json&jsoncallback=?",
                         apiKey = "8662e376985445d92a07c79ff7d12ff8",
                         geoTagged = null,
@@ -132,10 +133,10 @@ define( ['jquery' ],
                     ($( '#geo-choice-z1' ).prop( 'checked' ) || mobileSearch.defaults.geoTagged) ? geoTagged = 0 : geoTagged = 1;
                     page = (page == undefined) ? 0 : page;
                     sort = (sort == undefined) ? ($( '#sortBy' ).val()) : sort;
-                    serviceUrl += "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&is_geo=" + geoTagged + "&safe_search=" + safeSearch + "&sort=" + sort + "&min_taken_date=" + minDate + "&max_taken_date=" + maxDate + "&text=" + query + "&api_key=" + apiKey;
+                    serviceUrl += "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&is_geo=" + geoTagged + "&safe_search=" + safeSearch + "&sort=" + sort + "&min_taken_date=" + minDate + "&max_taken_date=" + maxDate + "&text=" + encodeURIComponent(query) + "&api_key=" + apiKey;
 
                 } else if ( searchType == 'photo' ) {
-                    serviceUrl += "&method=flickr.photos.getInfo&photo_id=" + query + "&api_key=" + apiKey;
+                    serviceUrl += "&method=flickr.photos.getInfo&photo_id=" + encodeURIComponent(query) + "&api_key=" + apiKey;
                 }
 
 
