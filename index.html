@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv = "Pragma" content="no-cache"/>
     <title>Flickly</title>
     
     <link rel="shortcut" href="img/flickly.jpg">
@@ -12,45 +11,8 @@
     <link rel="stylesheet" href="css/custom_mobile_theme.css"/>
     <link rel="stylesheet" href="css/style.css"/>
 
-    <script type="text/javascript" src="app/libs/require/require-1.0.2.min.js"></script>
-    <!--<script type="text/javascript" src="release/app.js"></script>-->
-    <script type="text/javascript">
-        require.config( {
-            paths: {
-                'backbone':         'libs/AMDbackbone-0.5.3',
-                'underscore':       'libs/underscore-1.2.2',
-                'text':             'libs/require/text',
-                'jquery':           'libs/jQuery-1.7.1',
-                'json2':            'libs/json2',
-                'datepicker':       'libs/jQuery.ui.datepicker',
-                'datepickermobile': 'libs/jquery.ui.datepicker.mobile',
-                'jquerymobile':     'libs/jquery.mobile-1.0'
-            },
-            baseUrl: 'app'
-        } );
+    <script data-main="app/main" type="text/javascript" src="app/libs/require/require-1.0.2.min.js"></script>
 
-        require(
-                ['require', 'backbone', 'jquery', 'underscore' ],
-                function( require, Backbone, $, _ ) {
-                    // framework loaded
-                    require(
-                            ['require', 'jquerymobile', 'json2', 'datepicker', 'datepickermobile',
-                                'app'],
-                            function( require ) {
-                                
-                                 // Global overrides to disable hashchange listening
-                                 // (as opposed to using urlHistory.listeningEnabled)
-                                 // This makes it easier to focus on using Backbone's own
-                                 // routing:
-                            
-                                $.mobile.hashListeningEnabled = false;
-                                $.mobile.pushStateEnabled = false;
-                                $.mobile.page.prototype.options.degradeInputs.date = true;
-                                $( '#date-min, #date-max' ).datepicker();
-
-                            } );
-                } );
-    </script>
 </head>
 
 <body lang="en">
