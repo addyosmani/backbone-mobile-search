@@ -51,9 +51,8 @@ define(
 
 As you can tell by the inline comments, the <code>module_id</code> is an optional argument which is typically only required when non-AMD concatenation tools are being used (there may be some other edge cases where it's useful too). When this argument is left out, we call the module 'anonymous'. When working with anonymous modules, the idea of a module's identity is DRY, making it trivial to avoid duplication of filenames and code. 
 
-Back to the define signature, the dependencies argument represents an array of dependencies which are required by the module you are defining and the third argument ('definition function') is a function that's executed to instantiate your module. A barebone module (compatible with Require.js) could be defined as follows: </p>
+Back to the define signature, the dependencies argument represents an array of dependencies which are required by the module you are defining and the third argument ('definition function') is a function that's executed to instantiate your module. A barebone module (compatible with Require.js) could be defined using <code>define</code> as follows: </p>
 
-<strong>define()</strong>
 <pre>
 // A module ID has been omitted here to make the module anonymous
 
@@ -76,7 +75,7 @@ define(['foo', 'bar'],
 </pre>
 
 
-<code>require</code> on the other hand is typically used to load code in a top-level JavaScript file or within a module should you wish to dynamically fetch dependencies. An example of its usage is:</p>
+<code>require()</code> on the other hand is typically used to load code in a top-level JavaScript file or within a module should you wish to dynamically fetch dependencies. An example of its usage is:</p>
 
 <pre>
 // Consider 'foo' and 'bar' are two external modules
