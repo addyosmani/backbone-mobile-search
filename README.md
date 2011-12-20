@@ -17,7 +17,10 @@ The app allows you to search for images using the Flickr API, lookup individual 
 
 <strong>Note:</strong> This application needs to be run on a HTTP server, local or otherwise. To remove this requirement, simply switch from using external templates via Require.js/the text plugin to inline ones.
 
-##Snippets
+##Snippets from the upcoming tutorial for this app
+
+(in no particular order)
+
 
 ###Backbone and jQuery Mobile: Resolving the routing conflicts
 
@@ -130,4 +133,52 @@ collection.someview.el.html( compiled_template( { results: collection.models } )
 All templating solutions will have their own custom methods for handling template compilation, but if you understand the above, substituting Underscore's micro-templating for any other solution should be fairly trivial.
 
 <strong>Note:</strong> You may also be interested in looking at https://github.com/ZeeAgency/requirejs-tpl. It's an AMD-compatible version of the Underscore templating system that also includes support for optimization (pre-compiled templates) which can lead to better performance and no evals. I have yet to use it myself, but it comes as a recommended resource.
+
+###Getting started
+
+Once you feel comfortable with the Backbone fundamentals (http://msdn.microsoft.com/en-us/scriptjunkie/hh377172.aspx) and you've put together a rough wireframe of the app you may wish to build, start to think about your application architecture. Ideally, you'll want to logically separate concerns so that it's as easy as possible to maintain the app in the future.
+
+<strong>Namespacing</strong>
+
+For this application, I opted for the nested namespacing pattern. Implemented correctly, this enables you to clearly identify if items being referenced in your app are views, other modules and so on. This initial structure is a sane place to also include application defaults (unless you prefer maintaining those in a separate file).
+
+<pre>
+window.mobileSearch = window.mobileSearch || {
+    views: {
+        appview: new AppView
+    },
+    routers:{
+        workspace:new Workspace()
+    },
+    utils: utils,
+    defaults:{
+        resultsPerPage: 16,
+        safeSearch: 2,
+        maxDate:'',
+        minDate:'01/01/1970'
+    }
+}
+</pre>
+
+<strong>Models</strong>
+
+In the Flickly application, there are at least two unique types of data that need to be modelled - search results and individual photos, both of which contain additional meta-data like photo titles. If you simplify this down, search results are actually groups of photos in their own right, so the application only requires:
+
+* A single model (a photo or 'result' entry)
+* A result collection (containing a group of result entries) for search results
+* A photo collection (containing one or more result entries) for individual photos or photos with more than one image
+
+<strong>Views</strong>
+
+The views we'll need include an application view, a search results view and a photo view. Static views or pages of the single-page application which do not require a dynamic element to them (e.g an 'about' page) can be easily coded up in your document's markup, independant of Backbone. 
+
+<strong>Routers</strong>
+
+A number of possible routes need to be taken into consideration:
+
+* Basic search queries <code>#search/kiwis</code>
+* Search queries with additional parameters (e.g sort, pagination) <code>#search/kiwis/srelevance/p7</code>
+* Queries for specific photos <code>#photo/93839</code>
+* A default route (no parameters passed)
+                                  
 
