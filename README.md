@@ -17,7 +17,7 @@ The app allows you to search for images using the Flickr API, lookup individual 
 
 <strong>Note:</strong> This application needs to be run on a HTTP server, local or otherwise. To remove this requirement, simply switch from using external templates via Require.js/the text plugin to inline ones.
 
-##Snippets from the upcoming tutorial for this app
+##Snippets from the upcoming tutorial for this app: Writing Modular Desktop & Mobile Applications With Backbone.js
 
 (in no particular order)
 
@@ -36,6 +36,75 @@ Require.js is compatible with the AMD (Asynchronous Module Definition) format, a
 Think about the GMail web-client for a moment. When users initially load up the page on their first visit, Google can simply hide widgets such as the chat module until a user has indicated (by clicking 'expand') that they wish to use it. Through dynamic dependency loading, Google could load up the chat module only then, rather than forcing all users to load it when the page first initializes. This can improve performance and load times and can definitely prove useful when building larger applications.
 
 I've previously written a detailed article covering both AMD and other module formats and script loaders here (http://addyosmani.com/writing-modular-js) in case you'd like to explore this topic further. The takeaway is that although it's perfectly fine to develop applications without a script loader or clean module format in place, it can be of significant benefit to consider using these tools in your application development.
+
+###A brief tutorial on writing AMD modules with Require.js
+
+As discussed above, the overall goal for the AMD format is to provide a solution for modular JavaScript that developers can use today. The two key concepts you need to be aware of when using it with a script-loader are a <code>define</code> method for facilitating module definition and a <code>require</code> method for handling dependency loading. <em>define</em> is used to define named or unnamed modules based on the proposal using the following signature:</p>
+
+<pre>
+define(
+    module_id /*optional*/, 
+    [dependencies] /*optional*/, 
+    definition function /*function for instantiating the module or object*/
+);
+</pre>
+
+As you can tell by the inline comments, the <code>module_id</code> is an optional argument which is typically only required when non-AMD concatenation tools are being used (there may be some other edge cases where it's useful too). When this argument is left out, we call the module 'anonymous'. When working with anonymous modules, the idea of a module's identity is DRY, making it trivial to avoid duplication of filenames and code. 
+
+Back to the define signature, the dependencies argument represents an array of dependencies which are required by the module you are defining and the third argument ('definition function') is a function that's executed to instantiate your module. A barebone module (compatible with Require.js) could be defined as follows: </p>
+
+<strong>define()</strong>
+<pre>
+// A module ID has been omitted here to make the module anonymous
+
+define(['foo', 'bar'], 
+    // module definition function
+    // dependencies (foo and bar) are mapped to function parameters
+    function ( foo, bar ) {
+        // return a value that defines the module export
+        // (i.e the functionality we want to expose for consumption)
+    
+        // create your module here
+        var myModule = {
+            doStuff:function(){
+                console.log('Yay! Stuff');
+            }
+        }
+
+        return myModule;
+});
+</pre>
+
+
+<code>require</code> on the other hand is typically used to load code in a top-level JavaScript file or within a module should you wish to dynamically fetch dependencies. An example of its usage is:</p>
+
+<pre>
+// Consider 'foo' and 'bar' are two external modules
+// In this example, the 'exports' from the two modules loaded are passed as
+// function arguments to the callback (foo and bar)
+// so that they can similarly be accessed
+
+require(['foo', 'bar'], function ( foo, bar ) {
+        // rest of your code here
+        foo.doSomething();
+});
+</pre>
+
+
+<strong>Defining AMD Modules Using Require.js</strong>
+
+//Todo: explain and demonstrate how to wrap views etc. inside AMD modules and how that all works.
+
+<pre>
+require(['app/myModule'], 
+    function( myModule ){
+        // start the main module which in-turn
+        // loads other modules
+        var module = new myModule();
+        module.doStuff();
+});
+</pre>
+
 
 ###Backbone and jQuery Mobile: Resolving the routing conflicts
 
@@ -72,7 +141,8 @@ In the above sample, <code>url</code> can refer to a URL or a hash identifier to
 
 <strong>Note:</strong> For some parallel work being done to explore how well the jQuery Mobile Router plugin works with Backbone, you may be interested in checking out https://github.com/Filirom1/jquery-mobile-backbone-requirejs.
 
-###External templates using Require.js
+
+###External [Underscore/Handlebars/Mustache] templates using Require.js
 
 Moving your [Underscore/Mustache/Handlebars] templates to external files is actually quite straight-forward. As this application makes use of Require.js, I'll discuss how to implement external templates using this specific script loader.
 
@@ -148,6 +218,7 @@ collection.someview.el.html( compiled_template( { results: collection.models } )
 All templating solutions will have their own custom methods for handling template compilation, but if you understand the above, substituting Underscore's micro-templating for any other solution should be fairly trivial.
 
 <strong>Note:</strong> You may also be interested in looking at https://github.com/ZeeAgency/requirejs-tpl. It's an AMD-compatible version of the Underscore templating system that also includes support for optimization (pre-compiled templates) which can lead to better performance and no evals. I have yet to use it myself, but it comes as a recommended resource.
+
 
 ###Getting started
 
