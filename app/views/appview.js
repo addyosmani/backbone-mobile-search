@@ -1,25 +1,24 @@
-define( ['jquery', 'backbone', 'utils', 'models/ResultCollection', 'models/PhotoCollection'],
-        function( $, Backbone, utils, ResultCollection, PhotoCollection ) {
+define( ['jquery', 'backbone', 'utils', 'views/resultList', 'views/photoList'],
+        function( $, Backbone, utils, ResultList, PhotoList ) {
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
             "use strict";
 
 
             var AppView = Backbone.View.extend( {
                 el: $( "#appview" ),
-                initialize: function() {
-                },
+                
                 events: {
                     "submit #queryForm" : "keyLoadResults",
                     "change #sortBy": "keyLoadResults",
                     "keydown #searchbox" : "handleKey"
                 },
 
-                setCollection: function( option ) {
+                setView: function( option ) {
                     if ( option == 'search' ) {
-                        this.result_collection = new ResultCollection;
+                        this.result_view = new ResultList;
                     }
                     else {
-                        this.photo_collection = new PhotoCollection;
+                        this.photo_view = new PhotoList;
                     }
                 },
 

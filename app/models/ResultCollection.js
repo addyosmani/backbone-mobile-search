@@ -1,5 +1,5 @@
-define( ['jquery', 'backbone', 'models/ResultEntry', 'views/resultList'],
-        function( $, Backbone, ResultEntry, ResultList ) {
+define( ['jquery', 'backbone', 'models/ResultEntry'],
+        function( $, Backbone, ResultEntry ) {
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
             "use strict";
 
@@ -7,10 +7,6 @@ define( ['jquery', 'backbone', 'models/ResultEntry', 'views/resultList'],
                 model: ResultEntry,
                 parse: function( response ) {
                     return response;
-                },
-                initialize: function() {
-                    this.resultlist = new ResultList;
-                    this.bind( "reset", this.resultlist.renderList );
                 }
             } );
 

@@ -1,25 +1,29 @@
-define( ['jquery', 'backbone', 'underscore','text!templates/listview.html'],
-        function( $, Backbone, _, listTemplate ) {
+define( ['jquery', 'backbone', 'underscore', 'models/ResultCollection', 'text!templates/listview.html'],
+        function( $, Backbone, _, ResultCollection, listTemplate ) {
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
             "use strict";
-
 
             var ResultList = Backbone.View.extend( {
                 el: $( "#listviewholder" ),
 
                 initialize: function() {
+                    this.collection = new ResultCollection;
+                    _.bindAll(this, "renderList");
+                    this.collection.bind( "reset", this.renderList );
                 },
 
-                renderList: function( collection ) {
+                renderList: function() {
 
-                    var compiled_template = _.template( listTemplate );
+                    var compiled_template = _.template( listTemplate ),
+                        collection = this.collection,
+                        $el = $(this.el);
 
                     mobileSearch.utils.loadPrompt( "Loading results..." );
                     mobileSearch.utils.toggleNavigation( true );
-                    collection.resultlist.el.html( compiled_template( { results: collection.models } ) );
+                    $el.html( compiled_template( { results: collection.models } ) );
 
                     setTimeout( function() {
-                       collection.resultlist.el.listview('refresh');
+                       $el.listview('refresh');
                     }, 0 );
 
                 }
@@ -27,5 +31,3 @@ define( ['jquery', 'backbone', 'underscore','text!templates/listview.html'],
 
             return ResultList;
         });
-
-
