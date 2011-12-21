@@ -1,6 +1,6 @@
 #Flickly Mobile
 
-Note: this application is being refactored as of 12/21. Please don't consider using it until the refactor has been completed.
+*This app was further refactored 21/12
 
 A complete Backbone.js + jQuery Mobile sample app using AMD for separation of modules, Require.js for dependency management + template externalisation and Underscore for templating.
 

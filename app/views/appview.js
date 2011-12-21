@@ -1,11 +1,13 @@
-define( ['jquery', 'backbone', 'utils', 'models/ResultCollection', 'models/PhotoCollection'],
-        function( $, Backbone, utils, ResultCollection, PhotoCollection ) {
+define( ['jquery', 'backbone', 'utils', 'collections/photos','collections/results', 'views/photoList', 'views/resultList'],
+        function( $, Backbone, utils, PhotoCollection, ResultCollection, PhotoList, ResultList ) {
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
             "use strict";
 
 
+
             var AppView = Backbone.View.extend( {
                 el: $( "#appview" ),
+
                 initialize: function() {
                 },
                 events: {
@@ -14,12 +16,18 @@ define( ['jquery', 'backbone', 'utils', 'models/ResultCollection', 'models/Photo
                     "keydown #searchbox" : "handleKey"
                 },
 
-                setCollection: function( option ) {
+                setView: function( option ) {
                     if ( option == 'search' ) {
-                        this.result_collection = new ResultCollection;
+
+                        mobileSearch.utils.loadPrompt( "Loading results..." );
+                        mobileSearch.utils.toggleNavigation( true );
+                        this.resultView = new ResultList;
                     }
                     else {
-                        this.photo_collection = new PhotoCollection;
+
+                        mobileSearch.utils.loadPrompt( "Loading photo..." );
+                        $( '#photo .ui-title' ).html( 'Photo view' );
+                        this.photoView = new PhotoList;
                     }
                 },
 
@@ -46,7 +54,12 @@ define( ['jquery', 'backbone', 'utils', 'models/ResultCollection', 'models/Photo
             return AppView;
         } );
 
+        /* Due to deep namespacing, these render helpers are currently necessary*/
+        window.renderResults = function(){
+            window.mobileSearch.views.appview.resultView.render();
+        }
 
-
-
+        window.renderPhoto = function(){
+            window.mobileSearch.views.appview.photoView.render();
+        }
 
