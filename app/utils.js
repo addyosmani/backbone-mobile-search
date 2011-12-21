@@ -5,7 +5,6 @@ define( ['jquery' ],
             var utils = {};
 
 
-
             // summary:
             //            Manage passing search queries to the necessary handlers and the UI
             //            changes that are required based on query-type.
@@ -35,7 +34,6 @@ define( ['jquery' ],
                     $.when( utils.fetchResults( searchType, query, sort, page ) )
                             .then( $.proxy( function( response ) {
 
-
                                 ctx.setView( searchType );
 
                                 // The application can handle routes that come in
@@ -53,9 +51,8 @@ define( ['jquery' ],
 
                                     $( '.search-meta p' ).html( 'Page: ' + response.photos.page + ' / ' + response.photos.pages );
                                     
-                                 
-                                    ctx.resultView.collection.reset(entries);
-                                    
+                                    ctx.result_view.collection.reset( entries );
+
                                     // switch to search results view
                                     utils.changePage( "#search", "slide", false, false );
 
@@ -66,9 +63,7 @@ define( ['jquery' ],
                                 else {
 
                                     entries = response.photo;
-                                    //ctx.photo_collection.reset( entries );
-                                    ctx.photoView.collection.reset(entries);
-
+                                    ctx.photo_view.collection.reset( entries );
 
                                     // switch to the individual photo viewer
                                     utils.changePage( "#photo", "slide", false, false );

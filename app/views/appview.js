@@ -1,15 +1,12 @@
-define( ['jquery', 'backbone', 'utils', 'collections/photos','collections/results', 'views/photoList', 'views/resultList'],
-        function( $, Backbone, utils, PhotoCollection, ResultCollection, PhotoList, ResultList ) {
+define( ['jquery', 'backbone', 'utils', 'views/resultList', 'views/photoList'],
+        function( $, Backbone, utils, ResultList, PhotoList ) {
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
             "use strict";
 
 
-
             var AppView = Backbone.View.extend( {
                 el: $( "#appview" ),
-
-                initialize: function() {
-                },
+                
                 events: {
                     "submit #queryForm" : "keyLoadResults",
                     "change #sortBy": "keyLoadResults",
@@ -18,16 +15,10 @@ define( ['jquery', 'backbone', 'utils', 'collections/photos','collections/result
 
                 setView: function( option ) {
                     if ( option == 'search' ) {
-
-                        mobileSearch.utils.loadPrompt( "Loading results..." );
-                        mobileSearch.utils.toggleNavigation( true );
-                        this.resultView = new ResultList;
+                        this.result_view = new ResultList;
                     }
                     else {
-
-                        mobileSearch.utils.loadPrompt( "Loading photo..." );
-                        $( '#photo .ui-title' ).html( 'Photo view' );
-                        this.photoView = new PhotoList;
+                        this.photo_view = new PhotoList;
                     }
                 },
 
@@ -54,12 +45,7 @@ define( ['jquery', 'backbone', 'utils', 'collections/photos','collections/result
             return AppView;
         } );
 
-        /* Due to deep namespacing, these render helpers are currently necessary*/
-        window.renderResults = function(){
-            window.mobileSearch.views.appview.resultView.render();
-        }
 
-        window.renderPhoto = function(){
-            window.mobileSearch.views.appview.photoView.render();
-        }
+
+
 

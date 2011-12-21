@@ -1,4 +1,4 @@
-define( ['jquery', 'backbone', 'underscore', 'collections/photos', 'text!templates/photoview.html'],
+define( ['jquery', 'backbone', 'underscore', 'models/PhotoCollection', 'text!templates/photoview.html'],
         function( $, Backbone, _ , PhotoCollection, photoTemplate) {
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
             "use strict";
@@ -8,20 +8,23 @@ define( ['jquery', 'backbone', 'underscore', 'collections/photos', 'text!templat
 
                 initialize: function() {
                     this.collection = new PhotoCollection;
-                    //this.render();
+                    _.bindAll(this, "renderList");
+                    this.collection.bind( "reset", this.renderList );
                 },
 
+                renderList: function( collection ) {
 
-                render: function() {
+                    var compiled_template = _.template(photoTemplate),
+                        collection = this.collection,
+                        $el = $(this.el);
 
-                    var compiledTemplate = _.template(photoTemplate, { results: this.collection.models });
-                    this.el.html(compiledTemplate);
-          
+                    mobileSearch.utils.loadPrompt( "Loading photo..." );
+                    $( '#photo .ui-title' ).html( 'Photo view' );
+                    $el.html( compiled_template( { results: collection.models } ) );
+
                     setTimeout( function() {
-                        $('#photoviewholder').listview('refresh');
+                        $el.listview('refresh');
                     }, 0 );
-                    
-
 
                 }
             } );

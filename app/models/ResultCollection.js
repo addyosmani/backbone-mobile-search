@@ -3,13 +3,13 @@ define( ['jquery', 'backbone', 'models/ResultEntry'],
             // Using ECMAScript 5 strict mode during development. By default r.js will ignore that.
             "use strict";
 
-            var PhotoCollection = Backbone.Collection.extend( {
+            var ResultCollection = Backbone.Collection.extend( {
                 model: ResultEntry,
-                initialize:function(){
-                   this.bind( "reset", window.renderPhoto);
+                parse: function( response ) {
+                    return response;
                 }
             } );
 
-            return PhotoCollection;
+            return ResultCollection;
         } );
-
+            
