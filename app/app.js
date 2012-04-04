@@ -1,7 +1,7 @@
 /*!
  * Flickly - Backbone jQuery Mobile demo
  * http://addyosmani.com
- * Copyright (c) 2011 Addy Osmani
+ * Copyright (c) 2012 Addy Osmani
  * Dual licensed under the MIT and GPL licenses.
  *
  */
@@ -31,6 +31,7 @@ define( ['backbone', 'views/appview', 'routers/workspace', 'utils', 'ui'],
 
 
             window.mobileSearch.utils.toggleNavigation( false );
+            
             Backbone.history.start();
         });
 

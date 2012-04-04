@@ -11,7 +11,7 @@ define( ['jquery', 'backbone'],
                 routes: {
                     "search/:query":                  "search",      // #search/kiwis
                     "search/:query/s:sort/p:page":    "search",      // #search/kiwis/srelevance/p7
-                    "photo/:id":                      "photo",       //#photo/93839
+                    "photo/:id":                      "photo",       // #photo/93839
                     "" : "root"                                      //
                 },
                 search: function( query, sort, page ) {

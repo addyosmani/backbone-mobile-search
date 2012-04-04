@@ -24,9 +24,10 @@ define( ['jquery' ],
 
             utils.dfdQuery = function( searchType, ctx, query, sort, page ) {
 
-                if(!(query==undefined || query == "")){
+                if(!(query == undefined || query == "" )){
 
                     var entries = null;
+
                     page = (page == undefined) ? 1 : page;
 
                     utils.loadPrompt( 'Querying Flickr API...' );
@@ -112,13 +113,14 @@ define( ['jquery' ],
 
             utils.fetchResults = function( searchType, query, sort, page ) {
 
-                var serviceUrl = "http://api.flickr.com/services/rest/?format=json&jsoncallback=?",
+                var serviceUrl = "http://api.flickr.com/services/rest/",
                         apiKey = "8662e376985445d92a07c79ff7d12ff8",
                         geoTagged = null,
                         quantity = 0,
                         safeSearch = '',
                         minDate = "",
-                        maxDate = "";
+                        maxDate = "",
+                        data = {};
 
 
                 if ( searchType == 'search' || searchType == undefined ) {
@@ -133,14 +135,34 @@ define( ['jquery' ],
                     ($( '#geo-choice-z1' ).prop( 'checked' ) || mobileSearch.defaults.geoTagged) ? geoTagged = 0 : geoTagged = 1;
                     page = (page == undefined) ? 0 : page;
                     sort = (sort == undefined) ? ($( '#sortBy' ).val()) : sort;
-                    serviceUrl += "&method=flickr.photos.search" + "&per_page=" + quantity + "&page=" + page + "&is_geo=" + geoTagged + "&safe_search=" + safeSearch + "&sort=" + sort + "&min_taken_date=" + minDate + "&max_taken_date=" + maxDate + "&text=" + encodeURIComponent(query) + "&api_key=" + apiKey;
+
+                    data = {
+                        format: 'json',
+                        nojsoncallback: '1',
+                        method: 'flickr.photos.search',
+                        per_page: quantity,
+                        page: page,
+                        is_geo: geoTagged,
+                        safe_search: safeSearch,
+                        sort: sort,
+                        min_taken_date: minDate,
+                        max_taken_date: maxDate,
+                        text: encodeURIComponent(query),
+                        api_key: apiKey
+                    };
 
                 } else if ( searchType == 'photo' ) {
-                    serviceUrl += "&method=flickr.photos.getInfo&photo_id=" + encodeURIComponent(query) + "&api_key=" + apiKey;
+
+                    data = {
+                        format: 'json',
+                        nojsoncallback: '1',
+                        method: 'flickr.photos.getInfo',
+                        photo_id: encodeURIComponent(query),
+                        api_key: apiKey
+                    };
                 }
 
-
-                return $.ajax( serviceUrl, { dataType: "json" } );
+                return $.ajax({ url: serviceUrl, dataType: "json", data: data } );
             };
 
 
@@ -167,9 +189,9 @@ define( ['jquery' ],
                 var sortQuery,
                     hashQuery = "", pageQuery = 0, increment = 0;
 
-                (mobileSearch.routers.workspace.q == undefined) ? hashQuery = '' : hashQuery = mobileSearch.routers.workspace.q;
-                (mobileSearch.routers.workspace.p == undefined) ? pageQuery = 1 : pageQuery = mobileSearch.routers.workspace.p;
-                (mobileSearch.routers.workspace.s == undefined) ? sortQuery = 'relevance' : sortQuery = mobileSearch.routers.workspace.s;
+                (mobileSearch.routers.workspace.q === undefined) ? hashQuery = '' : hashQuery = mobileSearch.routers.workspace.q;
+                (mobileSearch.routers.workspace.p === undefined) ? pageQuery = 1 : pageQuery = mobileSearch.routers.workspace.p;
+                (mobileSearch.routers.workspace.s === undefined) ? sortQuery = 'relevance' : sortQuery = mobileSearch.routers.workspace.s;
 
                 pageQuery = parseInt( pageQuery );
                 (state == 'next') ? pageQuery += 1 : pageQuery -= 1;
